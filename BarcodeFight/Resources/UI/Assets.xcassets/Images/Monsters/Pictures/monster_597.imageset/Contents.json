@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "monster_597.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

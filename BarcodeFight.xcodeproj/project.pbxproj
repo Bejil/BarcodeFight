@@ -1,0 +1,2070 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D40506CB2C011C8800210F84 /* BF_Monsters_Details_Page_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506CA2C011C8800210F84 /* BF_Monsters_Details_Page_ViewController.swift */; };
+		D40506CF2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506CE2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift */; };
+		D40506D12C0122A600210F84 /* BF_Onboarding_Game_Detail_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506D02C0122A600210F84 /* BF_Onboarding_Game_Detail_ViewController.swift */; };
+		D40506D42C04C48800210F84 /* BF_Story_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506D32C04C48800210F84 /* BF_Story_ViewController.swift */; };
+		D40506D62C062C6E00210F84 /* BF_User_ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506D52C062C6E00210F84 /* BF_User_ImageView.swift */; };
+		D40506D82C09BAA600210F84 /* BF_Account_Ranking_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506D72C09BAA600210F84 /* BF_Account_Ranking_ViewController.swift */; };
+		D40506DA2C09BEF000210F84 /* BF_User_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506D92C09BEF000210F84 /* BF_User_TableViewCell.swift */; };
+		D40506DC2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506DB2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift */; };
+		D40506DE2C106A8F00210F84 /* BF_Fights_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506DD2C106A8F00210F84 /* BF_Fights_TableViewCell.swift */; };
+		D40506E32C14EF4E00210F84 /* BF_Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506E22C14EF4E00210F84 /* BF_Ads.swift */; };
+		D40506E62C14EFAA00210F84 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = D40506E52C14EFAA00210F84 /* GoogleMobileAds */; };
+		D40506E82C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506E72C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift */; };
+		D40506EA2C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */; };
+		D412F16B2A8A761E000AFCC1 /* BF_User_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F16A2A8A761E000AFCC1 /* BF_User_Extension.swift */; };
+		D412F16D2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F16C2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift */; };
+		D412F1702A8A8DBD000AFCC1 /* BF_Fight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F16F2A8A8DBD000AFCC1 /* BF_Fight.swift */; };
+		D412F1762A8AD774000AFCC1 /* BF_Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F1752A8AD774000AFCC1 /* BF_Toast.swift */; };
+		D412F17C2A8C163E000AFCC1 /* BF_User_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F17B2A8C163E000AFCC1 /* BF_User_StackView.swift */; };
+		D412F1822A8CF200000AFCC1 /* BF_Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F1812A8CF200000AFCC1 /* BF_Scan.swift */; };
+		D412F1852A8E108F000AFCC1 /* BF_Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F1842A8E108F000AFCC1 /* BF_Stepper.swift */; };
+		D412F18A2A8E5C8D000AFCC1 /* BF_Monster_Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F1882A8E5C8D000AFCC1 /* BF_Monster_Descriptions.swift */; };
+		D412F18B2A8E5C8D000AFCC1 /* BF_Monster_Descriptions.json in Resources */ = {isa = PBXBuildFile; fileRef = D412F1892A8E5C8D000AFCC1 /* BF_Monster_Descriptions.json */; };
+		D412F18E2A8E64AC000AFCC1 /* BF_Fights_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F18D2A8E64AC000AFCC1 /* BF_Fights_StackView.swift */; };
+		D412F1912A8EA88F000AFCC1 /* BF_Fight_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F1902A8EA88F000AFCC1 /* BF_Fight_Extension.swift */; };
+		D412F1942A8EB270000AFCC1 /* BF_ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F1932A8EB270000AFCC1 /* BF_ImageView.swift */; };
+		D414B4FC2BD7B25500A006FE /* GROBOLD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D414B4FB2BD7B25500A006FE /* GROBOLD.ttf */; };
+		D414B51D2BD7B41D00A006FE /* Death_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B4FE2BD7B41D00A006FE /* Death_0.mp3 */; };
+		D414B51E2BD7B41D00A006FE /* Death_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B4FF2BD7B41D00A006FE /* Death_1.mp3 */; };
+		D414B51F2BD7B41D00A006FE /* Death_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5002BD7B41D00A006FE /* Death_2.mp3 */; };
+		D414B5202BD7B41D00A006FE /* Death_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5012BD7B41D00A006FE /* Death_3.mp3 */; };
+		D414B5212BD7B41D00A006FE /* Death_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5022BD7B41D00A006FE /* Death_4.mp3 */; };
+		D414B5222BD7B41D00A006FE /* Death_5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5032BD7B41D00A006FE /* Death_5.mp3 */; };
+		D414B5232BD7B41D00A006FE /* Death_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5042BD7B41D00A006FE /* Death_6.mp3 */; };
+		D414B5242BD7B41D00A006FE /* Dodge_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5062BD7B41D00A006FE /* Dodge_0.mp3 */; };
+		D414B5252BD7B41D00A006FE /* Dodge_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5072BD7B41D00A006FE /* Dodge_1.mp3 */; };
+		D414B5262BD7B41D00A006FE /* Dodge_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5082BD7B41D00A006FE /* Dodge_2.mp3 */; };
+		D414B5272BD7B41D00A006FE /* Dodge_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5092BD7B41D00A006FE /* Dodge_3.mp3 */; };
+		D414B5282BD7B41D00A006FE /* Dodge_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B50A2BD7B41D00A006FE /* Dodge_4.mp3 */; };
+		D414B5292BD7B41D00A006FE /* Dodge_5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B50B2BD7B41D00A006FE /* Dodge_5.mp3 */; };
+		D414B52A2BD7B41D00A006FE /* Dodge_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B50C2BD7B41D00A006FE /* Dodge_6.mp3 */; };
+		D414B52B2BD7B41D00A006FE /* Dodge_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B50D2BD7B41D00A006FE /* Dodge_7.mp3 */; };
+		D414B52C2BD7B41D00A006FE /* Impact_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B50F2BD7B41D00A006FE /* Impact_1.mp3 */; };
+		D414B52D2BD7B41D00A006FE /* Impact_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5102BD7B41D00A006FE /* Impact_2.mp3 */; };
+		D414B52E2BD7B41D00A006FE /* Impact_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5112BD7B41D00A006FE /* Impact_3.mp3 */; };
+		D414B52F2BD7B41D00A006FE /* Impact_4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5122BD7B41D00A006FE /* Impact_4.mp3 */; };
+		D414B5302BD7B41D00A006FE /* Impact_5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5132BD7B41D00A006FE /* Impact_5.mp3 */; };
+		D414B5312BD7B41D00A006FE /* Impact_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5142BD7B41D00A006FE /* Impact_6.mp3 */; };
+		D414B5322BD7B41D00A006FE /* Impact_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5152BD7B41D00A006FE /* Impact_7.mp3 */; };
+		D414B5332BD7B41D00A006FE /* Impact_8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5162BD7B41D00A006FE /* Impact_8.mp3 */; };
+		D414B5342BD7B41D00A006FE /* Impact_9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5172BD7B41D00A006FE /* Impact_9.mp3 */; };
+		D414B5352BD7B41D00A006FE /* Impact_10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5182BD7B41D00A006FE /* Impact_10.mp3 */; };
+		D414B5362BD7B41D00A006FE /* Impact_11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5192BD7B41D00A006FE /* Impact_11.mp3 */; };
+		D414B5372BD7B41D00A006FE /* Impact_12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B51A2BD7B41D00A006FE /* Impact_12.mp3 */; };
+		D414B5382BD7B41D00A006FE /* Impact_13.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B51B2BD7B41D00A006FE /* Impact_13.mp3 */; };
+		D414B53A2BD7B45000A006FE /* BF_Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D414B5392BD7B44F00A006FE /* BF_Audio.swift */; };
+		D414B53D2BD7B49400A006FE /* SwiftySound in Frameworks */ = {isa = PBXBuildFile; productRef = D414B53C2BD7B49400A006FE /* SwiftySound */; };
+		D414B5412BD7BA0600A006FE /* Battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B53E2BD7BA0600A006FE /* Battle.mp3 */; };
+		D414B5422BD7BA0600A006FE /* Main.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B53F2BD7BA0600A006FE /* Main.mp3 */; };
+		D414B5452BD7BC7400A006FE /* SPConfetti in Frameworks */ = {isa = PBXBuildFile; productRef = D414B5442BD7BC7400A006FE /* SPConfetti */; };
+		D414B54B2BD7BE8700A006FE /* Error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5462BD7BE8700A006FE /* Error.mp3 */; };
+		D414B54C2BD7BE8700A006FE /* Off.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5472BD7BE8700A006FE /* Off.mp3 */; };
+		D414B54D2BD7BE8700A006FE /* On.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5482BD7BE8700A006FE /* On.mp3 */; };
+		D414B54E2BD7BE8700A006FE /* Success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D414B5492BD7BE8700A006FE /* Success.mp3 */; };
+		D4158DE32A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4158DE22A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift */; };
+		D4158DE52A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4158DE42A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift */; };
+		D41D2E262C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E252C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift */; };
+		D41D2E282C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */; };
+		D41D2E2A2C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */; };
+		D42C5BD62BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */; };
+		D42C5BD92BDBD97700765CC6 /* BF_Confettis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BD82BDBD97700765CC6 /* BF_Confettis.swift */; };
+		D42C5BDC2BDC110A00765CC6 /* BF_Rubies_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BDB2BDC10D500765CC6 /* BF_Rubies_StackView.swift */; };
+		D42C5BE52BDFC03B00765CC6 /* BF_BoringAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BE42BDFC03B00765CC6 /* BF_BoringAvatar.swift */; };
+		D42C5BE72BDFC21200765CC6 /* UIColor_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BE62BDFC21200765CC6 /* UIColor_Extension.swift */; };
+		D42C5BED2BDFD14500765CC6 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = D42C5BEC2BDFD14500765CC6 /* SVGKit */; };
+		D42C5BEF2BDFD14500765CC6 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D42C5BEE2BDFD14500765CC6 /* SVGKitSwift */; };
+		D42C5BF22BE0DBA700765CC6 /* BF_Item_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BF12BE0DBA700765CC6 /* BF_Item_Extension.swift */; };
+		D42C5BF42BE1428D00765CC6 /* BF_Scanner_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BF32BE1428D00765CC6 /* BF_Scanner_ViewController.swift */; };
+		D42C5BF72BE3950A00765CC6 /* BF_Menu_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BF62BE3950A00765CC6 /* BF_Menu_Button.swift */; };
+		D42C5BF92BE3A7FF00765CC6 /* BF_Ruby.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BF82BE3A7FF00765CC6 /* BF_Ruby.swift */; };
+		D42C5BFD2BE3DEED00765CC6 /* BF_Scans_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BFC2BE3DEDE00765CC6 /* BF_Scans_StackView.swift */; };
+		D42C5C002BE41BA900765CC6 /* BF_Scan_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BFF2BE41BA900765CC6 /* BF_Scan_Extension.swift */; };
+		D42C5C022BE4D88F00765CC6 /* BF_Fight_Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5C012BE4D88F00765CC6 /* BF_Fight_Live.swift */; };
+		D432D4882BD93B9400E91F5A /* BF_Battle_Opponent_User_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432D4862BD93B9400E91F5A /* BF_Battle_Opponent_User_ViewController.swift */; };
+		D432D48C2BD964AF00E91F5A /* BF_SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432D48B2BD964AF00E91F5A /* BF_SegmentedControl.swift */; };
+		D432D48E2BDA464D00E91F5A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D432D48D2BDA464D00E91F5A /* StoreKit.framework */; };
+		D432D4912BDA482B00E91F5A /* BF_InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432D4902BDA482B00E91F5A /* BF_InAppPurchase.swift */; };
+		D432D4932BDA8A7300E91F5A /* BF_Item_Object_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432D4922BDA8A7300E91F5A /* BF_Item_Object_TableViewCell.swift */; };
+		D432D4952BDA8A7600E91F5A /* BF_Item_Shop_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432D4942BDA8A7600E91F5A /* BF_Item_Shop_TableViewCell.swift */; };
+		D432D4982BDA8C9600E91F5A /* BF_Item_Shop_Object_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D432D4972BDA8C9600E91F5A /* BF_Item_Shop_Object_TableViewCell.swift */; };
+		D4352E112C42505B0059D6E2 /* BF_Tutorial_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4352E102C42505B0059D6E2 /* BF_Tutorial_ViewController.swift */; };
+		D4352E132C45AEFD0059D6E2 /* BF_Items_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4352E122C45AEFD0059D6E2 /* BF_Items_Alert_ViewController.swift */; };
+		D4352E1C2C47B23E0059D6E2 /* BF_Battle_Fight_QTE_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4352E1B2C47B23E0059D6E2 /* BF_Battle_Fight_QTE_ViewController.swift */; };
+		D4352E1F2C4933A30059D6E2 /* BF_BarcodeLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4352E1E2C4933A30059D6E2 /* BF_BarcodeLookup.swift */; };
+		D4352E2A2C4AF2F40059D6E2 /* BF_Product_Add_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4352E292C4AF2F40059D6E2 /* BF_Product_Add_Alert_ViewController.swift */; };
+		D4352E2E2C4E53B40059D6E2 /* BF_Monsters_List_Products_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4352E2D2C4E53B40059D6E2 /* BF_Monsters_List_Products_ViewController.swift */; };
+		D44EED812BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44EED802BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift */; };
+		D44EED862BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44EED852BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift */; };
+		D44EED882BF4DA360058C4ED /* BF_User_Opponent_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44EED872BF4DA360058C4ED /* BF_User_Opponent_StackView.swift */; };
+		D462452D2A86749400E54CB8 /* BF_Monsters_Particules.sks in Resources */ = {isa = PBXBuildFile; fileRef = D462452C2A86749400E54CB8 /* BF_Monsters_Particules.sks */; };
+		D46245312A86839600E54CB8 /* BF_Monsters_Details_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46245302A86839600E54CB8 /* BF_Monsters_Details_ViewController.swift */; };
+		D46245332A86D3FA00E54CB8 /* BF_Monsters_Element_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46245322A86D3FA00E54CB8 /* BF_Monsters_Element_View.swift */; };
+		D46753FD2A762DE4003DCFAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46753FC2A762DE4003DCFAF /* AppDelegate.swift */; };
+		D46754062A762DE5003DCFAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D46754052A762DE5003DCFAF /* Assets.xcassets */; };
+		D46754092A762DE5003DCFAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46754072A762DE5003DCFAF /* LaunchScreen.storyboard */; };
+		D46754152A76300A003DCFAF /* BF_Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754142A76300A003DCFAF /* BF_Monster.swift */; };
+		D467541F2A799F0A003DCFAF /* BF_Markov.txt in Resources */ = {isa = PBXBuildFile; fileRef = D467541D2A799F09003DCFAF /* BF_Markov.txt */; };
+		D46754202A799F0A003DCFAF /* BF_Markov.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467541E2A799F09003DCFAF /* BF_Markov.swift */; };
+		D46754262A7BD40E003DCFAF /* BF_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754252A7BD40E003DCFAF /* BF_Alert_ViewController.swift */; };
+		D46754292A7BD54A003DCFAF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D46754282A7BD54A003DCFAF /* SnapKit */; };
+		D467542B2A7BD788003DCFAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467542A2A7BD788003DCFAF /* Constants.swift */; };
+		D46754332A7BD835003DCFAF /* BF_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754322A7BD835003DCFAF /* BF_ViewController.swift */; };
+		D46754362A7BD89B003DCFAF /* BF_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754352A7BD89B003DCFAF /* BF_NavigationController.swift */; };
+		D467543E2A7BD8D4003DCFAF /* TT Interphases Pro Trial Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D46754392A7BD8D4003DCFAF /* TT Interphases Pro Trial Bold.ttf */; };
+		D46754402A7BD8D4003DCFAF /* TT Interphases Pro Trial Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D467543B2A7BD8D4003DCFAF /* TT Interphases Pro Trial Regular.ttf */; };
+		D46754412A7BD8D4003DCFAF /* TT Interphases Pro Trial Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D467543C2A7BD8D4003DCFAF /* TT Interphases Pro Trial Black.ttf */; };
+		D46754462A7BD956003DCFAF /* BF_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754432A7BD956003DCFAF /* BF_Button.swift */; };
+		D46754472A7BD956003DCFAF /* BF_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754452A7BD956003DCFAF /* BF_Label.swift */; };
+		D467544A2A7BDA31003DCFAF /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754492A7BDA31003DCFAF /* String_Extension.swift */; };
+		D467544E2A7BDA46003DCFAF /* UIApplication_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467544C2A7BDA46003DCFAF /* UIApplication_Extension.swift */; };
+		D467544F2A7BDA46003DCFAF /* UIViewController_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467544D2A7BDA46003DCFAF /* UIViewController_Extension.swift */; };
+		D46754512A7BDA87003DCFAF /* UIGestureRecognizer_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754502A7BDA87003DCFAF /* UIGestureRecognizer_Extension.swift */; };
+		D46754542A7BDAB4003DCFAF /* NotificationCenter_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754532A7BDAB4003DCFAF /* NotificationCenter_Extension.swift */; };
+		D46754562A7BDAE0003DCFAF /* UIView_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754552A7BDAE0003DCFAF /* UIView_Extension.swift */; };
+		D46754592A7BDB21003DCFAF /* BF_Placeholder_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754582A7BDB21003DCFAF /* BF_Placeholder_View.swift */; };
+		D467545B2A7C1467003DCFAF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D467545A2A7C1467003DCFAF /* Localizable.strings */; };
+		D467545E2A7C15BD003DCFAF /* BF_Monsters_List_Home_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467545D2A7C15BD003DCFAF /* BF_Monsters_List_Home_ViewController.swift */; };
+		D46754672A7C41AC003DCFAF /* BF_Authorizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754662A7C41AC003DCFAF /* BF_Authorizations.swift */; };
+		D467546A2A7FD6C9003DCFAF /* BF_Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754692A7FD6C9003DCFAF /* BF_Error.swift */; };
+		D467546D2A7FDE39003DCFAF /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = D467546C2A7FDE39003DCFAF /* SwiftLocation */; };
+		D46754702A7FE037003DCFAF /* BF_Monster_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */; };
+		D477BA862A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */; };
+		D477BA882A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */; };
+		D49B176B2A80E9D4002B80D6 /* BF_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */; };
+		D49B176D2A80EA53002B80D6 /* UIEdgeInsets_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B176C2A80EA53002B80D6 /* UIEdgeInsets_Extension.swift */; };
+		D49B176F2A80F8C7002B80D6 /* BF_Barcode_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B176E2A80F8C7002B80D6 /* BF_Barcode_StackView.swift */; };
+		D49B17732A811852002B80D6 /* BF_Monsters_ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B17722A811852002B80D6 /* BF_Monsters_ImageView.swift */; };
+		D4B653BF2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B653BE2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift */; };
+		D4B653C72AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B653C62AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift */; };
+		D4BE14132A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14102A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift */; };
+		D4BE14142A811DB200F20782 /* BF_Account_SignUp_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14112A811DB200F20782 /* BF_Account_SignUp_ViewController.swift */; };
+		D4BE14152A811DB200F20782 /* BF_Account_SignIn_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14122A811DB200F20782 /* BF_Account_SignIn_ViewController.swift */; };
+		D4BE141B2A811EE000F20782 /* BF_Account_DisplayName_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14182A811EE000F20782 /* BF_Account_DisplayName_Alert_ViewController.swift */; };
+		D4BE141C2A811EE000F20782 /* BF_Account_PasswordValidation_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14192A811EE000F20782 /* BF_Account_PasswordValidation_StackView.swift */; };
+		D4BE141D2A811EE000F20782 /* BF_Account_Social_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE141A2A811EE000F20782 /* BF_Account_Social_StackView.swift */; };
+		D4BE14252A81225800F20782 /* MB_TextField in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE14242A81225800F20782 /* MB_TextField */; };
+		D4BE14282A81227700F20782 /* BF_TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14272A81227700F20782 /* BF_TextField.swift */; };
+		D4BE142B2A81230F00F20782 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE142A2A81230F00F20782 /* IQKeyboardManagerSwift */; };
+		D4BE142F2A8123EC00F20782 /* BF_Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE142E2A8123EC00F20782 /* BF_Account.swift */; };
+		D4BE14312A8123FA00F20782 /* BF_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14302A8123FA00F20782 /* BF_User.swift */; };
+		D4BE14342A81279900F20782 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4BE14332A81279900F20782 /* GoogleService-Info.plist */; };
+		D4BE14372A81297C00F20782 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE14362A81297C00F20782 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		D4BE14392A81297C00F20782 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE14382A81297C00F20782 /* FirebaseAuth */; };
+		D4BE143B2A81297C00F20782 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE143A2A81297C00F20782 /* FirebaseFirestore */; };
+		D4BE143D2A81297C00F20782 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE143C2A81297C00F20782 /* FirebaseFirestoreSwift */; };
+		D4BE143F2A81297C00F20782 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE143E2A81297C00F20782 /* FirebaseStorage */; };
+		D4BE14422A812A5600F20782 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE14412A812A5600F20782 /* GoogleSignIn */; };
+		D4BE14452A813DEE00F20782 /* Notification_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14442A813DEE00F20782 /* Notification_Extension.swift */; };
+		D4BE14472A813E8800F20782 /* UIImage_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14462A813E8800F20782 /* UIImage_Extension.swift */; };
+		D4BE14492A813ED200F20782 /* BF_Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14482A813ED200F20782 /* BF_Firebase.swift */; };
+		D4BE144C2A8179C700F20782 /* BF_Account_Infos_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE144B2A8179C700F20782 /* BF_Account_Infos_ViewController.swift */; };
+		D4BE144F2A8179F600F20782 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE144E2A8179F600F20782 /* Alamofire */; };
+		D4BE14522A817A0700F20782 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE14512A817A0700F20782 /* AlamofireImage */; };
+		D4BE14582A81977500F20782 /* BF_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14552A81977500F20782 /* BF_TableViewCell.swift */; };
+		D4DD053B2AA6337F00E418E2 /* QRCode in Frameworks */ = {isa = PBXBuildFile; productRef = D4DD053A2AA6337F00E418E2 /* QRCode */; };
+		D4EA29D62A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA29D52A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift */; };
+		D4EA29D82A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA29D72A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift */; };
+		D4EA29DD2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA29DC2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift */; };
+		D4EE6CD72A8FA24A00697CC5 /* BF_CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CD62A8FA24A00697CC5 /* BF_CollectionView.swift */; };
+		D4EE6CD92A90FBE200697CC5 /* BF_Battle_Team_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CD82A90FBE100697CC5 /* BF_Battle_Team_ViewController.swift */; };
+		D4EE6CE02A934E5100697CC5 /* BF_Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CDF2A934E5100697CC5 /* BF_Notifications.swift */; };
+		D4EE6CE42A934F6400697CC5 /* UNNotificationCategory_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CE22A934F6400697CC5 /* UNNotificationCategory_Extension.swift */; };
+		D4EE6CE52A934F6400697CC5 /* UNNotificationAction_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CE32A934F6400697CC5 /* UNNotificationAction_Extension.swift */; };
+		D4EE6CE82A935A2500697CC5 /* UserDefaults_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CE72A935A2500697CC5 /* UserDefaults_Extension.swift */; };
+		D4EE6CEB2A935B0300697CC5 /* BF_UrlScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CEA2A935B0300697CC5 /* BF_UrlScheme.swift */; };
+		D4EE6CF02A93FE5500697CC5 /* Bool_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CEF2A93FE5500697CC5 /* Bool_Extension.swift */; };
+		D4EE6CF22A95016C00697CC5 /* BF_Monsters_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF12A95016C00697CC5 /* BF_Monsters_StackView.swift */; };
+		D4EE6CF52A96972200697CC5 /* BF_Monsters_Particules_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF42A96972200697CC5 /* BF_Monsters_Particules_View.swift */; };
+		D4EE6CF82A9893A400697CC5 /* BF_Items_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF72A9893A400697CC5 /* BF_Items_ViewController.swift */; };
+		D4EE6CFA2A98D43500697CC5 /* BF_Items_Shop_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF92A98D43500697CC5 /* BF_Items_Shop_ViewController.swift */; };
+		D4EE6CFD2A99019B00697CC5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = D4EE6CFC2A99019B00697CC5 /* FirebaseRemoteConfig */; };
+		D4EE6CFF2A99024000697CC5 /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4EE6CFE2A99024000697CC5 /* remote_config_defaults.plist */; };
+		D4EE6D022A99059700697CC5 /* RemoteConfig_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D012A99059700697CC5 /* RemoteConfig_Extension.swift */; };
+		D4EE6D052A99096300697CC5 /* BF_Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D042A99096300697CC5 /* BF_Item.swift */; };
+		D4EE6D0B2A992B2700697CC5 /* BF_TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D092A992B2700697CC5 /* BF_TableView.swift */; };
+		D4EE6D0E2A992B4A00697CC5 /* BF_Item_Shop_InAppPurchase_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D0D2A992B4A00697CC5 /* BF_Item_Shop_InAppPurchase_TableViewCell.swift */; };
+		D4EE6D112A9948E200697CC5 /* BF_Coins_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D102A9948E200697CC5 /* BF_Coins_StackView.swift */; };
+		D4EE6D132A99F64100697CC5 /* BF_Item_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D122A99F64100697CC5 /* BF_Item_TableViewCell.swift */; };
+		D4EE6D152A99FCCC00697CC5 /* BF_Items_Monsters_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D142A99FCCC00697CC5 /* BF_Items_Monsters_ViewController.swift */; };
+		D4EE6D292AA0948C00697CC5 /* BF_Battle_Fight_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D282AA0948C00697CC5 /* BF_Battle_Fight_ViewController.swift */; };
+		D4EE6D2E2AA0B29100697CC5 /* BF_Battle_Opponent_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6D2D2AA0B29000697CC5 /* BF_Battle_Opponent_ViewController.swift */; };
+		D4F364B02BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F364AF2BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D40506CA2C011C8800210F84 /* BF_Monsters_Details_Page_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Details_Page_ViewController.swift; sourceTree = "<group>"; };
+		D40506CE2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Game_Page_ViewController.swift; sourceTree = "<group>"; };
+		D40506D02C0122A600210F84 /* BF_Onboarding_Game_Detail_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Game_Detail_ViewController.swift; sourceTree = "<group>"; };
+		D40506D32C04C48800210F84 /* BF_Story_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Story_ViewController.swift; sourceTree = "<group>"; };
+		D40506D52C062C6E00210F84 /* BF_User_ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_ImageView.swift; sourceTree = "<group>"; };
+		D40506D72C09BAA600210F84 /* BF_Account_Ranking_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Ranking_ViewController.swift; sourceTree = "<group>"; };
+		D40506D92C09BEF000210F84 /* BF_User_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_TableViewCell.swift; sourceTree = "<group>"; };
+		D40506DB2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Fights_ViewController.swift; sourceTree = "<group>"; };
+		D40506DD2C106A8F00210F84 /* BF_Fights_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fights_TableViewCell.swift; sourceTree = "<group>"; };
+		D40506DF2C13549400210F84 /* BF_UnusedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_UnusedStrings.swift; sourceTree = "<group>"; };
+		D40506E22C14EF4E00210F84 /* BF_Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Ads.swift; sourceTree = "<group>"; };
+		D40506E72C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Ads_ViewController.swift; sourceTree = "<group>"; };
+		D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Chest_Monsters_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D412F16A2A8A761E000AFCC1 /* BF_User_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_Extension.swift; sourceTree = "<group>"; };
+		D412F16C2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Settings_ViewController.swift; sourceTree = "<group>"; };
+		D412F16F2A8A8DBD000AFCC1 /* BF_Fight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fight.swift; sourceTree = "<group>"; };
+		D412F1752A8AD774000AFCC1 /* BF_Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Toast.swift; sourceTree = "<group>"; };
+		D412F17B2A8C163E000AFCC1 /* BF_User_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_StackView.swift; sourceTree = "<group>"; };
+		D412F1812A8CF200000AFCC1 /* BF_Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Scan.swift; sourceTree = "<group>"; };
+		D412F1842A8E108F000AFCC1 /* BF_Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Stepper.swift; sourceTree = "<group>"; };
+		D412F1882A8E5C8D000AFCC1 /* BF_Monster_Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Monster_Descriptions.swift; sourceTree = "<group>"; };
+		D412F1892A8E5C8D000AFCC1 /* BF_Monster_Descriptions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BF_Monster_Descriptions.json; sourceTree = "<group>"; };
+		D412F18D2A8E64AC000AFCC1 /* BF_Fights_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fights_StackView.swift; sourceTree = "<group>"; };
+		D412F1902A8EA88F000AFCC1 /* BF_Fight_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fight_Extension.swift; sourceTree = "<group>"; };
+		D412F1932A8EB270000AFCC1 /* BF_ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_ImageView.swift; sourceTree = "<group>"; };
+		D414B4FB2BD7B25500A006FE /* GROBOLD.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GROBOLD.ttf; sourceTree = "<group>"; };
+		D414B4FE2BD7B41D00A006FE /* Death_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_0.mp3; sourceTree = "<group>"; };
+		D414B4FF2BD7B41D00A006FE /* Death_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_1.mp3; sourceTree = "<group>"; };
+		D414B5002BD7B41D00A006FE /* Death_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_2.mp3; sourceTree = "<group>"; };
+		D414B5012BD7B41D00A006FE /* Death_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_3.mp3; sourceTree = "<group>"; };
+		D414B5022BD7B41D00A006FE /* Death_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_4.mp3; sourceTree = "<group>"; };
+		D414B5032BD7B41D00A006FE /* Death_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_5.mp3; sourceTree = "<group>"; };
+		D414B5042BD7B41D00A006FE /* Death_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Death_6.mp3; sourceTree = "<group>"; };
+		D414B5062BD7B41D00A006FE /* Dodge_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_0.mp3; sourceTree = "<group>"; };
+		D414B5072BD7B41D00A006FE /* Dodge_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_1.mp3; sourceTree = "<group>"; };
+		D414B5082BD7B41D00A006FE /* Dodge_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_2.mp3; sourceTree = "<group>"; };
+		D414B5092BD7B41D00A006FE /* Dodge_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_3.mp3; sourceTree = "<group>"; };
+		D414B50A2BD7B41D00A006FE /* Dodge_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_4.mp3; sourceTree = "<group>"; };
+		D414B50B2BD7B41D00A006FE /* Dodge_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_5.mp3; sourceTree = "<group>"; };
+		D414B50C2BD7B41D00A006FE /* Dodge_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_6.mp3; sourceTree = "<group>"; };
+		D414B50D2BD7B41D00A006FE /* Dodge_7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dodge_7.mp3; sourceTree = "<group>"; };
+		D414B50F2BD7B41D00A006FE /* Impact_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_1.mp3; sourceTree = "<group>"; };
+		D414B5102BD7B41D00A006FE /* Impact_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_2.mp3; sourceTree = "<group>"; };
+		D414B5112BD7B41D00A006FE /* Impact_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_3.mp3; sourceTree = "<group>"; };
+		D414B5122BD7B41D00A006FE /* Impact_4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_4.mp3; sourceTree = "<group>"; };
+		D414B5132BD7B41D00A006FE /* Impact_5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_5.mp3; sourceTree = "<group>"; };
+		D414B5142BD7B41D00A006FE /* Impact_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_6.mp3; sourceTree = "<group>"; };
+		D414B5152BD7B41D00A006FE /* Impact_7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_7.mp3; sourceTree = "<group>"; };
+		D414B5162BD7B41D00A006FE /* Impact_8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_8.mp3; sourceTree = "<group>"; };
+		D414B5172BD7B41D00A006FE /* Impact_9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_9.mp3; sourceTree = "<group>"; };
+		D414B5182BD7B41D00A006FE /* Impact_10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_10.mp3; sourceTree = "<group>"; };
+		D414B5192BD7B41D00A006FE /* Impact_11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_11.mp3; sourceTree = "<group>"; };
+		D414B51A2BD7B41D00A006FE /* Impact_12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_12.mp3; sourceTree = "<group>"; };
+		D414B51B2BD7B41D00A006FE /* Impact_13.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Impact_13.mp3; sourceTree = "<group>"; };
+		D414B5392BD7B44F00A006FE /* BF_Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Audio.swift; sourceTree = "<group>"; };
+		D414B53E2BD7BA0600A006FE /* Battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Battle.mp3; sourceTree = "<group>"; };
+		D414B53F2BD7BA0600A006FE /* Main.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Main.mp3; sourceTree = "<group>"; };
+		D414B5462BD7BE8700A006FE /* Error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Error.mp3; sourceTree = "<group>"; };
+		D414B5472BD7BE8700A006FE /* Off.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Off.mp3; sourceTree = "<group>"; };
+		D414B5482BD7BE8700A006FE /* On.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = On.mp3; sourceTree = "<group>"; };
+		D414B5492BD7BE8700A006FE /* Success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Success.mp3; sourceTree = "<group>"; };
+		D4158DE22A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_CollectionViewCell.swift; sourceTree = "<group>"; };
+		D4158DE42A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Stat_ProgressView.swift; sourceTree = "<group>"; };
+		D41D2E252C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Locations_ViewController.swift; sourceTree = "<group>"; };
+		D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_PointAnnotation.swift; sourceTree = "<group>"; };
+		D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_AnnotationView.swift; sourceTree = "<group>"; };
+		D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Chest_Objects_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D42C5BD82BDBD97700765CC6 /* BF_Confettis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Confettis.swift; sourceTree = "<group>"; };
+		D42C5BDB2BDC10D500765CC6 /* BF_Rubies_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Rubies_StackView.swift; sourceTree = "<group>"; };
+		D42C5BE42BDFC03B00765CC6 /* BF_BoringAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_BoringAvatar.swift; sourceTree = "<group>"; };
+		D42C5BE62BDFC21200765CC6 /* UIColor_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Extension.swift; sourceTree = "<group>"; };
+		D42C5BF12BE0DBA700765CC6 /* BF_Item_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Extension.swift; sourceTree = "<group>"; };
+		D42C5BF32BE1428D00765CC6 /* BF_Scanner_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Scanner_ViewController.swift; sourceTree = "<group>"; };
+		D42C5BF62BE3950A00765CC6 /* BF_Menu_Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Menu_Button.swift; sourceTree = "<group>"; };
+		D42C5BF82BE3A7FF00765CC6 /* BF_Ruby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Ruby.swift; sourceTree = "<group>"; };
+		D42C5BFC2BE3DEDE00765CC6 /* BF_Scans_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Scans_StackView.swift; sourceTree = "<group>"; };
+		D42C5BFF2BE41BA900765CC6 /* BF_Scan_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Scan_Extension.swift; sourceTree = "<group>"; };
+		D42C5C012BE4D88F00765CC6 /* BF_Fight_Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fight_Live.swift; sourceTree = "<group>"; };
+		D432D4862BD93B9400E91F5A /* BF_Battle_Opponent_User_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Battle_Opponent_User_ViewController.swift; sourceTree = "<group>"; };
+		D432D48B2BD964AF00E91F5A /* BF_SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_SegmentedControl.swift; sourceTree = "<group>"; };
+		D432D48D2BDA464D00E91F5A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D432D4902BDA482B00E91F5A /* BF_InAppPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_InAppPurchase.swift; sourceTree = "<group>"; };
+		D432D4922BDA8A7300E91F5A /* BF_Item_Object_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Object_TableViewCell.swift; sourceTree = "<group>"; };
+		D432D4942BDA8A7600E91F5A /* BF_Item_Shop_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Shop_TableViewCell.swift; sourceTree = "<group>"; };
+		D432D4972BDA8C9600E91F5A /* BF_Item_Shop_Object_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Shop_Object_TableViewCell.swift; sourceTree = "<group>"; };
+		D4352E102C42505B0059D6E2 /* BF_Tutorial_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Tutorial_ViewController.swift; sourceTree = "<group>"; };
+		D4352E122C45AEFD0059D6E2 /* BF_Items_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Items_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4352E1B2C47B23E0059D6E2 /* BF_Battle_Fight_QTE_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Fight_QTE_ViewController.swift; sourceTree = "<group>"; };
+		D4352E1E2C4933A30059D6E2 /* BF_BarcodeLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_BarcodeLookup.swift; sourceTree = "<group>"; };
+		D4352E292C4AF2F40059D6E2 /* BF_Product_Add_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Product_Add_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4352E2D2C4E53B40059D6E2 /* BF_Monsters_List_Products_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_List_Products_ViewController.swift; sourceTree = "<group>"; };
+		D44EED802BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Add_CollectionViewCell.swift; sourceTree = "<group>"; };
+		D44EED852BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Empty_CollectionViewCell.swift; sourceTree = "<group>"; };
+		D44EED872BF4DA360058C4ED /* BF_User_Opponent_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_Opponent_StackView.swift; sourceTree = "<group>"; };
+		D462452C2A86749400E54CB8 /* BF_Monsters_Particules.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BF_Monsters_Particules.sks; sourceTree = "<group>"; };
+		D46245302A86839600E54CB8 /* BF_Monsters_Details_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Details_ViewController.swift; sourceTree = "<group>"; };
+		D46245322A86D3FA00E54CB8 /* BF_Monsters_Element_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Element_View.swift; sourceTree = "<group>"; };
+		D46753F92A762DE4003DCFAF /* BarcodeFight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarcodeFight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D46753FC2A762DE4003DCFAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D46754052A762DE5003DCFAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D46754082A762DE5003DCFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D467540A2A762DE5003DCFAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46754142A76300A003DCFAF /* BF_Monster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster.swift; sourceTree = "<group>"; };
+		D467541D2A799F09003DCFAF /* BF_Markov.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BF_Markov.txt; sourceTree = "<group>"; };
+		D467541E2A799F09003DCFAF /* BF_Markov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Markov.swift; sourceTree = "<group>"; };
+		D46754252A7BD40E003DCFAF /* BF_Alert_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D467542A2A7BD788003DCFAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D46754322A7BD835003DCFAF /* BF_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_ViewController.swift; sourceTree = "<group>"; };
+		D46754352A7BD89B003DCFAF /* BF_NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_NavigationController.swift; sourceTree = "<group>"; };
+		D46754392A7BD8D4003DCFAF /* TT Interphases Pro Trial Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TT Interphases Pro Trial Bold.ttf"; sourceTree = "<group>"; };
+		D467543B2A7BD8D4003DCFAF /* TT Interphases Pro Trial Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TT Interphases Pro Trial Regular.ttf"; sourceTree = "<group>"; };
+		D467543C2A7BD8D4003DCFAF /* TT Interphases Pro Trial Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TT Interphases Pro Trial Black.ttf"; sourceTree = "<group>"; };
+		D46754432A7BD956003DCFAF /* BF_Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Button.swift; sourceTree = "<group>"; };
+		D46754452A7BD956003DCFAF /* BF_Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Label.swift; sourceTree = "<group>"; };
+		D46754492A7BDA31003DCFAF /* String_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
+		D467544C2A7BDA46003DCFAF /* UIApplication_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication_Extension.swift; sourceTree = "<group>"; };
+		D467544D2A7BDA46003DCFAF /* UIViewController_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController_Extension.swift; sourceTree = "<group>"; };
+		D46754502A7BDA87003DCFAF /* UIGestureRecognizer_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGestureRecognizer_Extension.swift; sourceTree = "<group>"; };
+		D46754532A7BDAB4003DCFAF /* NotificationCenter_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCenter_Extension.swift; sourceTree = "<group>"; };
+		D46754552A7BDAE0003DCFAF /* UIView_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Extension.swift; sourceTree = "<group>"; };
+		D46754582A7BDB21003DCFAF /* BF_Placeholder_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Placeholder_View.swift; sourceTree = "<group>"; };
+		D467545A2A7C1467003DCFAF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		D467545D2A7C15BD003DCFAF /* BF_Monsters_List_Home_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_List_Home_ViewController.swift; sourceTree = "<group>"; };
+		D46754662A7C41AC003DCFAF /* BF_Authorizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Authorizations.swift; sourceTree = "<group>"; };
+		D46754692A7FD6C9003DCFAF /* BF_Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Error.swift; sourceTree = "<group>"; };
+		D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_Extension.swift; sourceTree = "<group>"; };
+		D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets_Extension.swift; sourceTree = "<group>"; };
+		D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Delete_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_CollectionViewCell.swift; sourceTree = "<group>"; };
+		D49B176C2A80EA53002B80D6 /* UIEdgeInsets_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets_Extension.swift; sourceTree = "<group>"; };
+		D49B176E2A80F8C7002B80D6 /* BF_Barcode_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Barcode_StackView.swift; sourceTree = "<group>"; };
+		D49B17722A811852002B80D6 /* BF_Monsters_ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_ImageView.swift; sourceTree = "<group>"; };
+		D4B653BE2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Fight_User_ViewController.swift; sourceTree = "<group>"; };
+		D4B653C62AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Fight_Fake_ViewController.swift; sourceTree = "<group>"; };
+		D4BE14102A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Account_ViewController.swift; sourceTree = "<group>"; };
+		D4BE14112A811DB200F20782 /* BF_Account_SignUp_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_SignUp_ViewController.swift; sourceTree = "<group>"; };
+		D4BE14122A811DB200F20782 /* BF_Account_SignIn_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_SignIn_ViewController.swift; sourceTree = "<group>"; };
+		D4BE14182A811EE000F20782 /* BF_Account_DisplayName_Alert_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_DisplayName_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4BE14192A811EE000F20782 /* BF_Account_PasswordValidation_StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_PasswordValidation_StackView.swift; sourceTree = "<group>"; };
+		D4BE141A2A811EE000F20782 /* BF_Account_Social_StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_Social_StackView.swift; sourceTree = "<group>"; };
+		D4BE14272A81227700F20782 /* BF_TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_TextField.swift; sourceTree = "<group>"; };
+		D4BE142E2A8123EC00F20782 /* BF_Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account.swift; sourceTree = "<group>"; };
+		D4BE14302A8123FA00F20782 /* BF_User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_User.swift; sourceTree = "<group>"; };
+		D4BE14332A81279900F20782 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4BE14442A813DEE00F20782 /* Notification_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification_Extension.swift; sourceTree = "<group>"; };
+		D4BE14462A813E8800F20782 /* UIImage_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage_Extension.swift; sourceTree = "<group>"; };
+		D4BE14482A813ED200F20782 /* BF_Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Firebase.swift; sourceTree = "<group>"; };
+		D4BE144B2A8179C700F20782 /* BF_Account_Infos_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Infos_ViewController.swift; sourceTree = "<group>"; };
+		D4BE14552A81977500F20782 /* BF_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_TableViewCell.swift; sourceTree = "<group>"; };
+		D4BE14562A81977500F20782 /* BF_TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_TableView.swift; sourceTree = "<group>"; };
+		D4EA29D52A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Elements_StackView.swift; sourceTree = "<group>"; };
+		D4EA29D72A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_List_ViewController.swift; sourceTree = "<group>"; };
+		D4EA29DC2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Details_Add_ViewController.swift; sourceTree = "<group>"; };
+		D4EE6CD62A8FA24A00697CC5 /* BF_CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_CollectionView.swift; sourceTree = "<group>"; };
+		D4EE6CD82A90FBE100697CC5 /* BF_Battle_Team_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Team_ViewController.swift; sourceTree = "<group>"; };
+		D4EE6CDD2A934D3200697CC5 /* BarcodeFight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BarcodeFight.entitlements; sourceTree = "<group>"; };
+		D4EE6CDF2A934E5100697CC5 /* BF_Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Notifications.swift; sourceTree = "<group>"; };
+		D4EE6CE22A934F6400697CC5 /* UNNotificationCategory_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNNotificationCategory_Extension.swift; sourceTree = "<group>"; };
+		D4EE6CE32A934F6400697CC5 /* UNNotificationAction_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNNotificationAction_Extension.swift; sourceTree = "<group>"; };
+		D4EE6CE72A935A2500697CC5 /* UserDefaults_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults_Extension.swift; sourceTree = "<group>"; };
+		D4EE6CEA2A935B0300697CC5 /* BF_UrlScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_UrlScheme.swift; sourceTree = "<group>"; };
+		D4EE6CEF2A93FE5500697CC5 /* Bool_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool_Extension.swift; sourceTree = "<group>"; };
+		D4EE6CF12A95016C00697CC5 /* BF_Monsters_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_StackView.swift; sourceTree = "<group>"; };
+		D4EE6CF42A96972200697CC5 /* BF_Monsters_Particules_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Particules_View.swift; sourceTree = "<group>"; };
+		D4EE6CF72A9893A400697CC5 /* BF_Items_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Items_ViewController.swift; sourceTree = "<group>"; };
+		D4EE6CF92A98D43500697CC5 /* BF_Items_Shop_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Items_Shop_ViewController.swift; sourceTree = "<group>"; };
+		D4EE6CFE2A99024000697CC5 /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
+		D4EE6D012A99059700697CC5 /* RemoteConfig_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig_Extension.swift; sourceTree = "<group>"; };
+		D4EE6D042A99096300697CC5 /* BF_Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item.swift; sourceTree = "<group>"; };
+		D4EE6D082A992B2700697CC5 /* BF_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_TableViewCell.swift; sourceTree = "<group>"; };
+		D4EE6D092A992B2700697CC5 /* BF_TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_TableView.swift; sourceTree = "<group>"; };
+		D4EE6D0D2A992B4A00697CC5 /* BF_Item_Shop_InAppPurchase_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Shop_InAppPurchase_TableViewCell.swift; sourceTree = "<group>"; };
+		D4EE6D102A9948E200697CC5 /* BF_Coins_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Coins_StackView.swift; sourceTree = "<group>"; };
+		D4EE6D122A99F64100697CC5 /* BF_Item_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_TableViewCell.swift; sourceTree = "<group>"; };
+		D4EE6D142A99FCCC00697CC5 /* BF_Items_Monsters_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Items_Monsters_ViewController.swift; sourceTree = "<group>"; };
+		D4EE6D282AA0948C00697CC5 /* BF_Battle_Fight_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Fight_ViewController.swift; sourceTree = "<group>"; };
+		D4EE6D2D2AA0B29000697CC5 /* BF_Battle_Opponent_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Opponent_ViewController.swift; sourceTree = "<group>"; };
+		D4F364AF2BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_List_Select_ViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D46753F62A762DE4003DCFAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BE14522A817A0700F20782 /* AlamofireImage in Frameworks */,
+				D4BE142B2A81230F00F20782 /* IQKeyboardManagerSwift in Frameworks */,
+				D4BE14372A81297C00F20782 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				D4BE14422A812A5600F20782 /* GoogleSignIn in Frameworks */,
+				D4DD053B2AA6337F00E418E2 /* QRCode in Frameworks */,
+				D46754292A7BD54A003DCFAF /* SnapKit in Frameworks */,
+				D4BE143F2A81297C00F20782 /* FirebaseStorage in Frameworks */,
+				D467546D2A7FDE39003DCFAF /* SwiftLocation in Frameworks */,
+				D432D48E2BDA464D00E91F5A /* StoreKit.framework in Frameworks */,
+				D4BE143B2A81297C00F20782 /* FirebaseFirestore in Frameworks */,
+				D414B53D2BD7B49400A006FE /* SwiftySound in Frameworks */,
+				D42C5BEF2BDFD14500765CC6 /* SVGKitSwift in Frameworks */,
+				D40506E62C14EFAA00210F84 /* GoogleMobileAds in Frameworks */,
+				D4BE14392A81297C00F20782 /* FirebaseAuth in Frameworks */,
+				D42C5BED2BDFD14500765CC6 /* SVGKit in Frameworks */,
+				D4BE144F2A8179F600F20782 /* Alamofire in Frameworks */,
+				D4EE6CFD2A99019B00697CC5 /* FirebaseRemoteConfig in Frameworks */,
+				D4BE14252A81225800F20782 /* MB_TextField in Frameworks */,
+				D414B5452BD7BC7400A006FE /* SPConfetti in Frameworks */,
+				D4BE143D2A81297C00F20782 /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D40506CD2C0120F700210F84 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				D40506CE2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift */,
+				D40506D02C0122A600210F84 /* BF_Onboarding_Game_Detail_ViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		D40506D22C04C47700210F84 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				D40506D32C04C48800210F84 /* BF_Story_ViewController.swift */,
+			);
+			path = Story;
+			sourceTree = "<group>";
+		};
+		D40506E12C14EF4300210F84 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				D40506E22C14EF4E00210F84 /* BF_Ads.swift */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
+		D412F1692A8A7610000AFCC1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D412F16A2A8A761E000AFCC1 /* BF_User_Extension.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		D412F16E2A8A8DAB000AFCC1 /* Fight */ = {
+			isa = PBXGroup;
+			children = (
+				D412F16F2A8A8DBD000AFCC1 /* BF_Fight.swift */,
+				D42C5C012BE4D88F00765CC6 /* BF_Fight_Live.swift */,
+			);
+			path = Fight;
+			sourceTree = "<group>";
+		};
+		D412F1742A8AD766000AFCC1 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1752A8AD774000AFCC1 /* BF_Toast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		D412F17A2A8C1508000AFCC1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D412F17B2A8C163E000AFCC1 /* BF_User_StackView.swift */,
+				D40506D52C062C6E00210F84 /* BF_User_ImageView.swift */,
+				D44EED872BF4DA360058C4ED /* BF_User_Opponent_StackView.swift */,
+				D40506D92C09BEF000210F84 /* BF_User_TableViewCell.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		D412F1802A8CF1EE000AFCC1 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1812A8CF200000AFCC1 /* BF_Scan.swift */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		D412F1832A8E1085000AFCC1 /* Stepper */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1842A8E108F000AFCC1 /* BF_Stepper.swift */,
+			);
+			path = Stepper;
+			sourceTree = "<group>";
+		};
+		D412F1862A8E5C6A000AFCC1 /* Element */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA29D52A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift */,
+				D46245322A86D3FA00E54CB8 /* BF_Monsters_Element_View.swift */,
+			);
+			path = Element;
+			sourceTree = "<group>";
+		};
+		D412F1872A8E5C83000AFCC1 /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1892A8E5C8D000AFCC1 /* BF_Monster_Descriptions.json */,
+				D412F1882A8E5C8D000AFCC1 /* BF_Monster_Descriptions.swift */,
+			);
+			path = Description;
+			sourceTree = "<group>";
+		};
+		D412F18C2A8E6499000AFCC1 /* Fights */ = {
+			isa = PBXGroup;
+			children = (
+				D412F18D2A8E64AC000AFCC1 /* BF_Fights_StackView.swift */,
+				D40506DD2C106A8F00210F84 /* BF_Fights_TableViewCell.swift */,
+			);
+			path = Fights;
+			sourceTree = "<group>";
+		};
+		D412F18F2A8EA880000AFCC1 /* Fight */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1902A8EA88F000AFCC1 /* BF_Fight_Extension.swift */,
+			);
+			path = Fight;
+			sourceTree = "<group>";
+		};
+		D412F1922A8EB270000AFCC1 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1932A8EB270000AFCC1 /* BF_ImageView.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		D414B4FD2BD7B40A00A006FE /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D414B5392BD7B44F00A006FE /* BF_Audio.swift */,
+				D414B54A2BD7BE8700A006FE /* System */,
+				D414B5402BD7BA0600A006FE /* Musics */,
+				D414B5052BD7B41D00A006FE /* Death */,
+				D414B50E2BD7B41D00A006FE /* Dodge */,
+				D414B51C2BD7B41D00A006FE /* Impacts */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		D414B5052BD7B41D00A006FE /* Death */ = {
+			isa = PBXGroup;
+			children = (
+				D414B4FE2BD7B41D00A006FE /* Death_0.mp3 */,
+				D414B4FF2BD7B41D00A006FE /* Death_1.mp3 */,
+				D414B5002BD7B41D00A006FE /* Death_2.mp3 */,
+				D414B5012BD7B41D00A006FE /* Death_3.mp3 */,
+				D414B5022BD7B41D00A006FE /* Death_4.mp3 */,
+				D414B5032BD7B41D00A006FE /* Death_5.mp3 */,
+				D414B5042BD7B41D00A006FE /* Death_6.mp3 */,
+			);
+			path = Death;
+			sourceTree = "<group>";
+		};
+		D414B50E2BD7B41D00A006FE /* Dodge */ = {
+			isa = PBXGroup;
+			children = (
+				D414B5062BD7B41D00A006FE /* Dodge_0.mp3 */,
+				D414B5072BD7B41D00A006FE /* Dodge_1.mp3 */,
+				D414B5082BD7B41D00A006FE /* Dodge_2.mp3 */,
+				D414B5092BD7B41D00A006FE /* Dodge_3.mp3 */,
+				D414B50A2BD7B41D00A006FE /* Dodge_4.mp3 */,
+				D414B50B2BD7B41D00A006FE /* Dodge_5.mp3 */,
+				D414B50C2BD7B41D00A006FE /* Dodge_6.mp3 */,
+				D414B50D2BD7B41D00A006FE /* Dodge_7.mp3 */,
+			);
+			path = Dodge;
+			sourceTree = "<group>";
+		};
+		D414B51C2BD7B41D00A006FE /* Impacts */ = {
+			isa = PBXGroup;
+			children = (
+				D414B50F2BD7B41D00A006FE /* Impact_1.mp3 */,
+				D414B5102BD7B41D00A006FE /* Impact_2.mp3 */,
+				D414B5112BD7B41D00A006FE /* Impact_3.mp3 */,
+				D414B5122BD7B41D00A006FE /* Impact_4.mp3 */,
+				D414B5132BD7B41D00A006FE /* Impact_5.mp3 */,
+				D414B5142BD7B41D00A006FE /* Impact_6.mp3 */,
+				D414B5152BD7B41D00A006FE /* Impact_7.mp3 */,
+				D414B5162BD7B41D00A006FE /* Impact_8.mp3 */,
+				D414B5172BD7B41D00A006FE /* Impact_9.mp3 */,
+				D414B5182BD7B41D00A006FE /* Impact_10.mp3 */,
+				D414B5192BD7B41D00A006FE /* Impact_11.mp3 */,
+				D414B51A2BD7B41D00A006FE /* Impact_12.mp3 */,
+				D414B51B2BD7B41D00A006FE /* Impact_13.mp3 */,
+			);
+			path = Impacts;
+			sourceTree = "<group>";
+		};
+		D414B5402BD7BA0600A006FE /* Musics */ = {
+			isa = PBXGroup;
+			children = (
+				D414B53E2BD7BA0600A006FE /* Battle.mp3 */,
+				D414B53F2BD7BA0600A006FE /* Main.mp3 */,
+			);
+			path = Musics;
+			sourceTree = "<group>";
+		};
+		D414B54A2BD7BE8700A006FE /* System */ = {
+			isa = PBXGroup;
+			children = (
+				D414B5462BD7BE8700A006FE /* Error.mp3 */,
+				D414B5472BD7BE8700A006FE /* Off.mp3 */,
+				D414B5482BD7BE8700A006FE /* On.mp3 */,
+				D414B5492BD7BE8700A006FE /* Success.mp3 */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		D42C5BD72BDBD96200765CC6 /* Confettis */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BD82BDBD97700765CC6 /* BF_Confettis.swift */,
+			);
+			path = Confettis;
+			sourceTree = "<group>";
+		};
+		D42C5BDA2BDC10CF00765CC6 /* Rubies */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BDB2BDC10D500765CC6 /* BF_Rubies_StackView.swift */,
+			);
+			path = Rubies;
+			sourceTree = "<group>";
+		};
+		D42C5BE22BDFC02600765CC6 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BE32BDFC02E00765CC6 /* BoringAvatar */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		D42C5BE32BDFC02E00765CC6 /* BoringAvatar */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BE42BDFC03B00765CC6 /* BF_BoringAvatar.swift */,
+			);
+			path = BoringAvatar;
+			sourceTree = "<group>";
+		};
+		D42C5BF02BE0DB9A00765CC6 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BF12BE0DBA700765CC6 /* BF_Item_Extension.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		D42C5BF52BE394E800765CC6 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BF62BE3950A00765CC6 /* BF_Menu_Button.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		D42C5BFA2BE3A80600765CC6 /* Ruby */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BF82BE3A7FF00765CC6 /* BF_Ruby.swift */,
+			);
+			path = Ruby;
+			sourceTree = "<group>";
+		};
+		D42C5BFB2BE3DED500765CC6 /* Scans */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BFC2BE3DEDE00765CC6 /* BF_Scans_StackView.swift */,
+			);
+			path = Scans;
+			sourceTree = "<group>";
+		};
+		D42C5BFE2BE41B3800765CC6 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BFF2BE41BA900765CC6 /* BF_Scan_Extension.swift */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		D432D48A2BD964A100E91F5A /* SegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				D432D48B2BD964AF00E91F5A /* BF_SegmentedControl.swift */,
+			);
+			path = SegmentedControl;
+			sourceTree = "<group>";
+		};
+		D432D48F2BDA481200E91F5A /* InAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				D432D4902BDA482B00E91F5A /* BF_InAppPurchase.swift */,
+			);
+			path = InAppPurchase;
+			sourceTree = "<group>";
+		};
+		D432D4962BDA8C8D00E91F5A /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				D432D4942BDA8A7600E91F5A /* BF_Item_Shop_TableViewCell.swift */,
+				D432D4972BDA8C9600E91F5A /* BF_Item_Shop_Object_TableViewCell.swift */,
+				D4EE6D0D2A992B4A00697CC5 /* BF_Item_Shop_InAppPurchase_TableViewCell.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		D4352E0F2C4250410059D6E2 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				D4352E102C42505B0059D6E2 /* BF_Tutorial_ViewController.swift */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		D4352E1D2C4933760059D6E2 /* BarcodeLookup */ = {
+			isa = PBXGroup;
+			children = (
+				D4352E1E2C4933A30059D6E2 /* BF_BarcodeLookup.swift */,
+			);
+			path = BarcodeLookup;
+			sourceTree = "<group>";
+		};
+		D4352E2B2C4AF2F80059D6E2 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				D4352E292C4AF2F40059D6E2 /* BF_Product_Add_Alert_ViewController.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		D44EED822BF361CE0058C4ED /* List */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA29D72A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift */,
+				D4F364AF2BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift */,
+				D467545D2A7C15BD003DCFAF /* BF_Monsters_List_Home_ViewController.swift */,
+				D4352E2D2C4E53B40059D6E2 /* BF_Monsters_List_Products_ViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		D44EED832BF3625F0058C4ED /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BF32BE1428D00765CC6 /* BF_Scanner_ViewController.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		D46753F02A762DE4003DCFAF = {
+			isa = PBXGroup;
+			children = (
+				D40506DF2C13549400210F84 /* BF_UnusedStrings.swift */,
+				D46753FB2A762DE4003DCFAF /* BarcodeFight */,
+				D46753FA2A762DE4003DCFAF /* Products */,
+				D4EE6CFB2A99019B00697CC5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D46753FA2A762DE4003DCFAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D46753F92A762DE4003DCFAF /* BarcodeFight.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D46753FB2A762DE4003DCFAF /* BarcodeFight */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CDD2A934D3200697CC5 /* BarcodeFight.entitlements */,
+				D46753FC2A762DE4003DCFAF /* AppDelegate.swift */,
+				D467545C2A7C15AF003DCFAF /* Controllers */,
+				D46754102A762DFA003DCFAF /* Resources */,
+			);
+			path = BarcodeFight;
+			sourceTree = "<group>";
+		};
+		D46754102A762DFA003DCFAF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D467542A2A7BD788003DCFAF /* Constants.swift */,
+				D467545A2A7C1467003DCFAF /* Localizable.strings */,
+				D4352E1D2C4933760059D6E2 /* BarcodeLookup */,
+				D40506E12C14EF4300210F84 /* Ads */,
+				D42C5BE22BDFC02600765CC6 /* External */,
+				D432D48F2BDA481200E91F5A /* InAppPurchase */,
+				D414B4FD2BD7B40A00A006FE /* Sounds */,
+				D4EE6CE92A935B0300697CC5 /* UrlScheme */,
+				D4EE6CDE2A934E5100697CC5 /* Notifications */,
+				D4BE14322A81279100F20782 /* Firebase */,
+				D46754372A7BD8D4003DCFAF /* Fonts */,
+				D467542C2A7BD7A9003DCFAF /* Extensions */,
+				D46754132A762FDE003DCFAF /* Objects */,
+				D46754122A762E08003DCFAF /* Supporting Files */,
+				D46754112A762E01003DCFAF /* UI */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D46754112A762E01003DCFAF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D46754072A762DE5003DCFAF /* LaunchScreen.storyboard */,
+				D46754052A762DE5003DCFAF /* Assets.xcassets */,
+				D4352E2B2C4AF2F80059D6E2 /* Product */,
+				D4352E0F2C4250410059D6E2 /* Tutorial */,
+				D42C5BDA2BDC10CF00765CC6 /* Rubies */,
+				D42C5BFB2BE3DED500765CC6 /* Scans */,
+				D42C5BF52BE394E800765CC6 /* Menu */,
+				D42C5BD72BDBD96200765CC6 /* Confettis */,
+				D4EE6D0F2A9948D200697CC5 /* Coins */,
+				D4EE6D0C2A992B3A00697CC5 /* Item */,
+				D412F18C2A8E6499000AFCC1 /* Fights */,
+				D412F17A2A8C1508000AFCC1 /* User */,
+				D4BE14172A811EB300F20782 /* Account */,
+				D49B17622A800046002B80D6 /* Monsters */,
+				D46754652A7C41AC003DCFAF /* Authorizations */,
+				D46754622A7C3D76003DCFAF /* Barcode */,
+				D46754232A7BD3F6003DCFAF /* Kit */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D46754122A762E08003DCFAF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D467540A2A762DE5003DCFAF /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D46754132A762FDE003DCFAF /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BFA2BE3A80600765CC6 /* Ruby */,
+				D4EE6D032A99095600697CC5 /* Item */,
+				D412F1802A8CF1EE000AFCC1 /* Scan */,
+				D412F16E2A8A8DAB000AFCC1 /* Fight */,
+				D4BE142D2A8123D300F20782 /* User */,
+				D4BE142C2A8123CE00F20782 /* Account */,
+				D46754682A7FD6BF003DCFAF /* Error */,
+				D467541C2A799F09003DCFAF /* Markov */,
+				D46754212A7B10EF003DCFAF /* Monster */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		D467541C2A799F09003DCFAF /* Markov */ = {
+			isa = PBXGroup;
+			children = (
+				D467541D2A799F09003DCFAF /* BF_Markov.txt */,
+				D467541E2A799F09003DCFAF /* BF_Markov.swift */,
+			);
+			path = Markov;
+			sourceTree = "<group>";
+		};
+		D46754212A7B10EF003DCFAF /* Monster */ = {
+			isa = PBXGroup;
+			children = (
+				D412F1872A8E5C83000AFCC1 /* Description */,
+				D46754142A76300A003DCFAF /* BF_Monster.swift */,
+			);
+			path = Monster;
+			sourceTree = "<group>";
+		};
+		D46754232A7BD3F6003DCFAF /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				D432D48A2BD964A100E91F5A /* SegmentedControl */,
+				D4EE6D072A992B2700697CC5 /* TableView */,
+				D412F1922A8EB270000AFCC1 /* ImageView */,
+				D412F1832A8E1085000AFCC1 /* Stepper */,
+				D412F1742A8AD766000AFCC1 /* Toast */,
+				D4BE14532A81977500F20782 /* TableView */,
+				D4BE14262A81226C00F20782 /* TextField */,
+				D49B17692A80E9D4002B80D6 /* CollectionView */,
+				D46754572A7BDB21003DCFAF /* PlaceholderView */,
+				D46754422A7BD956003DCFAF /* Button */,
+				D46754442A7BD956003DCFAF /* Label */,
+				D46754342A7BD89B003DCFAF /* NavigationController */,
+				D46754242A7BD40E003DCFAF /* Alert */,
+				D46754312A7BD835003DCFAF /* ViewController */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		D46754242A7BD40E003DCFAF /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				D46754252A7BD40E003DCFAF /* BF_Alert_ViewController.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		D467542C2A7BD7A9003DCFAF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D002A99058B00697CC5 /* Firebase */,
+				D4EE6CEE2A93FE4200697CC5 /* Bool */,
+				D4EE6CE62A935A2500697CC5 /* UserDefaults */,
+				D4EE6CE12A934F4A00697CC5 /* Notifications */,
+				D477BA842A83902400A1887F /* NSDirectionalEdgeInsets */,
+				D4BE14432A813DE100F20782 /* Notification */,
+				D467546E2A7FE02A003DCFAF /* Objects */,
+				D46754522A7BDAA7003DCFAF /* NotificationCenter */,
+				D467544B2A7BDA46003DCFAF /* UI */,
+				D46754482A7BDA31003DCFAF /* String */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D46754312A7BD835003DCFAF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D46754322A7BD835003DCFAF /* BF_ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D46754342A7BD89B003DCFAF /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				D46754352A7BD89B003DCFAF /* BF_NavigationController.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		D46754372A7BD8D4003DCFAF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D414B4FB2BD7B25500A006FE /* GROBOLD.ttf */,
+				D46754392A7BD8D4003DCFAF /* TT Interphases Pro Trial Bold.ttf */,
+				D467543B2A7BD8D4003DCFAF /* TT Interphases Pro Trial Regular.ttf */,
+				D467543C2A7BD8D4003DCFAF /* TT Interphases Pro Trial Black.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D46754422A7BD956003DCFAF /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				D46754432A7BD956003DCFAF /* BF_Button.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		D46754442A7BD956003DCFAF /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				D46754452A7BD956003DCFAF /* BF_Label.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		D46754482A7BDA31003DCFAF /* String */ = {
+			isa = PBXGroup;
+			children = (
+				D46754492A7BDA31003DCFAF /* String_Extension.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		D467544B2A7BDA46003DCFAF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D46754552A7BDAE0003DCFAF /* UIView_Extension.swift */,
+				D46754502A7BDA87003DCFAF /* UIGestureRecognizer_Extension.swift */,
+				D467544C2A7BDA46003DCFAF /* UIApplication_Extension.swift */,
+				D467544D2A7BDA46003DCFAF /* UIViewController_Extension.swift */,
+				D49B176C2A80EA53002B80D6 /* UIEdgeInsets_Extension.swift */,
+				D4BE14462A813E8800F20782 /* UIImage_Extension.swift */,
+				D42C5BE62BDFC21200765CC6 /* UIColor_Extension.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D46754522A7BDAA7003DCFAF /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				D46754532A7BDAB4003DCFAF /* NotificationCenter_Extension.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
+		D46754572A7BDB21003DCFAF /* PlaceholderView */ = {
+			isa = PBXGroup;
+			children = (
+				D46754582A7BDB21003DCFAF /* BF_Placeholder_View.swift */,
+			);
+			path = PlaceholderView;
+			sourceTree = "<group>";
+		};
+		D467545C2A7C15AF003DCFAF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D40506D22C04C47700210F84 /* Story */,
+				D4EE6D272AA0946B00697CC5 /* Battle */,
+				D44EED832BF3625F0058C4ED /* Scanner */,
+				D4EE6CF62A98939400697CC5 /* Items */,
+				D4BE144A2A81799000F20782 /* Account */,
+				D4BE140F2A811DB200F20782 /* Onboarding */,
+				D4BE140E2A811DA400F20782 /* Monsters */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D46754622A7C3D76003DCFAF /* Barcode */ = {
+			isa = PBXGroup;
+			children = (
+				D49B176E2A80F8C7002B80D6 /* BF_Barcode_StackView.swift */,
+			);
+			path = Barcode;
+			sourceTree = "<group>";
+		};
+		D46754652A7C41AC003DCFAF /* Authorizations */ = {
+			isa = PBXGroup;
+			children = (
+				D46754662A7C41AC003DCFAF /* BF_Authorizations.swift */,
+			);
+			path = Authorizations;
+			sourceTree = "<group>";
+		};
+		D46754682A7FD6BF003DCFAF /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				D46754692A7FD6C9003DCFAF /* BF_Error.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		D467546E2A7FE02A003DCFAF /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BFE2BE41B3800765CC6 /* Scan */,
+				D42C5BF02BE0DB9A00765CC6 /* Items */,
+				D412F18F2A8EA880000AFCC1 /* Fight */,
+				D412F1692A8A7610000AFCC1 /* User */,
+				D49B17702A8115D1002B80D6 /* Monster */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		D477BA842A83902400A1887F /* NSDirectionalEdgeInsets */ = {
+			isa = PBXGroup;
+			children = (
+				D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */,
+			);
+			path = NSDirectionalEdgeInsets;
+			sourceTree = "<group>";
+		};
+		D49B17622A800046002B80D6 /* Monsters */ = {
+			isa = PBXGroup;
+			children = (
+				D4158DE22A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift */,
+				D44EED852BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift */,
+				D44EED802BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift */,
+				D4EE6CF12A95016C00697CC5 /* BF_Monsters_StackView.swift */,
+				D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */,
+				D49B17722A811852002B80D6 /* BF_Monsters_ImageView.swift */,
+				D4158DE42A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift */,
+				D4EE6CF32A9696FA00697CC5 /* Particules */,
+				D412F1862A8E5C6A000AFCC1 /* Element */,
+				D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */,
+				D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */,
+			);
+			path = Monsters;
+			sourceTree = "<group>";
+		};
+		D49B17692A80E9D4002B80D6 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */,
+				D4EE6CD62A8FA24A00697CC5 /* BF_CollectionView.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		D49B17702A8115D1002B80D6 /* Monster */ = {
+			isa = PBXGroup;
+			children = (
+				D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */,
+			);
+			path = Monster;
+			sourceTree = "<group>";
+		};
+		D4B653AE2AA77A810099B0E0 /* Opponent */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D2D2AA0B29000697CC5 /* BF_Battle_Opponent_ViewController.swift */,
+				D432D4862BD93B9400E91F5A /* BF_Battle_Opponent_User_ViewController.swift */,
+			);
+			path = Opponent;
+			sourceTree = "<group>";
+		};
+		D4B653BC2AA783FB0099B0E0 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CD82A90FBE100697CC5 /* BF_Battle_Team_ViewController.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		D4B653BD2AA7B93F0099B0E0 /* Fight */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D282AA0948C00697CC5 /* BF_Battle_Fight_ViewController.swift */,
+				D4B653C62AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift */,
+				D4B653BE2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift */,
+				D4352E1B2C47B23E0059D6E2 /* BF_Battle_Fight_QTE_ViewController.swift */,
+			);
+			path = Fight;
+			sourceTree = "<group>";
+		};
+		D4B653CB2AA7CA310099B0E0 /* Monsters */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D142A99FCCC00697CC5 /* BF_Items_Monsters_ViewController.swift */,
+			);
+			path = Monsters;
+			sourceTree = "<group>";
+		};
+		D4B653CC2AA7CA410099B0E0 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CF92A98D43500697CC5 /* BF_Items_Shop_ViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		D4BE140E2A811DA400F20782 /* Monsters */ = {
+			isa = PBXGroup;
+			children = (
+				D44EED822BF361CE0058C4ED /* List */,
+				D4EA29DB2A8EDBC500A76B25 /* Details */,
+				D41D2E252C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift */,
+			);
+			path = Monsters;
+			sourceTree = "<group>";
+		};
+		D4BE140F2A811DB200F20782 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14102A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift */,
+				D40506E72C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift */,
+				D40506CD2C0120F700210F84 /* Game */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D4BE14172A811EB300F20782 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14182A811EE000F20782 /* BF_Account_DisplayName_Alert_ViewController.swift */,
+				D4BE14192A811EE000F20782 /* BF_Account_PasswordValidation_StackView.swift */,
+				D4BE141A2A811EE000F20782 /* BF_Account_Social_StackView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		D4BE14262A81226C00F20782 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14272A81227700F20782 /* BF_TextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		D4BE142C2A8123CE00F20782 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE142E2A8123EC00F20782 /* BF_Account.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		D4BE142D2A8123D300F20782 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14302A8123FA00F20782 /* BF_User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		D4BE14322A81279100F20782 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14332A81279900F20782 /* GoogleService-Info.plist */,
+				D4EE6CFE2A99024000697CC5 /* remote_config_defaults.plist */,
+				D4BE14482A813ED200F20782 /* BF_Firebase.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		D4BE14432A813DE100F20782 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14442A813DEE00F20782 /* Notification_Extension.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		D4BE144A2A81799000F20782 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE144B2A8179C700F20782 /* BF_Account_Infos_ViewController.swift */,
+				D412F16C2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift */,
+				D4BE14112A811DB200F20782 /* BF_Account_SignUp_ViewController.swift */,
+				D4BE14122A811DB200F20782 /* BF_Account_SignIn_ViewController.swift */,
+				D40506D72C09BAA600210F84 /* BF_Account_Ranking_ViewController.swift */,
+				D40506DB2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		D4BE14532A81977500F20782 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE14552A81977500F20782 /* BF_TableViewCell.swift */,
+				D4BE14562A81977500F20782 /* BF_TableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		D4EA29DB2A8EDBC500A76B25 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				D40506CA2C011C8800210F84 /* BF_Monsters_Details_Page_ViewController.swift */,
+				D46245302A86839600E54CB8 /* BF_Monsters_Details_ViewController.swift */,
+				D4EA29DC2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		D4EE6CDE2A934E5100697CC5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CDF2A934E5100697CC5 /* BF_Notifications.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		D4EE6CE12A934F4A00697CC5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CE32A934F6400697CC5 /* UNNotificationAction_Extension.swift */,
+				D4EE6CE22A934F6400697CC5 /* UNNotificationCategory_Extension.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		D4EE6CE62A935A2500697CC5 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CE72A935A2500697CC5 /* UserDefaults_Extension.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		D4EE6CE92A935B0300697CC5 /* UrlScheme */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CEA2A935B0300697CC5 /* BF_UrlScheme.swift */,
+			);
+			path = UrlScheme;
+			sourceTree = "<group>";
+		};
+		D4EE6CEE2A93FE4200697CC5 /* Bool */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CEF2A93FE5500697CC5 /* Bool_Extension.swift */,
+			);
+			path = Bool;
+			sourceTree = "<group>";
+		};
+		D4EE6CF32A9696FA00697CC5 /* Particules */ = {
+			isa = PBXGroup;
+			children = (
+				D462452C2A86749400E54CB8 /* BF_Monsters_Particules.sks */,
+				D4EE6CF42A96972200697CC5 /* BF_Monsters_Particules_View.swift */,
+			);
+			path = Particules;
+			sourceTree = "<group>";
+		};
+		D4EE6CF62A98939400697CC5 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6CF72A9893A400697CC5 /* BF_Items_ViewController.swift */,
+				D4352E122C45AEFD0059D6E2 /* BF_Items_Alert_ViewController.swift */,
+				D4B653CB2AA7CA310099B0E0 /* Monsters */,
+				D4B653CC2AA7CA410099B0E0 /* Shop */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		D4EE6CFB2A99019B00697CC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D432D48D2BDA464D00E91F5A /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4EE6D002A99058B00697CC5 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D012A99059700697CC5 /* RemoteConfig_Extension.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		D4EE6D032A99095600697CC5 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D042A99096300697CC5 /* BF_Item.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		D4EE6D072A992B2700697CC5 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D082A992B2700697CC5 /* BF_TableViewCell.swift */,
+				D4EE6D092A992B2700697CC5 /* BF_TableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		D4EE6D0C2A992B3A00697CC5 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */,
+				D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */,
+				D4EE6D122A99F64100697CC5 /* BF_Item_TableViewCell.swift */,
+				D432D4922BDA8A7300E91F5A /* BF_Item_Object_TableViewCell.swift */,
+				D432D4962BDA8C8D00E91F5A /* Shop */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		D4EE6D0F2A9948D200697CC5 /* Coins */ = {
+			isa = PBXGroup;
+			children = (
+				D4EE6D102A9948E200697CC5 /* BF_Coins_StackView.swift */,
+			);
+			path = Coins;
+			sourceTree = "<group>";
+		};
+		D4EE6D272AA0946B00697CC5 /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				D4B653AE2AA77A810099B0E0 /* Opponent */,
+				D4B653BC2AA783FB0099B0E0 /* Team */,
+				D4B653BD2AA7B93F0099B0E0 /* Fight */,
+			);
+			path = Battle;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D46753F82A762DE4003DCFAF /* BarcodeFight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D467540D2A762DE5003DCFAF /* Build configuration list for PBXNativeTarget "BarcodeFight" */;
+			buildPhases = (
+				D46753F52A762DE4003DCFAF /* Sources */,
+				D46753F62A762DE4003DCFAF /* Frameworks */,
+				D46753F72A762DE4003DCFAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BarcodeFight;
+			packageProductDependencies = (
+				D46754282A7BD54A003DCFAF /* SnapKit */,
+				D467546C2A7FDE39003DCFAF /* SwiftLocation */,
+				D4BE14242A81225800F20782 /* MB_TextField */,
+				D4BE142A2A81230F00F20782 /* IQKeyboardManagerSwift */,
+				D4BE14362A81297C00F20782 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				D4BE14382A81297C00F20782 /* FirebaseAuth */,
+				D4BE143A2A81297C00F20782 /* FirebaseFirestore */,
+				D4BE143C2A81297C00F20782 /* FirebaseFirestoreSwift */,
+				D4BE143E2A81297C00F20782 /* FirebaseStorage */,
+				D4BE14412A812A5600F20782 /* GoogleSignIn */,
+				D4BE144E2A8179F600F20782 /* Alamofire */,
+				D4BE14512A817A0700F20782 /* AlamofireImage */,
+				D4EE6CFC2A99019B00697CC5 /* FirebaseRemoteConfig */,
+				D4DD053A2AA6337F00E418E2 /* QRCode */,
+				D414B53C2BD7B49400A006FE /* SwiftySound */,
+				D414B5442BD7BC7400A006FE /* SPConfetti */,
+				D42C5BEC2BDFD14500765CC6 /* SVGKit */,
+				D42C5BEE2BDFD14500765CC6 /* SVGKitSwift */,
+				D40506E52C14EFAA00210F84 /* GoogleMobileAds */,
+			);
+			productName = BarcodeFight;
+			productReference = D46753F92A762DE4003DCFAF /* BarcodeFight.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D46753F12A762DE4003DCFAF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					D46753F82A762DE4003DCFAF = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = D46753F42A762DE4003DCFAF /* Build configuration list for PBXProject "BarcodeFight" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = fr;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				fr,
+				Base,
+			);
+			mainGroup = D46753F02A762DE4003DCFAF;
+			packageReferences = (
+				D46754272A7BD54A003DCFAF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D467546B2A7FDE39003DCFAF /* XCRemoteSwiftPackageReference "SwiftLocation" */,
+				D4BE14232A81225800F20782 /* XCRemoteSwiftPackageReference "MB_TextField" */,
+				D4BE14292A81230F00F20782 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D4BE14402A812A5600F20782 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				D4BE144D2A8179F600F20782 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D4BE14502A817A0700F20782 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				D4DD05392AA6337F00E418E2 /* XCRemoteSwiftPackageReference "QRCode" */,
+				D414B53B2BD7B49400A006FE /* XCRemoteSwiftPackageReference "SwiftySound" */,
+				D414B5432BD7BC7400A006FE /* XCRemoteSwiftPackageReference "SPConfetti" */,
+				D42C5BEB2BDFD14500765CC6 /* XCRemoteSwiftPackageReference "SVGKit" */,
+				D40506E42C14EFAA00210F84 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			productRefGroup = D46753FA2A762DE4003DCFAF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D46753F82A762DE4003DCFAF /* BarcodeFight */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D46753F72A762DE4003DCFAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D414B54D2BD7BE8700A006FE /* On.mp3 in Resources */,
+				D414B4FC2BD7B25500A006FE /* GROBOLD.ttf in Resources */,
+				D414B5222BD7B41D00A006FE /* Death_5.mp3 in Resources */,
+				D414B5202BD7B41D00A006FE /* Death_3.mp3 in Resources */,
+				D414B5292BD7B41D00A006FE /* Dodge_5.mp3 in Resources */,
+				D414B5382BD7B41D00A006FE /* Impact_13.mp3 in Resources */,
+				D414B5242BD7B41D00A006FE /* Dodge_0.mp3 in Resources */,
+				D414B5212BD7B41D00A006FE /* Death_4.mp3 in Resources */,
+				D414B54E2BD7BE8700A006FE /* Success.mp3 in Resources */,
+				D414B5252BD7B41D00A006FE /* Dodge_1.mp3 in Resources */,
+				D467543E2A7BD8D4003DCFAF /* TT Interphases Pro Trial Bold.ttf in Resources */,
+				D414B52B2BD7B41D00A006FE /* Dodge_7.mp3 in Resources */,
+				D414B5262BD7B41D00A006FE /* Dodge_2.mp3 in Resources */,
+				D412F18B2A8E5C8D000AFCC1 /* BF_Monster_Descriptions.json in Resources */,
+				D414B54C2BD7BE8700A006FE /* Off.mp3 in Resources */,
+				D414B54B2BD7BE8700A006FE /* Error.mp3 in Resources */,
+				D4EE6CFF2A99024000697CC5 /* remote_config_defaults.plist in Resources */,
+				D4BE14342A81279900F20782 /* GoogleService-Info.plist in Resources */,
+				D414B5232BD7B41D00A006FE /* Death_6.mp3 in Resources */,
+				D414B5422BD7BA0600A006FE /* Main.mp3 in Resources */,
+				D46754092A762DE5003DCFAF /* LaunchScreen.storyboard in Resources */,
+				D462452D2A86749400E54CB8 /* BF_Monsters_Particules.sks in Resources */,
+				D414B52E2BD7B41D00A006FE /* Impact_3.mp3 in Resources */,
+				D414B52A2BD7B41D00A006FE /* Dodge_6.mp3 in Resources */,
+				D414B5362BD7B41D00A006FE /* Impact_11.mp3 in Resources */,
+				D414B5322BD7B41D00A006FE /* Impact_7.mp3 in Resources */,
+				D414B52F2BD7B41D00A006FE /* Impact_4.mp3 in Resources */,
+				D46754402A7BD8D4003DCFAF /* TT Interphases Pro Trial Regular.ttf in Resources */,
+				D414B51D2BD7B41D00A006FE /* Death_0.mp3 in Resources */,
+				D414B5352BD7B41D00A006FE /* Impact_10.mp3 in Resources */,
+				D467545B2A7C1467003DCFAF /* Localizable.strings in Resources */,
+				D414B5312BD7B41D00A006FE /* Impact_6.mp3 in Resources */,
+				D414B5412BD7BA0600A006FE /* Battle.mp3 in Resources */,
+				D414B5272BD7B41D00A006FE /* Dodge_3.mp3 in Resources */,
+				D414B51F2BD7B41D00A006FE /* Death_2.mp3 in Resources */,
+				D46754062A762DE5003DCFAF /* Assets.xcassets in Resources */,
+				D46754412A7BD8D4003DCFAF /* TT Interphases Pro Trial Black.ttf in Resources */,
+				D414B5342BD7B41D00A006FE /* Impact_9.mp3 in Resources */,
+				D414B52C2BD7B41D00A006FE /* Impact_1.mp3 in Resources */,
+				D467541F2A799F0A003DCFAF /* BF_Markov.txt in Resources */,
+				D414B5302BD7B41D00A006FE /* Impact_5.mp3 in Resources */,
+				D414B5332BD7B41D00A006FE /* Impact_8.mp3 in Resources */,
+				D414B51E2BD7B41D00A006FE /* Death_1.mp3 in Resources */,
+				D414B5282BD7B41D00A006FE /* Dodge_4.mp3 in Resources */,
+				D414B5372BD7B41D00A006FE /* Impact_12.mp3 in Resources */,
+				D414B52D2BD7B41D00A006FE /* Impact_2.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D46753F52A762DE4003DCFAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4EE6CD72A8FA24A00697CC5 /* BF_CollectionView.swift in Sources */,
+				D432D4982BDA8C9600E91F5A /* BF_Item_Shop_Object_TableViewCell.swift in Sources */,
+				D4BE141D2A811EE000F20782 /* BF_Account_Social_StackView.swift in Sources */,
+				D412F1852A8E108F000AFCC1 /* BF_Stepper.swift in Sources */,
+				D49B176D2A80EA53002B80D6 /* UIEdgeInsets_Extension.swift in Sources */,
+				D40506D62C062C6E00210F84 /* BF_User_ImageView.swift in Sources */,
+				D467542B2A7BD788003DCFAF /* Constants.swift in Sources */,
+				D42C5BF92BE3A7FF00765CC6 /* BF_Ruby.swift in Sources */,
+				D46754202A799F0A003DCFAF /* BF_Markov.swift in Sources */,
+				D46754472A7BD956003DCFAF /* BF_Label.swift in Sources */,
+				D4352E1F2C4933A30059D6E2 /* BF_BarcodeLookup.swift in Sources */,
+				D4F364B02BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift in Sources */,
+				D432D4882BD93B9400E91F5A /* BF_Battle_Opponent_User_ViewController.swift in Sources */,
+				D4EE6D022A99059700697CC5 /* RemoteConfig_Extension.swift in Sources */,
+				D46754462A7BD956003DCFAF /* BF_Button.swift in Sources */,
+				D412F1762A8AD774000AFCC1 /* BF_Toast.swift in Sources */,
+				D4EE6CEB2A935B0300697CC5 /* BF_UrlScheme.swift in Sources */,
+				D412F1912A8EA88F000AFCC1 /* BF_Fight_Extension.swift in Sources */,
+				D42C5C002BE41BA900765CC6 /* BF_Scan_Extension.swift in Sources */,
+				D4EE6D112A9948E200697CC5 /* BF_Coins_StackView.swift in Sources */,
+				D4BE14472A813E8800F20782 /* UIImage_Extension.swift in Sources */,
+				D467544F2A7BDA46003DCFAF /* UIViewController_Extension.swift in Sources */,
+				D4EE6D052A99096300697CC5 /* BF_Item.swift in Sources */,
+				D40506CF2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift in Sources */,
+				D40506EA2C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift in Sources */,
+				D4EE6CF82A9893A400697CC5 /* BF_Items_ViewController.swift in Sources */,
+				D4352E2E2C4E53B40059D6E2 /* BF_Monsters_List_Products_ViewController.swift in Sources */,
+				D46754592A7BDB21003DCFAF /* BF_Placeholder_View.swift in Sources */,
+				D4352E1C2C47B23E0059D6E2 /* BF_Battle_Fight_QTE_ViewController.swift in Sources */,
+				D42C5C022BE4D88F00765CC6 /* BF_Fight_Live.swift in Sources */,
+				D4EA29D82A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift in Sources */,
+				D414B53A2BD7B45000A006FE /* BF_Audio.swift in Sources */,
+				D4EE6D0E2A992B4A00697CC5 /* BF_Item_Shop_InAppPurchase_TableViewCell.swift in Sources */,
+				D4BE14132A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift in Sources */,
+				D4EE6CE02A934E5100697CC5 /* BF_Notifications.swift in Sources */,
+				D4EE6D2E2AA0B29100697CC5 /* BF_Battle_Opponent_ViewController.swift in Sources */,
+				D467544A2A7BDA31003DCFAF /* String_Extension.swift in Sources */,
+				D46754152A76300A003DCFAF /* BF_Monster.swift in Sources */,
+				D4B653BF2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift in Sources */,
+				D40506CB2C011C8800210F84 /* BF_Monsters_Details_Page_ViewController.swift in Sources */,
+				D4158DE52A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift in Sources */,
+				D412F16B2A8A761E000AFCC1 /* BF_User_Extension.swift in Sources */,
+				D46753FD2A762DE4003DCFAF /* AppDelegate.swift in Sources */,
+				D40506D82C09BAA600210F84 /* BF_Account_Ranking_ViewController.swift in Sources */,
+				D4BE141B2A811EE000F20782 /* BF_Account_DisplayName_Alert_ViewController.swift in Sources */,
+				D432D48C2BD964AF00E91F5A /* BF_SegmentedControl.swift in Sources */,
+				D4352E112C42505B0059D6E2 /* BF_Tutorial_ViewController.swift in Sources */,
+				D412F1942A8EB270000AFCC1 /* BF_ImageView.swift in Sources */,
+				D4BE14312A8123FA00F20782 /* BF_User.swift in Sources */,
+				D4352E132C45AEFD0059D6E2 /* BF_Items_Alert_ViewController.swift in Sources */,
+				D42C5BD62BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift in Sources */,
+				D4EE6CD92A90FBE200697CC5 /* BF_Battle_Team_ViewController.swift in Sources */,
+				D46754562A7BDAE0003DCFAF /* UIView_Extension.swift in Sources */,
+				D40506E82C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift in Sources */,
+				D467546A2A7FD6C9003DCFAF /* BF_Error.swift in Sources */,
+				D40506E32C14EF4E00210F84 /* BF_Ads.swift in Sources */,
+				D432D4912BDA482B00E91F5A /* BF_InAppPurchase.swift in Sources */,
+				D44EED882BF4DA360058C4ED /* BF_User_Opponent_StackView.swift in Sources */,
+				D412F18A2A8E5C8D000AFCC1 /* BF_Monster_Descriptions.swift in Sources */,
+				D4EE6CFA2A98D43500697CC5 /* BF_Items_Shop_ViewController.swift in Sources */,
+				D42C5BE72BDFC21200765CC6 /* UIColor_Extension.swift in Sources */,
+				D49B17732A811852002B80D6 /* BF_Monsters_ImageView.swift in Sources */,
+				D42C5BF72BE3950A00765CC6 /* BF_Menu_Button.swift in Sources */,
+				D40506DC2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift in Sources */,
+				D4EE6D292AA0948C00697CC5 /* BF_Battle_Fight_ViewController.swift in Sources */,
+				D4EA29D62A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift in Sources */,
+				D4EE6D152A99FCCC00697CC5 /* BF_Items_Monsters_ViewController.swift in Sources */,
+				D432D4952BDA8A7600E91F5A /* BF_Item_Shop_TableViewCell.swift in Sources */,
+				D4EE6CF22A95016C00697CC5 /* BF_Monsters_StackView.swift in Sources */,
+				D41D2E262C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift in Sources */,
+				D42C5BF22BE0DBA700765CC6 /* BF_Item_Extension.swift in Sources */,
+				D46754512A7BDA87003DCFAF /* UIGestureRecognizer_Extension.swift in Sources */,
+				D42C5BD92BDBD97700765CC6 /* BF_Confettis.swift in Sources */,
+				D4EE6D0B2A992B2700697CC5 /* BF_TableView.swift in Sources */,
+				D46754542A7BDAB4003DCFAF /* NotificationCenter_Extension.swift in Sources */,
+				D4BE14452A813DEE00F20782 /* Notification_Extension.swift in Sources */,
+				D42C5BE52BDFC03B00765CC6 /* BF_BoringAvatar.swift in Sources */,
+				D46754362A7BD89B003DCFAF /* BF_NavigationController.swift in Sources */,
+				D412F1702A8A8DBD000AFCC1 /* BF_Fight.swift in Sources */,
+				D46754332A7BD835003DCFAF /* BF_ViewController.swift in Sources */,
+				D4BE142F2A8123EC00F20782 /* BF_Account.swift in Sources */,
+				D4158DE32A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift in Sources */,
+				D4EE6CE82A935A2500697CC5 /* UserDefaults_Extension.swift in Sources */,
+				D4EA29DD2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift in Sources */,
+				D42C5BF42BE1428D00765CC6 /* BF_Scanner_ViewController.swift in Sources */,
+				D4EE6CF52A96972200697CC5 /* BF_Monsters_Particules_View.swift in Sources */,
+				D46245332A86D3FA00E54CB8 /* BF_Monsters_Element_View.swift in Sources */,
+				D40506D42C04C48800210F84 /* BF_Story_ViewController.swift in Sources */,
+				D4B653C72AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift in Sources */,
+				D4352E2A2C4AF2F40059D6E2 /* BF_Product_Add_Alert_ViewController.swift in Sources */,
+				D412F16D2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift in Sources */,
+				D4BE14152A811DB200F20782 /* BF_Account_SignIn_ViewController.swift in Sources */,
+				D4BE144C2A8179C700F20782 /* BF_Account_Infos_ViewController.swift in Sources */,
+				D41D2E2A2C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift in Sources */,
+				D467545E2A7C15BD003DCFAF /* BF_Monsters_List_Home_ViewController.swift in Sources */,
+				D477BA862A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift in Sources */,
+				D477BA882A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift in Sources */,
+				D41D2E282C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift in Sources */,
+				D4BE14282A81227700F20782 /* BF_TextField.swift in Sources */,
+				D4EE6D132A99F64100697CC5 /* BF_Item_TableViewCell.swift in Sources */,
+				D49B176F2A80F8C7002B80D6 /* BF_Barcode_StackView.swift in Sources */,
+				D4EE6CE52A934F6400697CC5 /* UNNotificationAction_Extension.swift in Sources */,
+				D46754262A7BD40E003DCFAF /* BF_Alert_ViewController.swift in Sources */,
+				D412F18E2A8E64AC000AFCC1 /* BF_Fights_StackView.swift in Sources */,
+				D44EED812BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift in Sources */,
+				D46754672A7C41AC003DCFAF /* BF_Authorizations.swift in Sources */,
+				D4BE14582A81977500F20782 /* BF_TableViewCell.swift in Sources */,
+				D44EED862BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift in Sources */,
+				D467544E2A7BDA46003DCFAF /* UIApplication_Extension.swift in Sources */,
+				D49B176B2A80E9D4002B80D6 /* BF_CollectionViewCell.swift in Sources */,
+				D4BE141C2A811EE000F20782 /* BF_Account_PasswordValidation_StackView.swift in Sources */,
+				D40506DE2C106A8F00210F84 /* BF_Fights_TableViewCell.swift in Sources */,
+				D40506DA2C09BEF000210F84 /* BF_User_TableViewCell.swift in Sources */,
+				D42C5BDC2BDC110A00765CC6 /* BF_Rubies_StackView.swift in Sources */,
+				D46245312A86839600E54CB8 /* BF_Monsters_Details_ViewController.swift in Sources */,
+				D4BE14142A811DB200F20782 /* BF_Account_SignUp_ViewController.swift in Sources */,
+				D40506D12C0122A600210F84 /* BF_Onboarding_Game_Detail_ViewController.swift in Sources */,
+				D4EE6CE42A934F6400697CC5 /* UNNotificationCategory_Extension.swift in Sources */,
+				D432D4932BDA8A7300E91F5A /* BF_Item_Object_TableViewCell.swift in Sources */,
+				D412F1822A8CF200000AFCC1 /* BF_Scan.swift in Sources */,
+				D42C5BFD2BE3DEED00765CC6 /* BF_Scans_StackView.swift in Sources */,
+				D412F17C2A8C163E000AFCC1 /* BF_User_StackView.swift in Sources */,
+				D46754702A7FE037003DCFAF /* BF_Monster_Extension.swift in Sources */,
+				D4BE14492A813ED200F20782 /* BF_Firebase.swift in Sources */,
+				D4EE6CF02A93FE5500697CC5 /* Bool_Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D46754072A762DE5003DCFAF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D46754082A762DE5003DCFAF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D467540B2A762DE5003DCFAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D467540C2A762DE5003DCFAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D467540E2A762DE5003DCFAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BarcodeFight/BarcodeFight.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K73XJ748R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BarcodeFight/Resources/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Barcode Fight";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Votre camera est utilisée pour pouvoir scanner des codes-barres et créer de nouveaux monstres ou modifier votre photo de profil";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Votre localisation est utilisée pour ajouter des informations aux code-barres scannés";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Votre bibliothèque de photo est utilisée pour modifier votre photo de profil";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelblin.BarcodeFight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D467540F2A762DE5003DCFAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BarcodeFight/BarcodeFight.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K73XJ748R3;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BarcodeFight/Resources/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Barcode Fight";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Votre camera est utilisée pour pouvoir scanner des codes-barres et créer de nouveaux monstres ou modifier votre photo de profil";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Votre localisation est utilisée pour ajouter des informations aux code-barres scannés";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Votre bibliothèque de photo est utilisée pour modifier votre photo de profil";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelblin.BarcodeFight;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D46753F42A762DE4003DCFAF /* Build configuration list for PBXProject "BarcodeFight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D467540B2A762DE5003DCFAF /* Debug */,
+				D467540C2A762DE5003DCFAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D467540D2A762DE5003DCFAF /* Build configuration list for PBXNativeTarget "BarcodeFight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D467540E2A762DE5003DCFAF /* Debug */,
+				D467540F2A762DE5003DCFAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D40506E42C14EFAA00210F84 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+		D414B53B2BD7B49400A006FE /* XCRemoteSwiftPackageReference "SwiftySound" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamcichy/SwiftySound.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+		D414B5432BD7BC7400A006FE /* XCRemoteSwiftPackageReference "SPConfetti" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPConfetti";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
+		D42C5BEB2BDFD14500765CC6 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		D46754272A7BD54A003DCFAF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D467546B2A7FDE39003DCFAF /* XCRemoteSwiftPackageReference "SwiftLocation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftLocation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D4BE14232A81225800F20782 /* XCRemoteSwiftPackageReference "MB_TextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Bejil/MB_TextField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.13;
+			};
+		};
+		D4BE14292A81230F00F20782 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.12;
+			};
+		};
+		D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.13.0;
+			};
+		};
+		D4BE14402A812A5600F20782 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		D4BE144D2A8179F600F20782 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		D4BE14502A817A0700F20782 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+		D4DD05392AA6337F00E418E2 /* XCRemoteSwiftPackageReference "QRCode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dagronf/QRCode.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D40506E52C14EFAA00210F84 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D40506E42C14EFAA00210F84 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		D414B53C2BD7B49400A006FE /* SwiftySound */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D414B53B2BD7B49400A006FE /* XCRemoteSwiftPackageReference "SwiftySound" */;
+			productName = SwiftySound;
+		};
+		D414B5442BD7BC7400A006FE /* SPConfetti */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D414B5432BD7BC7400A006FE /* XCRemoteSwiftPackageReference "SPConfetti" */;
+			productName = SPConfetti;
+		};
+		D42C5BEC2BDFD14500765CC6 /* SVGKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D42C5BEB2BDFD14500765CC6 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKit;
+		};
+		D42C5BEE2BDFD14500765CC6 /* SVGKitSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D42C5BEB2BDFD14500765CC6 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKitSwift;
+		};
+		D46754282A7BD54A003DCFAF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D46754272A7BD54A003DCFAF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D467546C2A7FDE39003DCFAF /* SwiftLocation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D467546B2A7FDE39003DCFAF /* XCRemoteSwiftPackageReference "SwiftLocation" */;
+			productName = SwiftLocation;
+		};
+		D4BE14242A81225800F20782 /* MB_TextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14232A81225800F20782 /* XCRemoteSwiftPackageReference "MB_TextField" */;
+			productName = MB_TextField;
+		};
+		D4BE142A2A81230F00F20782 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14292A81230F00F20782 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		D4BE14362A81297C00F20782 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		D4BE14382A81297C00F20782 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D4BE143A2A81297C00F20782 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		D4BE143C2A81297C00F20782 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		D4BE143E2A81297C00F20782 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		D4BE14412A812A5600F20782 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14402A812A5600F20782 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		D4BE144E2A8179F600F20782 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE144D2A8179F600F20782 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D4BE14512A817A0700F20782 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14502A817A0700F20782 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		D4DD053A2AA6337F00E418E2 /* QRCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4DD05392AA6337F00E418E2 /* XCRemoteSwiftPackageReference "QRCode" */;
+			productName = QRCode;
+		};
+		D4EE6CFC2A99019B00697CC5 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4BE14352A81297C00F20782 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D46753F12A762DE4003DCFAF /* Project object */;
+}
