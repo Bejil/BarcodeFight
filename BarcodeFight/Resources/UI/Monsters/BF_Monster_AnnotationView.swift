@@ -41,6 +41,7 @@ public class BF_Monster_AnnotationView : MKAnnotationView {
 		
 		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
 		
+		clusteringIdentifier  = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
 		canShowCallout = true
 		
 		addSubview(monsterStackView)

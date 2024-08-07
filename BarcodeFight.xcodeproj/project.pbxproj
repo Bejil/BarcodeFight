@@ -137,6 +137,7 @@
 		D467546A2A7FD6C9003DCFAF /* BF_Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754692A7FD6C9003DCFAF /* BF_Error.swift */; };
 		D467546D2A7FDE39003DCFAF /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = D467546C2A7FDE39003DCFAF /* SwiftLocation */; };
 		D46754702A7FE037003DCFAF /* BF_Monster_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */; };
+		D46D9A222C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D9A212C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift */; };
 		D477BA862A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */; };
 		D477BA882A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */; };
 		D49B176B2A80E9D4002B80D6 /* BF_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */; };
@@ -327,6 +328,7 @@
 		D46754662A7C41AC003DCFAF /* BF_Authorizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Authorizations.swift; sourceTree = "<group>"; };
 		D46754692A7FD6C9003DCFAF /* BF_Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Error.swift; sourceTree = "<group>"; };
 		D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_Extension.swift; sourceTree = "<group>"; };
+		D46D9A212C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_Cluster_AnnotationView.swift; sourceTree = "<group>"; };
 		D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets_Extension.swift; sourceTree = "<group>"; };
 		D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Delete_Alert_ViewController.swift; sourceTree = "<group>"; };
 		D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1071,6 +1073,7 @@
 				D412F1862A8E5C6A000AFCC1 /* Element */,
 				D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */,
 				D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */,
+				D46D9A212C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift */,
 			);
 			path = Monsters;
 			sourceTree = "<group>";
@@ -1567,6 +1570,7 @@
 				D42C5BD62BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift in Sources */,
 				D4EE6CD92A90FBE200697CC5 /* BF_Battle_Team_ViewController.swift in Sources */,
 				D46754562A7BDAE0003DCFAF /* UIView_Extension.swift in Sources */,
+				D46D9A222C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift in Sources */,
 				D40506E82C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift in Sources */,
 				D467546A2A7FD6C9003DCFAF /* BF_Error.swift in Sources */,
 				D40506E32C14EF4E00210F84 /* BF_Ads.swift in Sources */,

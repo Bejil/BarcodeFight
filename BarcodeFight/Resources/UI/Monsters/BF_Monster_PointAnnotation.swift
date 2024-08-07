@@ -10,5 +10,11 @@ import MapKit
 
 public class BF_Monster_PointAnnotation : MKPointAnnotation {
 	
-	public var monster:BF_Monster?
+	public var monster:BF_Monster? {
+		
+		didSet {
+			
+			coordinate = CLLocationCoordinate2D(latitude: monster?.location?.coordinates?.latitude ?? 0.0, longitude: monster?.location?.coordinates?.longitude ?? 0.0)
+		}
+	}
 }

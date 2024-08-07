@@ -275,22 +275,32 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 		infosButton.showsMenuAsPrimaryAction = true
 		infosButton.menu = UIMenu(children: [
 			
-			UIAction(title:String(key:"monsters.actions.account"), image: UIImage(systemName: "person.crop.circle"), handler: { _ in
-				
-				UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Infos_ViewController()), animated: true)
-			}),
-			UIAction(title:String(key:"monsters.actions.ranking"), image: UIImage(systemName: "list.number"), handler: { _ in
-				
-				UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Ranking_ViewController()), animated: true)
-			}),
-			UIAction(title:String(key:"monsters.actions.fights"), image: UIImage(systemName: "figure.kickboxing"), handler: { _ in
-				
-				UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Fights_ViewController()), animated: true)
-			}),
-			UIAction(title:String(key:"monsters.actions.barcode"), image: UIImage(systemName: "barcode"), handler: { _ in
-				
-				UI.MainController.present(BF_NavigationController(rootViewController: BF_Monsters_List_Products_ViewController()), animated: true)
-			})
+			UIMenu(title: "", options: .displayInline, children: [
+				UIAction(title:String(key:"monsters.actions.account"), image: UIImage(systemName: "person.crop.circle"), handler: { _ in
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Infos_ViewController()), animated: true)
+				})
+			]),
+			UIMenu(title: "", options: .displayInline, children: [
+				UIAction(title:String(key:"monsters.actions.ranking"), image: UIImage(systemName: "list.number"), handler: { _ in
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Ranking_ViewController()), animated: true)
+				}),
+				UIAction(title:String(key:"monsters.actions.fights"), image: UIImage(systemName: "figure.kickboxing"), handler: { _ in
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Fights_ViewController()), animated: true)
+				})
+			]),
+			UIMenu(title: "", options: .displayInline, children: [
+				UIAction(title:String(key:"monsters.actions.list"), image: UIImage(systemName: "square.grid.3x3"), handler: { _ in
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_Monsters_List_Products_ViewController()), animated: true)
+				}),
+				UIAction(title:String(key:"monsters.actions.map"), image: UIImage(systemName: "map"), handler: { _ in
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_Monsters_Locations_ViewController()), animated: true)
+				})
+			])
 		])
 		infosButton.style = .transparent
 		infosButton.isText = true

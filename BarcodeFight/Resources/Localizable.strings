@@ -190,7 +190,8 @@
 "monsters.actions.account" = "Compte";
 "monsters.actions.ranking" = "Classement";
 "monsters.actions.fights" = "Combats";
-"monsters.actions.barcode" = "Tout les monstres";
+"monsters.actions.list" = "Liste des monstres";
+"monsters.actions.map" = "Carte des monstres";
 "monsters.actions.edit.button" = "Modifier";
 "monsters.sort.button" = "Trier";
 "monsters.sort.title" = "Triés par:";
@@ -281,6 +282,11 @@
 "monsters.product.add.alert.button" = "Valider";
 "monsters.element.weakness.label" = "Faiblesse";
 "monsters.element.advantage.label" = "Avantage";
+"monsters.products.title" = "Liste des monstres";
+"monsters.products.button" = "Géolocaliser";
+"monsters.products.callout.title" = "monstres";
+"monsters.products.callout.subtitle" = "découverts dans cette zone";
+
 
 //MARK: - Fights
 "fights.victories.label" = "Victoires";

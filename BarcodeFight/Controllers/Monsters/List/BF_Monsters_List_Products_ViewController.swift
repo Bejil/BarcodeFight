@@ -28,16 +28,14 @@ public class BF_Monsters_List_Products_ViewController : BF_Monsters_List_ViewCon
 		
 		isModal = true
 		
-		navigationItem.title = String(key: "Liste des monstres")
+		navigationItem.title = String(key: "monsters.products.title")
 		
 		let buttonView:UIView = .init()
 		buttonView.addLine(position: .bottom)
 		
-		let button:BF_Button = .init(String(key: "Géolocaliser")) { [weak self] _ in
+		let button:BF_Button = .init(String(key: "monsters.products.button")) { _ in
 			
-			let viewController:BF_Monsters_Locations_ViewController = .init()
-			viewController.monsters = self?.monsters?.filter({ $0.location != nil })
-			UI.MainController.present(viewController, animated: true)
+			UI.MainController.present(BF_Monsters_Locations_ViewController(), animated: true)
 		}
 		buttonView.addSubview(button)
 		button.snp.makeConstraints { make in

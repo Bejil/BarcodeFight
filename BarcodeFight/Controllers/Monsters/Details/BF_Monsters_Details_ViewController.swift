@@ -277,6 +277,7 @@ public class BF_Monsters_Details_ViewController : BF_ViewController {
 		$0.snp.makeConstraints { make in
 			make.height.equalTo(200)
 		}
+		$0.isUserInteractionEnabled = true
 		return $0
 		
 	}(BF_ImageView(image: UIImage(named: "placeholder_empty")))
@@ -486,14 +487,11 @@ public class BF_Monsters_Details_ViewController : BF_ViewController {
 		
 		productNameLabel.text = !(monster?.product?.name?.isEmpty ?? true) ? monster?.product?.name : String(key: "monsters.product.label")
 		
+		productImageView.image = UIImage(named: "empty_palceholder")
+		
 		if let picture = monster?.product?.picture, !picture.isEmpty {
 			
 			productImageView.url = picture
-		}
-		else {
-			
-			productImageView.isUserInteractionEnabled = true
-			productImageView.image = UIImage(named: "empty_palceholder")
 		}
 	}
 }

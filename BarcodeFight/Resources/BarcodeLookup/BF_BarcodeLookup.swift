@@ -54,7 +54,7 @@ extension BF_BarcodeLookup : WKNavigationDelegate {
 			
 			let javaScriptString = """
   (function() {
-   return {name: document.querySelector('.product-details h4').innerText, picture: document.querySelector('#largeProductImage img').src};
+   return {name: document.querySelector('.product-details h4').textContent, picture: document.querySelector('#largeProductImage img').src};
   })();
   """
 			webView.evaluateJavaScript(javaScriptString) { [weak self] result, _ in
@@ -62,7 +62,7 @@ extension BF_BarcodeLookup : WKNavigationDelegate {
 				let resultDict = result as? [String: String]
 				
 				let product:BF_Monster.Product = .init()
-				product.name = resultDict?["name"]
+				product.name = resultDict?["name"]?.trimmingCharacters(in: .whitespacesAndNewlines)
 				product.picture = resultDict?["picture"]
 				self?.completion?(product)
 				
