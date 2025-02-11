@@ -149,11 +149,15 @@ extension BF_Monsters_List_ViewController : UICollectionViewDelegate, UICollecti
 		let viewLayout = collectionViewLayout as? UICollectionViewFlowLayout
 		let leftInset = viewLayout?.sectionInset.left ?? UI.Margins
 		let rightInset = viewLayout?.sectionInset.right ?? UI.Margins
-		var space = viewLayout?.minimumInteritemSpacing ?? UI.Margins
-		space = CGFloat(3-1)*space
+		let interItemSpacing = viewLayout?.minimumInteritemSpacing ?? UI.Margins
 		
-		return .init(width: (collectionView.frame.size.width-(leftInset+rightInset+space))/CGFloat(3), height: 10*UI.Margins)
+		let columnCount: CGFloat = 3
+		let totalSpacing = (columnCount - 1) * interItemSpacing + leftInset + rightInset
+		let itemWidth = (collectionView.frame.size.width - totalSpacing) / columnCount
+		
+		return CGSize(width: floor(itemWidth), height: 10 * UI.Margins)
 	}
+
 	
 	public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		

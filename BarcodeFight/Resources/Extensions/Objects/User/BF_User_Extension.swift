@@ -31,14 +31,12 @@ extension BF_User {
 		return Level(number: number,range: lowerBound..<upperBound)
 	}
 	
-	public func updateAndAddExperience(_ exp:Int, withToast:Bool, _ completion:((Error?)->Void)? = nil) {
+	public func updateAndAddExperience(_ exp:Int, _ completion:((Error?)->Void)? = nil) {
 		
 		let previousLevel = level.number
 		experience += exp
 		
-		let levelState = previousLevel != level.number
-		let levelUp = levelState && previousLevel < level.number
-		let levelDown = levelState && previousLevel > level.number
+		let levelUp = previousLevel < level.number
 		
 		if levelUp {
 			
@@ -52,24 +50,41 @@ extension BF_User {
 				
 				NotificationCenter.post(.updateAccount)
 				
-				if withToast {
+				if levelUp {
 					
-					if levelUp {
+					BF_Item.get { items, error in
 						
-						BF_Toast.shared.present(title: String(key: "user.level.up.toast.title"), subtitle: [String(key: "user.level.up.toast.subtitle.0"),[String(key: "user.level.up.toast.subtitle.1"),"\(BF_Firebase.shared.config.int(.LevelRewardScanNumber))",String(key: "user.level.up.toast.subtitle.scans")].joined(separator: " "),[String(key: "user.level.up.toast.subtitle.1"),"\(BF_Firebase.shared.config.int(.LevelRewardCoinsNumber))",String(key: "user.level.up.toast.subtitle.coins")].joined(separator: " ")].joined(separator: "\n"), style: .Success)
+						if let error {
+							
+							BF_Alert_ViewController.present(error)
+						}
+						else if let chest = items?.first(where: { $0.uid == Items.ChestObjects }) {
+							
+							BF_User.current?.items.append(chest)
+							BF_User.current?.update({ error in
+								
+								if let error {
+									
+									BF_Alert_ViewController.present(error)
+								}
+								else {
+									
+									let alertController:BF_Item_Chest_Objects_Alert_ViewController = .init()
+									alertController.present {
+										
+										BF_Toast_Manager.shared.addToast(title: String(key: "user.level.up.toast.title"), subtitle: [String(key: "user.level.up.toast.subtitle.0"),[String(key: "user.level.up.toast.subtitle.1"),"\(BF_Firebase.shared.config.int(.LevelRewardScanNumber))",String(key: "user.level.up.toast.subtitle.scans")].joined(separator: " "),[String(key: "user.level.up.toast.subtitle.1"),"\(BF_Firebase.shared.config.int(.LevelRewardCoinsNumber))",String(key: "user.level.up.toast.subtitle.coins")].joined(separator: " ")].joined(separator: "\n"), style: .Success)
+									}
+								}
+							})
+						}
 					}
-					else if levelDown {
-						
-						BF_Toast.shared.present(title: String(key: "user.level.down.toast.title"), subtitle: String(key: "user.level.down.toast.subtitle"), style: .Warning)
-					}
-					else if exp > 0 {
-						
-						BF_Toast.shared.present(title: String(key: "user.experience.up.toast.title"), subtitle: [String(key: "user.experience.up.toast.subtitle.0"),String(exp),String(key: "user.experience.up.toast.subtitle.1")].joined(separator: " "), style: .Success)
-					}
-					else if exp < 0 {
-						
-						BF_Toast.shared.present(title: String(key: "user.experience.down.toast.title"), subtitle: [String(key: "user.experience.down.toast.subtitle.0"),String(abs(exp)),String(key: "user.experience.down.toast.subtitle.1")].joined(separator: " "), style: .Success)
-					}
+				}
+				else if exp != 0 {
+					
+					let state = exp > 0
+					let stateString = state ? "up" : "down"
+					
+					BF_Toast_Manager.shared.addToast(title: String(key: "user.experience.\(stateString).toast.title"), subtitle: [String(key: "user.experience.\(stateString).toast.subtitle.0"),String(abs(exp)),String(key: "user.experience.\(stateString).toast.subtitle.1")].joined(separator: " "), style: state ? .Success : .Warning)
 				}
 			}
 			else {
@@ -105,14 +120,14 @@ extension BF_User {
 			}
 			else if $0.uid == Items.Scan {
 				
-				BF_User.current?.scanAvailable = min(BF_Firebase.shared.config.int(.ScanMaxNumber), (BF_User.current?.scanAvailable ?? 0) + 1)
+				BF_User.current?.scanAvailable += 1
 			}
 		})
 		
 		update(completion)
 	}
 	
-	public var playerTeam:[BF_Monster]? {
+	public var lastTeam:[BF_Monster] {
 		
 		let mostRecentFight = fights.sorted(by: { $0.creationDate > $1.creationDate }).first
 		let player = [mostRecentFight?.creator,mostRecentFight?.opponent].compactMap({ $0 }).first(where: { $0.userId == uid })
@@ -133,6 +148,84 @@ extension BF_User {
 		lastMonsters.append(contentsOf: additionalMonsters)
 		
 		return lastMonsters.sort(.Battle)
+	}
+	
+	public func bestTeam(against team: [BF_Monster]?) -> [BF_Monster]? {
+		
+		var playerMonsters = monsters
+		var bestTeam:[BF_Monster] = .init()
+		var opponentsCompared:[BF_Monster] = .init()
+		
+		team?.forEach({ opponent in
+			
+			if let index = playerMonsters.firstIndex(where: {
+				
+				!opponentsCompared.contains(opponent) &&
+				$0.stats.rank >= opponent.stats.rank &&
+				$0.element > opponent.element &&
+				$0.status.hp >= opponent.status.hp/2 &&
+				!$0.isDead
+			}) {
+				
+				let monster = playerMonsters[index]
+				
+				opponentsCompared.append(opponent)
+				bestTeam.append(monster)
+				playerMonsters.remove(at: index)
+			}
+		})
+		
+		if bestTeam.count < BF_Firebase.shared.config.int(.FightMonstersCount) {
+			
+			team?.forEach({ opponent in
+				
+				if let index = playerMonsters.firstIndex(where: {
+					
+					!opponentsCompared.contains(opponent) &&
+					$0.stats.rank >= opponent.stats.rank  &&
+					$0.status.hp >= opponent.status.hp/2 &&
+					!$0.isDead
+					
+				}) {
+					
+					let monster = playerMonsters[index]
+					
+					opponentsCompared.append(opponent)
+					bestTeam.append(monster)
+					playerMonsters.remove(at: index)
+				}
+			})
+		}
+		
+		if bestTeam.count < BF_Firebase.shared.config.int(.FightMonstersCount) {
+			
+			team?.forEach({ opponent in
+				
+				if let index = playerMonsters.firstIndex(where: {
+					
+					!opponentsCompared.contains(opponent) &&
+					$0.element > opponent.element &&
+					$0.status.hp >= opponent.status.hp/2 &&
+					!$0.isDead
+					
+				}) {
+					
+					let monster = playerMonsters[index]
+					
+					opponentsCompared.append(opponent)
+					bestTeam.append(monster)
+					playerMonsters.remove(at: index)
+				}
+			})
+		}
+		
+		while bestTeam.count < BF_Firebase.shared.config.int(.FightMonstersCount), let monster = playerMonsters.max(by: { $0.stats.rank < $1.stats.rank }), !monster.isDead {
+			
+			bestTeam.append(monster)
+			playerMonsters.removeAll { $0 == monster }
+		}
+		
+		return bestTeam
 	}
 	
 	public var enemyTeam:[BF_Monster]? {

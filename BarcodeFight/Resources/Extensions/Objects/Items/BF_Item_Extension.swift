@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 extension BF_Item {
 	
@@ -19,18 +20,7 @@ extension BF_Item {
 			}
 			else {
 				
-				var rewards = items?.filter({ $0.isReward ?? false && Int.random(in: 1...100) <= Int(($0.rewardRate ?? 0.0) * 100.0) })
-				
-				if BF_User.current?.scanAvailable ?? 0 >= BF_Firebase.shared.config.int(.ScanMaxNumber) {
-					
-					rewards?.removeAll(where: { $0.uid == Items.Scan })
-				}
-				
-				if BF_User.current?.rubies ?? 0 >= BF_Firebase.shared.config.int(.RubiesMaxNumber) {
-					
-					rewards?.removeAll(where: { $0.uid == Items.Rubies })
-				}
-					
+				let rewards = items?.filter({ $0.isReward ?? false && Int.random(in: 1...100) <= Int(($0.rewardRate ?? 0.0) * 100.0) })
 				completion?(rewards,nil)
 			}
 		}

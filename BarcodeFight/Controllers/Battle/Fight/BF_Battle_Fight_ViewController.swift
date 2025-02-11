@@ -21,7 +21,8 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			
 			playerTeam?.forEach({
 				
-				let stackView:BF_Monsters_StackView = .init()
+				let stackView:BF_Monsters_Min_StackView = .init()
+				stackView.particlesView.removeFromSuperview()
 				stackView.limitProgressView.isHidden = false
 				stackView.monster = $0
 				stackView.isLayoutMarginsRelativeArrangement = true
@@ -45,7 +46,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			
 			UIView.animate {
 				
-				(self.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.forEach({
+				(self.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.forEach({
 					
 					let isCurrent = $0.monster == self.playerCurrentMonster
 					
@@ -79,13 +80,12 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			
 			enemyTeam?.forEach({
 				
-				let stackView:BF_Monsters_StackView = .init()
+				let stackView:BF_Monsters_Min_StackView = .init()
+				stackView.particlesView.removeFromSuperview()
 				stackView.limitProgressView.isHidden = false
 				stackView.monster = $0
-				stackView.flip()
 				stackView.isLayoutMarginsRelativeArrangement = true
 				stackView.layoutMargins = .init(horizontal: 1.5*UI.Margins)
-				stackView.isUserInteractionEnabled = false
 				enemyMonstersStackView.addArrangedSubview(stackView)
 				stackView.snp.makeConstraints { make in
 					make.size.equalTo(self.enemyMonstersScrollView)
@@ -105,7 +105,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			
 			UIView.animate {
 				
-				(self.enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.forEach({
+				(self.enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.forEach({
 					
 					let isCurrent = $0.monster == self.enemyCurrentMonster
 					
@@ -229,28 +229,29 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 				
 				BF_User.current?.items.remove(at: index)
 				
-				let alertController:BF_Alert_ViewController = .presentLoading()
-				
-				BF_User.current?.update({ [weak self] error in
+				BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 					
-					alertController.close { [weak self] in
+					BF_User.current?.update({ [weak self] error in
 						
-						if let error = error {
+						alertController?.close { [weak self] in
 							
-							BF_Alert_ViewController.present(error)
+							if let error = error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								(self?.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: { $0.monster == self?.playerCurrentMonster })?.monster = self?.playerCurrentMonster
+								
+								UIApplication.feedBack(.Success)
+								BF_Audio.shared.playSuccess()
+								
+								self?.isPlayerTurn = false
+								self?.enemyTurn()
+							}
 						}
-						else {
-							
-							(self?.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: { $0.monster == self?.playerCurrentMonster })?.monster = self?.playerCurrentMonster
-							
-							UIApplication.feedBack(.Success)
-							BF_Audio.shared.playSuccess()
-							
-							self?.isPlayerTurn = false
-							self?.enemyTurn()
-						}
-					}
-				})
+					})
+				}
 			}
 		}
 		alertController.present(as: .Sheet)
@@ -276,7 +277,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 		let viewController:BF_Battle_Fight_QTE_ViewController = .init()
 		viewController.completionHandler = { [weak self] in
 			
-			if let monsterView = (self?.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: { $0.monster == self?.playerCurrentMonster }) {
+			if let monsterView = (self?.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: { $0.monster == self?.playerCurrentMonster }) {
 				
 				monsterView.limitProgressView.progress = 0.0
 				
@@ -346,8 +347,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			playerMagicalAttackButton.isEnabled = playerNormalAttackButton.isEnabled && playerCurrentMonster?.status.mp ?? 0 > 0
 			playerObjectButton.isEnabled = isPlayerTurn
 			
-			if let monsterView = (playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: { $0.monster == playerCurrentMonster }),
-			   monsterView.limitProgressView.progress == 1.0 {
+			if let monsterView = (playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: { $0.monster == playerCurrentMonster }), monsterView.limitProgressView.progress == 1.0 {
 				
 				playerLimitButton.isHidden = false
 				
@@ -359,7 +359,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 													subtitle: String(key: "tutorial.battle.6.subtitle"),
 													button: String(key: "tutorial.battle.6.button"))
 				]
-				UI.MainController.present(viewController, animated: true)
+				viewController.present()
 			}
 			else {
 				
@@ -392,16 +392,16 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 	private lazy var soundButton:BF_Button = {
 		
 		$0.style = .transparent
+		$0.isText = true
 		$0.image = UIImage(named: "settings_icon")
+		$0.titleFont = Fonts.Navigation.Button
 		$0.configuration?.contentInsets = .zero
+		$0.configuration?.imagePadding = UI.Margins/2
 		$0.showsMenuAsPrimaryAction = true
 		$0.menu = soundMenu
-		$0.snp.makeConstraints { make in
-			make.size.equalTo(UI.Margins*2)
-		}
 		return $0
 		
-	}(BF_Button())
+	}(BF_Button(String(key: "fights.audio.button")))
 	private var soundMenu:UIMenu {
 		
 		let isSoundsEnabled = BF_User.current?.isSoundsEnabled ?? true
@@ -442,9 +442,6 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			})
 		])
 	}
-	private var bezierPath:UIBezierPath?
-	private var previousPoint:CGPoint = .zero
-	private var panGestureTimer:Timer?
 	private lazy var firstCloudsScrollView:UIScrollView = {
 		
 		$0.isUserInteractionEnabled = false
@@ -520,7 +517,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 		stackView.axis = .vertical
 		view.addSubview(stackView)
 		stackView.snp.makeConstraints { make in
-			make.top.equalTo(view.safeAreaLayoutGuide).inset(4*UI.Margins)
+			make.top.equalTo(view.safeAreaLayoutGuide)
 			make.right.bottom.left.equalTo(view.safeAreaLayoutGuide).inset(UI.Margins)
 		}
 		
@@ -546,24 +543,18 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			make.height.equalTo(self.view.snp.height).multipliedBy(0.3)
 		}
 		
-		let tutorialButton:BF_Button = .init() { [weak self] _ in
+		let tutorialButton:BF_Button = .init(String(key: "fights.tutorial.button")) { [weak self] _ in
 			
 			self?.showTutorial(true,nil)
 		}
 		tutorialButton.style = .transparent
+		tutorialButton.isText = true
 		tutorialButton.image = UIImage(named: "help_icon")
+		tutorialButton.titleFont = Fonts.Navigation.Button
 		tutorialButton.configuration?.contentInsets = .zero
-		tutorialButton.snp.makeConstraints { make in
-			make.size.equalTo(UI.Margins*2)
-		}
+		tutorialButton.configuration?.imagePadding = UI.Margins/2
 		
-		let buttonsStackView:UIStackView = .init(arrangedSubviews: [tutorialButton,soundButton])
-		buttonsStackView.axis = .horizontal
-		buttonsStackView.alignment = .center
-		view.addSubview(buttonsStackView)
-		buttonsStackView.snp.makeConstraints { make in
-			make.top.right.equalTo(view.safeAreaLayoutGuide).inset(UI.Margins)
-		}
+		navigationItem.rightBarButtonItems = [.init(customView: tutorialButton), .init(customView: soundButton)]
 		
 		UIApplication.wait { [weak self] in
 			
@@ -576,147 +567,85 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 					
 				}, completion: nil)
 			}
-			
-			self?.showTutorial(false) { [weak self] in
-				
-				UIApplication.wait { [weak self] in
-					
-					self?.showDimView(String(key: self?.isPlayerTurn ?? false ? "fights.battle.toss.player" : "fights.battle.toss.enemy")) { [weak self] in
-						
-						let isPlayerTurn = self?.isPlayerTurn ?? false
-						
-						self?.playerNormalAttackButton.isEnabled = isPlayerTurn && !(self?.playerCurrentMonster?.isDead ?? false)
-						self?.playerMagicalAttackButton.isEnabled = self?.playerNormalAttackButton.isEnabled ?? false && self?.playerCurrentMonster?.status.mp ?? 0 > 0
-						self?.playerObjectButton.isEnabled = isPlayerTurn
-						
-						isPlayerTurn ? self?.playerTurn() : self?.enemyTurn()
-					}
-				}
-			}
 		}
-		
-		let shapeLayer = CAShapeLayer()
-		shapeLayer.lineCap = .round
-		shapeLayer.fillColor = UIColor.clear.cgColor
-		shapeLayer.strokeColor = UIColor.white.withAlphaComponent(0.8).cgColor
-		view.layer.addSublayer(shapeLayer)
 		
 		let panGestureRecognizer:UIPanGestureRecognizer = .init(block: { [weak self] gestureRecognizer in
 			
 			let currentPoint = gestureRecognizer.location(in: self?.view)
 			
-			let monsterView = (self?.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: {
+			let monsterView = (self?.playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: {
 				
 				let subviewPoint = self?.view.convert(currentPoint, to: $0)
 				return $0.monster == self?.playerCurrentMonster && $0.bounds.contains(subviewPoint ?? .zero)
 			})
 			
-			if gestureRecognizer.state == .began {
+			if !(monsterView?.monster?.isDead ?? true) {
 				
-				self?.bezierPath = .init()
-				self?.bezierPath?.move(to: currentPoint)
-				
-				shapeLayer.lineWidth = 0
-				
-				self?.originalMonsterViewPosition = monsterView?.center
-			}
-			else if gestureRecognizer.state == .changed {
-				
-				if let velocity = (gestureRecognizer as? UIPanGestureRecognizer)?.velocity(in: self?.view) {
+				if gestureRecognizer.state == .began {
 					
-					let speed = sqrt(pow(velocity.x, 2) + pow(velocity.y, 2))
+					self?.originalMonsterViewPosition = monsterView?.center
+				}
+				else if gestureRecognizer.state == .changed {
 					
-					if speed > 175 {
+					if let translation = (gestureRecognizer as? UIPanGestureRecognizer)?.translation(in: self?.view) {
 						
-						if let previousPoint = self?.previousPoint {
+						monsterView?.center = CGPoint(x: (monsterView?.center.x ?? 0.0) + translation.x, y: (monsterView?.center.y ?? 0.0) + translation.y)
+						(gestureRecognizer as? UIPanGestureRecognizer)?.setTranslation(.zero, in: self?.view)
+						
+						if let enemyMonsterView = (self?.enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: { $0.monster == self?.enemyCurrentMonster }),
+						   let monsterFrameInSuperview = monsterView?.convert(monsterView?.bounds ?? .zero, to: self?.view) {
 							
-							let midPoint:CGPoint = .init(x: (previousPoint.x + currentPoint.x)/2, y: (previousPoint.y + currentPoint.y)/2)
-							self?.bezierPath?.addQuadCurve(to: midPoint, controlPoint: previousPoint)
-							shapeLayer.lineWidth = min(UI.Margins * (sqrt(speed) / sqrt(1000)),UI.Margins)
+							let enemyFrameInSuperview = enemyMonsterView.convert(enemyMonsterView.bounds, to: self?.view)
+							
+							let divider = 4.5
+							
+							let halvedMonsterFrame = CGRect(
+								x: monsterFrameInSuperview.origin.x+(monsterFrameInSuperview.size.width/(2*divider)),
+								y: monsterFrameInSuperview.origin.y+(monsterFrameInSuperview.size.height/(2*divider)),
+								width: monsterFrameInSuperview.size.width/divider,
+								height: monsterFrameInSuperview.size.height/divider
+							)
+							
+							let halvedEnemyFrame = CGRect(
+								x: enemyFrameInSuperview.origin.x+(enemyFrameInSuperview.size.width/(2*divider)),
+								y: enemyFrameInSuperview.origin.y+(enemyFrameInSuperview.size.height/(2*divider)),
+								width: enemyFrameInSuperview.size.width/divider,
+								height: enemyFrameInSuperview.size.height/divider
+							)
+							
+							if halvedMonsterFrame.intersects(halvedEnemyFrame) {
+								
+								UIApplication.feedBack(.On)
+								self?.playerAttacks(withMagic:false, isLimit: false, movement:false)
+								
+								gestureRecognizer.isEnabled = false
+								gestureRecognizer.isEnabled = true
+							}
 						}
+					}
+				}
+				else {
+					
+					UIApplication.wait(0.1) { [weak self] in
 						
-						self?.panGestureTimer?.invalidate()
-						self?.panGestureTimer = nil
-						self?.panGestureTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+						gestureRecognizer.delegate = nil
+						
+						UIView.animate(0.3, { [weak self] in
 							
-							UIView.animate(withDuration: 0.3, animations: {
+							if let monsterView = monsterView, let index = self?.playerMonstersStackView.arrangedSubviews.firstIndex(of: monsterView) {
 								
-								shapeLayer.opacity = 0.0
-								shapeLayer.lineWidth = 0
-								
-							}, completion: { _ in
-								
-								shapeLayer.opacity = 1.0
-								
-								self?.bezierPath = .init()
-								self?.bezierPath?.move(to: currentPoint)
-							})
+								monsterView.frame.origin.x = CGFloat(index) * monsterView.frame.size.width
+								monsterView.frame.origin.y = 0
+							}
+							
+						}, { [weak self] in
+							
+							self?.originalMonsterViewPosition = nil
+							gestureRecognizer.delegate = self
 						})
 					}
 				}
-				
-				if let translation = (gestureRecognizer as? UIPanGestureRecognizer)?.translation(in: self?.view) {
-					
-					monsterView?.center = CGPoint(x: (monsterView?.center.x ?? 0.0) + translation.x, y: (monsterView?.center.y ?? 0.0) + translation.y) // mark 4
-					(gestureRecognizer as? UIPanGestureRecognizer)?.setTranslation(.zero, in: self?.view)
-					
-					if let enemyMonsterView = (self?.enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: { $0.monster == self?.enemyCurrentMonster }),
-					   let monsterFrameInSuperview = monsterView?.convert(monsterView?.bounds ?? .zero, to: self?.view) {
-						
-						let enemyFrameInSuperview = enemyMonsterView.convert(enemyMonsterView.bounds, to: self?.view)
-						
-						let divider = 4.5
-						
-						let halvedMonsterFrame = CGRect(
-							x: monsterFrameInSuperview.origin.x+(monsterFrameInSuperview.size.width/(2*divider)),
-							y: monsterFrameInSuperview.origin.y+(monsterFrameInSuperview.size.height/(2*divider)),
-							width: monsterFrameInSuperview.size.width/divider,
-							height: monsterFrameInSuperview.size.height/divider
-						)
-						
-						let halvedEnemyFrame = CGRect(
-							x: enemyFrameInSuperview.origin.x+(enemyFrameInSuperview.size.width/(2*divider)),
-							y: enemyFrameInSuperview.origin.y+(enemyFrameInSuperview.size.height/(2*divider)),
-							width: enemyFrameInSuperview.size.width/divider,
-							height: enemyFrameInSuperview.size.height/divider
-						)
-						
-						if halvedMonsterFrame.intersects(halvedEnemyFrame) {
-							
-							UIApplication.feedBack(.On)
-							self?.playerAttacks(withMagic:false, isLimit: false, movement:false)
-							
-							gestureRecognizer.isEnabled = false
-							gestureRecognizer.isEnabled = true
-						}
-					}
-				}
 			}
-			else {
-				
-				self?.panGestureTimer?.invalidate()
-				self?.panGestureTimer = nil
-				
-				UIView.animate(withDuration: 0.3, animations: {
-					
-					shapeLayer.opacity = 0.0
-					shapeLayer.lineWidth = 0
-					
-				}, completion: { _ in
-					
-					self?.bezierPath = .init()
-					shapeLayer.opacity = 1.0
-				})
-				
-				UIView.animate { [weak self] in
-					
-					monsterView?.center = self?.originalMonsterViewPosition ?? .zero
-				}
-			}
-			
-			self?.previousPoint = currentPoint
-			
-			shapeLayer.path = self?.bezierPath?.cgPath
 		})
 		panGestureRecognizer.delegate = self
 		view.addGestureRecognizer(panGestureRecognizer)
@@ -766,12 +695,12 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 		alertController.present()
 	}
 	
-	private func showTutorial(_ force:Bool, _ completion:(()->Void)?) {
+	public func showTutorial(_ force:Bool, _ completion:(()->Void)?) {
 		
 		let sourceViews = [
 			nil,
-			(playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: { $0.monster == playerCurrentMonster }),
-			(enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.first(where: { $0.monster == enemyCurrentMonster }),
+			(playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: { $0.monster == playerCurrentMonster }),
+			(enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.first(where: { $0.monster == enemyCurrentMonster }),
 			playerNormalAttackButton,
 			playerMagicalAttackButton,
 			playerObjectButton
@@ -793,6 +722,27 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			return nil
 		})
 		viewController.completion = completion
+		viewController.present()
+	}
+	
+	public func startToss() {
+		
+		let viewController:BF_Toss_ViewController = .init()
+		viewController.isAuto = true
+		viewController.endState = isPlayerTurn
+		viewController.completion = { [weak self] in
+			
+			self?.showDimView(String(key: self?.isPlayerTurn ?? false ? "fights.battle.toss.player" : "fights.battle.toss.enemy")) { [weak self] in
+				
+				let isPlayerTurn = self?.isPlayerTurn ?? false
+				
+				self?.playerNormalAttackButton.isEnabled = isPlayerTurn && !(self?.playerCurrentMonster?.isDead ?? false)
+				self?.playerMagicalAttackButton.isEnabled = self?.playerNormalAttackButton.isEnabled ?? false && self?.playerCurrentMonster?.status.mp ?? 0 > 0
+				self?.playerObjectButton.isEnabled = isPlayerTurn
+				
+				isPlayerTurn ? self?.playerTurn() : self?.enemyTurn()
+			}
+		}
 		UI.MainController.present(viewController, animated: true)
 	}
 	
@@ -810,8 +760,6 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 	
 	private func playerAttacks(withMagic:Bool, isLimit:Bool, movement:Bool) {
 		
-		isPlayerTurn = false
-		
 		attack(attacker: playerCurrentMonster, target: enemyCurrentMonster, isMagical: withMagic, movement:movement) { [weak self] in
 			
 			if self?.enemyCurrentMonster?.isDead ?? false {
@@ -823,6 +771,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 					
 					if !isLimit {
 						
+						self?.isPlayerTurn = false
 						self?.enemyTurn()
 					}
 				}
@@ -833,6 +782,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 					
 					UIApplication.wait { [weak self] in
 						
+						self?.isPlayerTurn = false
 						self?.enemyTurn()
 					}
 				}
@@ -916,8 +866,8 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 	
 	public func moveMonsters(attacker: BF_Monster?, target: BF_Monster?, isMagical:Bool, isDodge:Bool, isCritical:Bool, hpToRemove:Double, isBlocked:Bool, movement:Bool, completion:(()->Void)?) {
 		
-		if let playerMonstersViews = playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView],
-		   let enemyMonstersViews = enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView],
+		if let playerMonstersViews = playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView],
+		   let enemyMonstersViews = enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView],
 		   let attackerView = (playerMonstersViews+enemyMonstersViews).first(where: { $0.monster == attacker }),
 		   let targetView = (playerMonstersViews+enemyMonstersViews).first(where: { $0.monster == target }) {
 			
@@ -946,10 +896,10 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 					let currentHP = Float(target?.status.hp ?? 1)
 					let hpPercentage = Float(hpToRemove) / maxHP
 					let defenseFactor = Float(target?.stats.def ?? 0) / 100.0
-					let luckFactor = 1.0 + (Float(target?.stats.luk ?? 0) / 50.0)
-					let remainingHPFactor = 1.0 + (((maxHP - currentHP) / maxHP) / 10.0)
+					let luckFactor = 1.0 + (Float(target?.stats.luk ?? 0) / 100.0) // Reduced the luck factor impact
+					let remainingHPFactor = 1.0 + (((maxHP - currentHP) / maxHP) / 15.0) // Increased the divisor to slow the impact
 					
-					let scalingFactor: Float = 10.0
+					let scalingFactor: Float = 15.0 // Increased the scaling factor to slow progress
 					let limitPercentage = (hpPercentage * defenseFactor * luckFactor * remainingHPFactor) / scalingFactor
 					
 					targetView.limitProgressView.progress = min(1.0, targetView.limitProgressView.progress + limitPercentage)
@@ -1148,14 +1098,14 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 	
 	public func scrollToCurrentPlayerMonster() {
 		
-		let index = (playerMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.firstIndex(where: { $0.monster == playerCurrentMonster }) ?? 0
+		let index = (playerMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.firstIndex(where: { $0.monster == playerCurrentMonster }) ?? 0
 		playerMonstersScrollView.setContentOffset(.init(x: playerMonstersScrollView.frame.size.width * CGFloat(index), y: 0), animated: true)
 		isPlayerTurn = { isPlayerTurn }()
 	}
 	
 	public func scrollToCurrentEnemyMonster() {
 		
-		let index = (enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.firstIndex(where: { $0.monster == enemyCurrentMonster }) ?? 0
+		let index = (enemyMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.firstIndex(where: { $0.monster == enemyCurrentMonster }) ?? 0
 		enemyMonstersScrollView.setContentOffset(.init(x: enemyMonstersScrollView.frame.size.width * CGFloat(index), y: 0), animated: true)
 	}
 	
@@ -1231,6 +1181,9 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 	
 	public func finishBattle(withState state:BF_Fight.State) {
 		
+		navigationItem.leftBarButtonItem = nil
+		navigationItem.rightBarButtonItems = nil
+		
 		isPause = true
 		isPlayerTurn = false
 		
@@ -1257,73 +1210,67 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 		
 		if state == .Victory {
 			
-			let alertController:BF_Alert_ViewController = .presentLoading()
-			
-			BF_Item.getRewards { [weak self] rewards, error in
+			BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 				
-				alertController.close { [weak self] in
+				BF_Item.getRewards { [weak self] rewards, error in
 					
-					self?.items = .init()
-					
-					let experienceItem:BF_Item = .init()
-					experienceItem.name = ["\(self?.experienceVictory ?? 0)",String(key: "fights.battle.finish.victory.alert.experience")].joined(separator: " ")
-					experienceItem.picture = "items_experience_plus"
-					self?.items?.append(experienceItem)
-					
-					self?.items?.append(contentsOf: rewards ?? [])
-					
-					let alertController:BF_Alert_ViewController = .init()
-					alertController.backgroundView.isUserInteractionEnabled = false
-					alertController.add(UIImage(named: "victory_icon"))
-					alertController.title = String(key: "fights.battle.finish.victory.alert.title")
-					alertController.add(String(key: "fights.battle.finish.victory.alert.label.0"))
-					alertController.add(String(key: "fights.battle.finish.victory.alert.label.1"))
-					
-					let itemsTableView:BF_TableView = .init()
-					itemsTableView.register(BF_Item_TableViewCell.self, forCellReuseIdentifier: BF_Item_TableViewCell.identifier)
-					itemsTableView.delegate = self
-					itemsTableView.dataSource = self
-					itemsTableView.separatorInset = .zero
-					itemsTableView.separatorColor = .white.withAlphaComponent(0.25)
-					itemsTableView.isHeightDynamic = true
-					itemsTableView.isUserInteractionEnabled = false
-					itemsTableView.isHidden = self?.items?.isEmpty ?? true
-					alertController.add(itemsTableView)
-					
-					alertController.addButton(title: String(key: "fights.battle.finish.victory.alert.button")) { [weak self] button in
+					alertController?.close { [weak self] in
 						
-						button?.isLoading = true
+						self?.items = rewards
 						
-						self?.reward(BF_User.current, with: self?.playerTeam, and: rewards, { [weak self] error in
+						let alertController:BF_Alert_ViewController = .init()
+						alertController.backgroundView.isUserInteractionEnabled = false
+						alertController.add(UIImage(named: "victory_icon"))
+						alertController.title = String(key: "fights.battle.finish.victory.alert.title")
+						alertController.add(String(key: "fights.battle.finish.victory.alert.label.0"))
+						alertController.add(String(key: "fights.battle.finish.victory.alert.label.1"))
+						
+						let itemsTableView:BF_TableView = .init()
+						itemsTableView.register(BF_Item_TableViewCell.self, forCellReuseIdentifier: BF_Item_TableViewCell.identifier)
+						itemsTableView.delegate = self
+						itemsTableView.dataSource = self
+						itemsTableView.separatorInset = .zero
+						itemsTableView.separatorColor = .white.withAlphaComponent(0.25)
+						itemsTableView.isHeightDynamic = true
+						itemsTableView.isUserInteractionEnabled = false
+						itemsTableView.isHidden = self?.items?.isEmpty ?? true
+						alertController.add(itemsTableView)
+						
+						alertController.addButton(title: String(key: "fights.battle.finish.victory.alert.button")) { [weak self] button in
 							
-							button?.isLoading = false
+							button?.isLoading = true
 							
-							if let error = error {
+							self?.reward(BF_User.current, with: self?.playerTeam, and: rewards, { [weak self] error in
 								
-								BF_Alert_ViewController.present(error)
-							}
-							else {
+								button?.isLoading = false
 								
-								NotificationCenter.post(.updateAccount)
-								NotificationCenter.post(.updateMonsters)
-								
-								alertController.close { [weak self] in
+								if let error = error {
 									
-									self?.dismiss({ [weak self] in
-										
-										self?.victoryHandler?()
-									})
+									BF_Alert_ViewController.present(error)
 								}
-							}
-						})
-					}
-					alertController.dismissHandler = {
-						
-						BF_Confettis.stop()
-					}
-					alertController.present {
-						
-						BF_Confettis.start()
+								else {
+									
+									NotificationCenter.post(.updateAccount)
+									NotificationCenter.post(.updateMonsters)
+									
+									alertController.close { [weak self] in
+										
+										self?.dismiss({ [weak self] in
+											
+											self?.victoryHandler?()
+										})
+									}
+								}
+							})
+						}
+						alertController.dismissHandler = {
+							
+							BF_Confettis.stop()
+						}
+						alertController.present {
+							
+							BF_Confettis.start()
+						}
 					}
 				}
 			}
@@ -1335,27 +1282,6 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			alertController.add(UIImage(named: "defeat_icon"))
 			alertController.title = String(key: "fights.battle.finish.defeat.alert.title")
 			alertController.add(String(key: "fights.battle.finish.defeat.alert.label.0"))
-			
-			var rewardItems:[BF_Item] = .init()
-			
-			let experienceItem:BF_Item = .init()
-			experienceItem.name = ["\(experienceDefeat)",String(key: "fights.battle.finish.defeat.alert.experience")].joined(separator: " ")
-			experienceItem.picture = "items_experience_minus"
-			rewardItems.append(experienceItem)
-			
-			items = rewardItems
-			
-			let itemsTableView:BF_TableView = .init()
-			itemsTableView.register(BF_Item_TableViewCell.self, forCellReuseIdentifier: BF_Item_TableViewCell.identifier)
-			itemsTableView.delegate = self
-			itemsTableView.dataSource = self
-			itemsTableView.separatorInset = .zero
-			itemsTableView.separatorColor = .white.withAlphaComponent(0.25)
-			itemsTableView.isHeightDynamic = true
-			itemsTableView.isUserInteractionEnabled = false
-			itemsTableView.isHidden = items?.isEmpty ?? true
-			alertController.add(itemsTableView)
-			
 			alertController.addButton(title: String(key: "fights.battle.finish.defeat.alert.button")) { [weak self] button in
 				
 				button?.isLoading = true
@@ -1389,27 +1315,6 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			alertController.backgroundView.isUserInteractionEnabled = false
 			alertController.title = String(key: "fights.battle.finish.dropout.alert.title")
 			alertController.add(String(key: "fights.battle.finish.dropout.alert.label.0"))
-			
-			var rewardItems:[BF_Item] = .init()
-			
-			let experienceItem:BF_Item = .init()
-			experienceItem.name = ["\(experienceDropout)",String(key: "fights.battle.finish.dropout.alert.experience")].joined(separator: " ")
-			experienceItem.picture = "items_experience_minus"
-			rewardItems.append(experienceItem)
-			
-			items = rewardItems
-			
-			let itemsTableView:BF_TableView = .init()
-			itemsTableView.register(BF_Item_TableViewCell.self, forCellReuseIdentifier: BF_Item_TableViewCell.identifier)
-			itemsTableView.delegate = self
-			itemsTableView.dataSource = self
-			itemsTableView.separatorInset = .zero
-			itemsTableView.separatorColor = .white.withAlphaComponent(0.25)
-			itemsTableView.isHeightDynamic = true
-			itemsTableView.isUserInteractionEnabled = false
-			itemsTableView.isHidden = items?.isEmpty ?? true
-			alertController.add(itemsTableView)
-			
 			alertController.addButton(title: String(key: "fights.battle.finish.dropout.alert.button")) { [weak self] button in
 				
 				button?.isLoading = true
@@ -1443,8 +1348,6 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 		
 		if user?.id != nil {
 			
-			user?.experience += experienceVictory
-			
 			fight.state = .Victory
 			
 			team?.forEach({ monster in
@@ -1461,14 +1364,17 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			
 			user?.setRewards(items, { [weak self] error in
 				
-				if let error {
+				user?.updateAndAddExperience(self?.experienceVictory ?? 0, { [weak self] error in
 					
-					user?.experience -= self?.experienceVictory ?? 0
+					if let error {
+						
+						user?.experience -= self?.experienceVictory ?? 0
+						
+						BF_Alert_ViewController.present(error)
+					}
 					
-					BF_Alert_ViewController.present(error)
-				}
-				
-				completion?(error)
+					completion?(error)
+				})
 			})
 		}
 		else {
@@ -1480,8 +1386,6 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 	private func penalise(_ user:BF_User?, with team:[BF_Monster]?, for state:BF_Fight.State, _ completion:((Error?)->Void)?) {
 		
 		if user?.id != nil {
-			
-			user?.experience += state == .Dropout ? experienceDropout : experienceDefeat
 			
 			fight.state = state
 			
@@ -1497,7 +1401,7 @@ public class BF_Battle_Fight_ViewController : BF_ViewController {
 			
 			user?.fights.append(fight)
 			
-			user?.update({ [weak self] error in
+			user?.updateAndAddExperience(state == .Dropout ? experienceDropout : experienceDefeat, { [weak self] error in
 				
 				if error != nil {
 					
@@ -1547,15 +1451,10 @@ extension BF_Battle_Fight_ViewController : UITableViewDelegate, UITableViewDataS
 	}
 }
 
-extension BF_Battle_Fight_ViewController : UIGestureRecognizerDelegate {
+extension BF_Battle_Fight_ViewController {
 	
 	public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 		
 		return isPlayerTurn
-	}
-	
-	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-		
-		return false
 	}
 }

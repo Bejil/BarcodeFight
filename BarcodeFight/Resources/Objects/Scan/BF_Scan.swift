@@ -2,178 +2,120 @@
 //  BF_Scan.swift
 //  BarcodeFight
 //
-//  Created by BLIN Michael on 16/08/2023.
+//  Created by BLIN Michael on 02/05/2024.
 //
 
 import Foundation
 import UIKit
 
-public class BF_Scan : NSObject {
+public class BF_Scan: NSObject {
 	
-	public static let shared:BF_Scan = .init()
-	private var nextScanTimer:Timer?
-	public var progress:Float {
+	public static let shared: BF_Scan = .init()
+	private var timer: Timer?
+	public var timeInterval: TimeInterval? {
 		
-		guard let creationDate = BF_User.current?.creationDate else {
-			
-			return 0.0
-		}
-		
-		let timeInterval = Date().timeIntervalSince(creationDate)
-		let interval = TimeInterval(BF_Firebase.shared.config.int(.FreeScanTimeInterval))
-		let nextOccurrenceTime = ceil(timeInterval / interval) * interval
-		let previousTime = nextOccurrenceTime - interval
-		
-		let totalInterval = nextOccurrenceTime - previousTime
-		if totalInterval == 0 {
-			
-			return 1.0
-		}
-		
-		let elapsedTimeInCurrentInterval = timeInterval - previousTime
-		return Float(elapsedTimeInCurrentInterval / totalInterval)
+		let currentTime = Date()
+		let nextDate = nextDate(from: currentTime)
+		return max(0, nextDate.timeIntervalSince(currentTime))
 	}
-	public var remainingTimeBeforeNextScan:TimeInterval? {
+	public var string: String? {
 		
-		if let creationDate = BF_User.current?.creationDate {
-			
-			let timeInterval = Date().timeIntervalSince(creationDate)
-			let nextOccurrenceTime = ceil(timeInterval / TimeInterval(BF_Firebase.shared.config.int(.FreeScanTimeInterval))) * TimeInterval(BF_Firebase.shared.config.int(.FreeScanTimeInterval))
-			let remainingTime = nextOccurrenceTime - timeInterval
-			return remainingTime
-		}
-		
-		return nil
+		guard let remainingTime = timeInterval, remainingTime > 0 else { return nil }
+		let formatter = DateComponentsFormatter()
+		formatter.unitsStyle = .abbreviated
+		formatter.allowedUnits = [.hour, .minute, .second]
+		return formatter.string(from: remainingTime)
 	}
-	public var nextScanString:String? {
+	public var previousString:String? {
 		
-		if let remainingTimeBeforeNextScan = remainingTimeBeforeNextScan, remainingTimeBeforeNextScan >= 1 {
+		let calendar = Calendar.current
+		let currentTime = Date()
+		
+		var lastNoonComponents = calendar.dateComponents([.year, .month, .day], from: currentTime)
+		lastNoonComponents.hour = 16
+		lastNoonComponents.minute = 0
+		lastNoonComponents.second = 0
+		
+		let lastNoon: Date
+		
+		if let todayNoon = calendar.date(from: lastNoonComponents), todayNoon <= currentTime {
 			
-			let formatter = DateComponentsFormatter()
-			formatter.unitsStyle = .abbreviated
-			formatter.zeroFormattingBehavior = .dropAll
-			formatter.allowedUnits = [.hour, .minute, .second]
+			lastNoon = todayNoon
+		}
+		else {
 			
-			if let formattedRemainingTime = formatter.string(from: remainingTimeBeforeNextScan) {
-				
-				return formattedRemainingTime
-			}
+			lastNoon = calendar.date(byAdding: .day, value: -1, to: calendar.date(from: lastNoonComponents)!)!
 		}
 		
-		return nil
+		let timeInterval = currentTime.timeIntervalSince(lastNoon)
+		
+		let formatter = DateComponentsFormatter()
+		formatter.unitsStyle = .abbreviated
+		formatter.allowedUnits = [.hour, .minute, .second]
+		return formatter.string(from: timeInterval)
+	}
+	public var newCount:Int {
+		
+		if let lastConnexionDate = BF_User.current?.lastConnexionDate {
+			
+			let calendar = Calendar.current
+			let currentTime = Date()
+			
+			var lastResetComponents = calendar.dateComponents([.year, .month, .day], from: lastConnexionDate)
+			lastResetComponents.hour = 16
+			
+			let lastResetDate = calendar.date(from: lastResetComponents) ?? lastConnexionDate
+			let alignedLastConnexionDate = lastConnexionDate < lastResetDate ? lastResetDate.addingTimeInterval(-TimeInterval.day) : lastResetDate
+			
+			let interval = currentTime.timeIntervalSince(alignedLastConnexionDate)
+			let count = max(0, Int(interval / TimeInterval.day))
+			
+			return count
+		}
+		
+		return 0
 	}
 	
 	deinit {
 		
-		resetNextScanTimer()
+		resetTimer()
 	}
 	
-	public func presentEmptyMonstersAlertController() {
+	public func start() {
 		
-		let alertController:BF_Alert_ViewController = .init()
-		alertController.title = String(key: "fights.emptyMonsters.alert.title")
-		alertController.add(UIImage(named: "placeholder_empty"))
-		alertController.add(String(key: "fights.emptyMonsters.alert.label.0"))
+		resetTimer()
 		
-		if !(BF_User.current?.monsters.isEmpty ?? true) {
+		timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
 			
-			alertController.add(String(key: "fights.emptyMonsters.alert.label.1"))
-			alertController.addButton(title: String(key: "fights.emptyMonsters.alert.button.0")) { _ in
+			guard let self = self, let remainingTime = self.timeInterval, remainingTime < 1 else { return }
+			
+			BF_User.current?.scanAvailable += 1
+			BF_User.current?.update { error in
 				
-				alertController.close {
+				if error == nil {
 					
-					UI.MainController.present(BF_NavigationController(rootViewController: BF_Items_ViewController()), animated: true)
+					NotificationCenter.post(.updateAccount)
+					
+					BF_Toast_Manager.shared.addToast(title: String(key: "user.freeScan.toast.title"), subtitle: String(key: "user.freeScan.toast.subtitle"), style: .Success)
 				}
-			}
-		}
-		
-		alertController.add(String(key: "fights.emptyMonsters.alert.label.2"))
-		alertController.addButton(title: String(key: "fights.emptyMonsters.alert.button.1")) { _ in
-			
-			alertController.close {
-				
-				BF_Scan.scan()
-			}
-		}
-		
-		alertController.addDismissButton()
-		alertController.present()
-	}
-	
-	public func start(_ handler:((Int)->Void)?) {
-		
-		resetNextScanTimer()
-		
-		nextScanTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-			
-			if let remainingTimeBeforeNextScan = self?.remainingTimeBeforeNextScan {
-				
-				if remainingTimeBeforeNextScan < 1 {
+				else {
 					
-					if BF_User.current?.scanAvailable ?? 0 < BF_Firebase.shared.config.int(.ScanMaxNumber) {
-						
-						BF_User.current?.scanAvailable += 1
-						BF_User.current?.update { error in
-							
-							if error == nil {
-								
-								NotificationCenter.post(.updateAccount)
-								BF_Toast.shared.present(title: String(key: "user.freeScan.toast.title"), subtitle: String(key: "user.freeScan.toast.subtitle"), style: .Success)
-							}
-							else {
-								
-								BF_User.current?.scanAvailable -= 1
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		if let lastConnexionDate = BF_User.current?.lastConnexionDate {
-			
-			let timeInterval = Date().timeIntervalSince(lastConnexionDate)
-			let occurrenceCount = Int(timeInterval / TimeInterval(BF_Firebase.shared.config.int(.FreeScanTimeInterval)))
-			
-			if occurrenceCount > 0 && (BF_User.current?.scanAvailable ?? 0) + occurrenceCount <= BF_Firebase.shared.config.int(.ScanMaxNumber) {
-				
-				BF_User.current?.scanAvailable += occurrenceCount
-				BF_User.current?.update { error in
-					
-					if error == nil {
-						
-						NotificationCenter.post(.updateAccount)
-						
-						handler?(occurrenceCount)
-					}
+					BF_User.current?.scanAvailable -= 1
 				}
 			}
 		}
 	}
 	
-	private func resetNextScanTimer() {
+	private func resetTimer() {
 		
-		nextScanTimer?.invalidate()
-		nextScanTimer = nil
+		timer?.invalidate()
+		timer = nil
 	}
 	
-	public func nextScanTimes(count: Int) -> [Date]? {
+	private func nextDate(from date: Date) -> Date {
 		
-		if let nextScanRemaining = remainingTimeBeforeNextScan {
-			
-			var results = [Date]()
-			let currentTime = Date()
-			let scanInterval = TimeInterval(BF_Firebase.shared.config.int(.FreeScanTimeInterval))
-			
-			for i in 0..<count {
-				
-				let nextScanDate = currentTime.addingTimeInterval(nextScanRemaining + TimeInterval(i) * scanInterval)
-				results.append(nextScanDate)
-			}
-			
-			return results
-		}
-		
-		return nil
+		let calendar = Calendar.current
+		guard let nextNoon = calendar.date(bySettingHour: 16, minute: 0, second: 0, of: date) else { return date }
+		return nextNoon <= date ? calendar.date(byAdding: .day, value: 1, to: nextNoon)! : nextNoon
 	}
 }

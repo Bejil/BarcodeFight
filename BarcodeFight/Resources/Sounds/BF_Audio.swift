@@ -92,4 +92,12 @@ public class BF_Audio : NSObject {
 			play("Error")
 		}
 	}
+	
+	public func playOn() {
+		
+		if isSoundsEnabled {
+			
+			play("On")
+		}
+	}
 }

@@ -53,33 +53,34 @@ extension BF_Items_Monsters_ViewController {
 				items?.removeFirst()
 				BF_User.current?.items.remove(at: index)
 				
-				let alertController:BF_Alert_ViewController = .presentLoading()
-				
-				BF_User.current?.update({ [weak self] error in
+				BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 					
-					alertController.close { [weak self] in
+					BF_User.current?.update({ [weak self] error in
 						
-						if let error = error {
+						alertController?.close { [weak self] in
 							
-							BF_Alert_ViewController.present(error)
-						}
-						else {
-							
-							UIApplication.feedBack(.Success)
-							BF_Audio.shared.playSuccess()
-							
-							self?.monsters?.removeAll(where: { $0.barcode == monster.barcode })
-							
-							NotificationCenter.post(.updateAccount)
-							NotificationCenter.post(.updateMonsters)
-							
-							if self?.items?.isEmpty ?? true || self?.monsters?.isEmpty ?? true {
+							if let error = error {
 								
-								self?.dismiss()
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								UIApplication.feedBack(.Success)
+								BF_Audio.shared.playSuccess()
+								
+								self?.monsters?.removeAll(where: { $0.barcode == monster.barcode })
+								
+								NotificationCenter.post(.updateAccount)
+								NotificationCenter.post(.updateMonsters)
+								
+								if self?.items?.isEmpty ?? true || self?.monsters?.isEmpty ?? true {
+									
+									self?.dismiss()
+								}
 							}
 						}
-					}
-				})
+					})
+				}
 			}
 		}
 	}

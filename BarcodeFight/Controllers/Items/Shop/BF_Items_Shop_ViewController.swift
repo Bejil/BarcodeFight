@@ -58,13 +58,7 @@ public class BF_Items_Shop_ViewController : BF_ViewController {
 		
 		navigationItem.title = String(key: "items.shop.title")
 		
-		let rubiesStackView:BF_Rubies_StackView = .init()
-		rubiesStackView.user = BF_User.current
-		
-		let coinsStackView:BF_Coins_StackView = .init()
-		coinsStackView.user = BF_User.current
-		
-		navigationItem.rightBarButtonItems = [.init(customView: rubiesStackView),.init(customView: coinsStackView)]
+		navigationItem.rightBarButtonItems = [.init(customView: BF_Scans_StackView()),.init(customView: BF_Rubies_StackView()),.init(customView: BF_Coins_StackView())]
 		
 		let segmentedControlView:UIView = .init()
 		segmentedControlView.addSubview(segmentedControl)
@@ -84,12 +78,6 @@ public class BF_Items_Shop_ViewController : BF_ViewController {
 		if let bannerView {
 			
 			stackView.addArrangedSubview(bannerView)
-		}
-		
-		NotificationCenter.add(.updateAccount) { _ in
-			
-			rubiesStackView.user = BF_User.current
-			coinsStackView.user = BF_User.current
 		}
 	}
 	
@@ -232,12 +220,6 @@ extension BF_Items_Shop_ViewController : UITableViewDelegate, UITableViewDataSou
 				
 				let stepper:BF_Stepper = .init()
 				stepper.maximumValue = Double((BF_User.current?.coins ?? 0) / (item.price ?? 0))
-				
-				if item.uid == Items.Rubies {
-					
-					stepper.maximumValue = min(stepper.maximumValue, Double(BF_Firebase.shared.config.int(.RubiesMaxNumber)))
-				}
-				
 				stepper.minimumValue = 1.0
 				stepper.value = 1.0
 				
@@ -260,7 +242,7 @@ extension BF_Items_Shop_ViewController : UITableViewDelegate, UITableViewDataSou
 					}
 					else if item.uid == Items.Scan {
 						
-						BF_User.current?.scanAvailable = min(BF_Firebase.shared.config.int(.ScanMaxNumber), (BF_User.current?.scanAvailable ?? 0) + Int(stepper.value))
+						BF_User.current?.scanAvailable += Int(stepper.value)
 					}
 					else if item.uid == Items.MonsterPlace {
 						
@@ -294,7 +276,7 @@ extension BF_Items_Shop_ViewController : UITableViewDelegate, UITableViewDataSou
 							
 							alertController.close()
 							
-							BF_Toast.shared.present(title: String(key: "items.shop.buy.toast.title"), subtitle: String(key: "items.shop.buy.toast.subtitle"), style: .Success)
+							BF_Toast_Manager.shared.addToast(title: String(key: "items.shop.buy.toast.title"), subtitle: String(key: "items.shop.buy.toast.subtitle"), style: .Success)
 						}
 					})
 				}
@@ -331,54 +313,56 @@ extension BF_Items_Shop_ViewController : UITableViewDelegate, UITableViewDataSou
 					let item = inAppPurchaseProducts?[indexPath.row].0,
 					let product = inAppPurchaseProducts?[indexPath.row].1 {
 			
-			let alertController:BF_Alert_ViewController = .presentLoading()
-			
-			BF_InAppPurchase.shared.purchase(product) { transaction in
+			BF_Alert_ViewController.presentLoading() { alertController in
 				
-				alertController.close {
+				BF_InAppPurchase.shared.purchase(product) { transaction in
 					
-					if transaction != nil {
+					alertController?.close {
 						
-						if item.uid == Items.RemoveAds {
+						if transaction != nil {
 							
-							BF_User.current?.removeAds = true
+							if item.uid == Items.RemoveAds {
+								
+								BF_User.current?.removeAds = true
+							}
+							else {
+								
+								BF_User.current?.coins += item.price ?? 0
+							}
+							
+							BF_Alert_ViewController.presentLoading() { alertController in
+								
+								BF_User.current?.update({ error in
+									
+									alertController?.close {
+										
+										if let error {
+											
+											if item.uid == Items.RemoveAds {
+												
+												BF_User.current?.removeAds = false
+											}
+											else {
+												
+												BF_User.current?.coins -= item.price ?? 0
+											}
+											
+											BF_Alert_ViewController.present(error)
+										}
+										else {
+											
+											NotificationCenter.post(.updateAccount)
+											
+											BF_Toast_Manager.shared.addToast(title: String(key: "items.shop.buy.toast.title"), subtitle: String(key: "items.shop.buy.toast.subtitle"), style: .Success)
+										}
+									}
+								})
+							}
 						}
 						else {
 							
-							BF_User.current?.coins += item.price ?? 0
+							BF_Alert_ViewController.present(BF_Error(String(key: "items.shop.buy.inApp.error")))
 						}
-						
-						let alertController:BF_Alert_ViewController = .presentLoading()
-						
-						BF_User.current?.update({ error in
-							
-							alertController.close {
-								
-								if let error {
-									
-									if item.uid == Items.RemoveAds {
-										
-										BF_User.current?.removeAds = false
-									}
-									else {
-										
-										BF_User.current?.coins -= item.price ?? 0
-									}
-									
-									BF_Alert_ViewController.present(error)
-								}
-								else {
-									
-									NotificationCenter.post(.updateAccount)
-									
-									BF_Toast.shared.present(title: String(key: "items.shop.buy.toast.title"), subtitle: String(key: "items.shop.buy.toast.subtitle"), style: .Success)
-								}
-							}
-						})
-					}
-					else {
-						
-						BF_Alert_ViewController.present(BF_Error(String(key: "items.shop.buy.inApp.error")))
 					}
 				}
 			}

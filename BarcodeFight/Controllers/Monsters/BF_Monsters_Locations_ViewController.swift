@@ -17,18 +17,12 @@ public class BF_Monsters_Locations_ViewController : BF_ViewController {
 			
 			monsters?.forEach({
 				
-				let annotation:BF_Monster_PointAnnotation = .init()
+				let annotation:BF_Monsters_PointAnnotation = .init()
 				annotation.monster = $0
 				mapView.addAnnotation(annotation)
 			})
 			
 			mapView.showAnnotations(mapView.annotations, animated: false)
-			
-			UIApplication.wait { [weak self] in
-				
-				self?.adjustAnnotations()
-				self?.mapView.showAnnotations(self?.mapView.annotations ?? [], animated: false)
-			}
 		}
 	}
 	private lazy var mapView:MKMapView = {
@@ -58,73 +52,26 @@ public class BF_Monsters_Locations_ViewController : BF_ViewController {
 	
 	private func launchRequest() {
 		
-		let alertController:BF_Alert_ViewController = .presentLoading()
-		
+		view.showPlaceholder(.Loading)
+			
 		BF_Monster.getAllWithProduct { [weak self] monsters, error in
 			
-			alertController.close { [weak self] in
+			self?.view.dismissPlaceholder()
 				
-				if let error {
+			if let error {
+				
+				self?.view.showPlaceholder(.Error, error) { [weak self] _ in
 					
-					BF_Alert_ViewController.present(error) { [weak self] in
-						
-						self?.launchRequest()
-					}
-				}
-				else {
+					self?.view.dismissPlaceholder()
 					
-					self?.monsters = monsters?.filter({ ($0.product?.name != nil || $0.product?.picture != nil) && $0.location != nil }).sort(.Rank)
+					self?.launchRequest()
 				}
 			}
-		}
-	}
-	
-	private func adjustAnnotations() {
-		
-		var adjustedAnnotations = [MKAnnotation]()
-		
-		mapView.annotations.forEach {
-			
-			var adjustedCoordinate = $0.coordinate
-			
-			while adjustedAnnotations.contains(where: { isClose(from: $0.coordinate, to: adjustedCoordinate) }) {
+			else {
 				
-				let randomCoordinate = generateRandomCoordinate()
-				adjustedCoordinate.latitude += randomCoordinate.latitude * mapView.region.span.latitudeDelta / mapView.bounds.size.height
-				adjustedCoordinate.longitude += randomCoordinate.longitude * mapView.region.span.longitudeDelta / mapView.bounds.size.width
+				self?.monsters = monsters
 			}
-			
-			if let updatableAnnotation = $0 as? BF_Monster_PointAnnotation {
-				
-				updatableAnnotation.coordinate = adjustedCoordinate
-			}
-			
-			adjustedAnnotations.append($0)
 		}
-	}
-	
-	private func generateRandomCoordinate() -> CLLocationCoordinate2D {
-		
-		let padding = UI.Margins
-		let randomDirection = Int.random(in: 0..<4)
-		
-		switch randomDirection {
-		case 0:
-			return CLLocationCoordinate2D(latitude: padding, longitude: 0)
-		case 1:
-			return CLLocationCoordinate2D(latitude: -padding, longitude: 0)
-		case 2:
-			return CLLocationCoordinate2D(latitude: 0, longitude: padding)
-		case 3:
-			return CLLocationCoordinate2D(latitude: 0, longitude: -padding)
-		default:
-			return CLLocationCoordinate2D(latitude: padding, longitude: 0)
-		}
-	}
-	
-	private func isClose(from fromCoordinate: CLLocationCoordinate2D, to toCoordinate: CLLocationCoordinate2D, threshold: Double = 0.0001) -> Bool {
-		
-		return abs(fromCoordinate.latitude - toCoordinate.latitude) < threshold && abs(fromCoordinate.longitude - toCoordinate.longitude) < threshold
 	}
 }
 
@@ -134,13 +81,13 @@ extension BF_Monsters_Locations_ViewController : MKMapViewDelegate {
 		
 		if annotation is MKClusterAnnotation {
 			
-			let annotationView:BF_Monster_Cluster_AnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as? BF_Monster_Cluster_AnnotationView ?? BF_Monster_Cluster_AnnotationView(annotation: annotation, reuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+			let annotationView:BF_Monsters_Cluster_AnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as? BF_Monsters_Cluster_AnnotationView ?? BF_Monsters_Cluster_AnnotationView(annotation: annotation, reuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
 			annotationView.annotation = annotation
 			return annotationView
         }
-		else if annotation is BF_Monster_PointAnnotation {
+		else if annotation is BF_Monsters_PointAnnotation {
 			
-			let annotationView:BF_Monster_AnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: BF_Monster_AnnotationView.identifier) as? BF_Monster_AnnotationView ?? BF_Monster_AnnotationView(annotation: annotation, reuseIdentifier: BF_Monster_AnnotationView.identifier)
+			let annotationView:BF_Monsters_AnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: BF_Monsters_AnnotationView.identifier) as? BF_Monsters_AnnotationView ?? BF_Monsters_AnnotationView(annotation: annotation, reuseIdentifier: BF_Monsters_AnnotationView.identifier)
 			annotationView.annotation = annotation
 			return annotationView
 		}
@@ -150,12 +97,14 @@ extension BF_Monsters_Locations_ViewController : MKMapViewDelegate {
 	
 	public func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
 		
-		(views.filter({ !($0.annotation is MKUserLocation) }) as? [BF_Monster_AnnotationView])?.forEach({ $0.present() })
+		(views.filter({ !($0.annotation is MKUserLocation) }) as? [BF_Monsters_AnnotationView])?.forEach({ $0.present() })
 	}
 	
-	public func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+	public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 		
-		if let annotationView = view as? BF_Monster_AnnotationView {
+		if let annotationView = view as? BF_Monsters_AnnotationView, let annotation = annotationView.annotation {
+			
+			mapView.showAnnotations([annotation], animated: true)
 			
 			let viewController:BF_Monsters_Details_ViewController = .init()
 			viewController.monster = annotationView.monster
@@ -173,7 +122,7 @@ extension BF_Monsters_Locations_ViewController : MKMapViewDelegate {
 	
 	public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 		
-		if let clusterView = view as? BF_Monster_Cluster_AnnotationView, let cluster = clusterView.annotation as? MKClusterAnnotation {
+		if let clusterView = view as? BF_Monsters_Cluster_AnnotationView, let cluster = clusterView.annotation as? MKClusterAnnotation {
 			
 			let annotations = cluster.memberAnnotations
 			mapView.showAnnotations(annotations, animated: true)

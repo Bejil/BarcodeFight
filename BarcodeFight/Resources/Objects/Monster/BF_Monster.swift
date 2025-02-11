@@ -48,7 +48,7 @@ public class BF_Monster : Codable, Equatable {
 			case LR = 5
 		}
 		
-		public static var range: Range<Double> = (100.0)..<(1000.0)
+		public static var range: Range<Double> = (100.0)..<(999.0)
 		public var hp: Int = Int(Stats.skewedRandomValue(in: Stats.range))
 		public var mp: Int = Int(Stats.skewedRandomValue(in: Stats.range))
 		public var atk: Int = Int(Stats.skewedRandomValue(in: Stats.range))
@@ -58,6 +58,7 @@ public class BF_Monster : Codable, Equatable {
 		public var weight: Double = Stats.skewedRandomValue(in: Stats.range)
 		
 		public var rank: Rank {
+			
 			let slice: Double = Stats.range.upperBound / Double(Rank.allCases.count)
 			let stats = [hp, mp, atk, def]
 			let total: Double = Double(stats.reduce(0, { $0 + $1 }))
@@ -78,7 +79,7 @@ public class BF_Monster : Codable, Equatable {
 			return .N
 		}
 		
-		private static func skewedRandomValue(in range: Range<Double>, skewFactor: Double = 3.0) -> Double {
+		private static func skewedRandomValue(in range: Range<Double>, skewFactor: Double = 2.5) -> Double {
 			
 			let base = Double.random(in: 0..<1)
 			let skewed = pow(base, skewFactor)
@@ -183,7 +184,7 @@ extension BF_Monster {
 		
 		Firestore.firestore().collection("monsters").whereField("product", isNotEqualTo: NSNull()).getDocuments { querySnapshot, error in
 			
-			completion?(querySnapshot?.documents.compactMap({ try?$0.data(as: BF_Monster.self) }),error)
+			completion?(querySnapshot?.documents.compactMap({ try?$0.data(as: BF_Monster.self) }).filter({ $0.product?.name != nil }),error)
 		}
 	}
 	
@@ -199,7 +200,6 @@ extension BF_Monster {
 		
 		do {
 			
-			scanDate = .init()
 			try Firestore.firestore().collection("monsters").addDocument(from: self)
 			completion?(nil)
 		}
@@ -236,7 +236,15 @@ extension BF_Monster {
 							weakSelf.product?.picture = url.absoluteString
 							
 							let documentRef = Firestore.firestore().collection("monsters").document(id)
-							try?documentRef.setData(from: weakSelf, completion: completion)
+							
+							do {
+								
+								try documentRef.setData(from: weakSelf, completion: completion)
+							}
+							catch let error {
+								
+								completion?(error)
+							}
 						}
 					}
 				}

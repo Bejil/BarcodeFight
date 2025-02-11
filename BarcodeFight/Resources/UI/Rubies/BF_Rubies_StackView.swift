@@ -15,16 +15,12 @@ public class BF_Rubies_StackView : UIStackView {
 		didSet {
 			
 			let rubies = user?.rubies ?? 0
-			label.text = (rubies > 99 ? "+" : "") + "\(rubies)"
+			label.text = rubies > 999 ? "+999" : "\(rubies)"
 		}
 	}
 	private lazy var label:BF_Label = {
 		
-		$0.textAlignment = .center
 		$0.font = Fonts.Content.Text.Bold.withSize(Fonts.Size-2)
-		$0.snp.makeConstraints { make in
-			make.width.equalTo(1.5*UI.Margins)
-		}
 		return $0
 		
 	}(BF_Label())
@@ -45,6 +41,24 @@ public class BF_Rubies_StackView : UIStackView {
 		addArrangedSubview(imageView)
 		
 		addArrangedSubview(label)
+		
+		addGestureRecognizer(UITapGestureRecognizer(block: { _ in
+			
+			UIApplication.feedBack(.On)
+			
+			let alertController:BF_Rubies_Alert_ViewController = .init()
+			alertController.present(as: .Sheet)
+		}))
+		
+		NotificationCenter.add(.updateAccount) { [weak self] _ in
+			
+			self?.user = BF_User.current
+		}
+		
+		defer {
+			
+			user = BF_User.current
+		}
 	}
 	
 	required init(coder: NSCoder) {

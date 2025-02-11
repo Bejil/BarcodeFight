@@ -56,6 +56,9 @@ public class BF_User : Codable, Equatable {
 		
 		return fightPoints + currentStoryPoint
 	}
+	public var challenges:BF_Challenges = .init()
+	public var isAdmin:Bool = false
+	public var newsRead:[String] = .init()
 }
 
 extension BF_User {
@@ -151,5 +154,60 @@ extension BF_User {
 			
 			completion?(error,querySnapshot?.documents.compactMap({ try?$0.data(as: BF_User.self) }).filter({ !$0.monsters.filter({ !$0.isDead }).isEmpty }).randomElement())
 		}
+	}
+	
+	public func increaseChallenge(_ id: String) {
+		
+		if !challenges.items.contains(where: { $0.uid == id }) {
+			
+			let challenge: BF_Challenge = .init()
+			challenge.uid = id
+			challenge.dates = []
+			challenges.items.append(challenge)
+		}
+		
+		let challenge = challenges.items.first(where: { $0.uid == id })
+		
+		guard let dates = challenge?.dates else {
+			
+			challenge?.dates = [Date()]
+			return
+		}
+		
+		let today = Date()
+		
+		let sortedDates = dates.sorted()
+		
+		if let lastDate = sortedDates.last, Calendar.current.isDate(lastDate, inSameDayAs: today) {
+			
+			return
+		}
+		
+		let lastSevenDates = sortedDates.suffix(7)
+		var areConsecutive = true
+		
+		if lastSevenDates.count > 1 {
+			
+			for i in 1..<lastSevenDates.count {
+				
+				if let previousDay = Calendar.current.date(byAdding: .day, value: -1, to: lastSevenDates[i - 1]) {
+					
+					if !Calendar.current.isDate(previousDay, inSameDayAs: lastSevenDates[i]) {
+						
+						areConsecutive = false
+						break
+					}
+				}
+			}
+		}
+		
+		if areConsecutive && lastSevenDates.count == 7 {
+			
+			return
+		}
+		
+		challenge?.dates?.append(today)
+		
+		update(nil)
 	}
 }

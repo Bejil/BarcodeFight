@@ -15,22 +15,48 @@ extension BF_Monster {
 		return status.hp <= 0
 	}
 	
-	convenience init(rank:Stats.Rank, percent:Int) {
+	convenience init(rank: Stats.Rank, percent: Int = 100) {
 		
 		self.init()
 		
-		let ranksCount:Float = Float(BF_Monster.Stats.Rank.allCases.count)
-		let statsSlice:Float = Float(BF_Monster.Stats.range.upperBound) / ranksCount
-		let statsByPercent:Float = statsSlice / 10.0
-		let minRankStat:Float = Float(rank.rawValue)*statsSlice
-		let minStat:Float = minRankStat + (statsByPercent * (max(0.0, Float(percent) - 10.0) / 10.0))
-		let maxStat:Float = minRankStat + (statsByPercent * (Float(percent) / 10.0))
+		let ranksCount: Float = Float(BF_Monster.Stats.Rank.allCases.count)
+		let statsSlice: Float = Float(BF_Monster.Stats.range.upperBound - BF_Monster.Stats.range.lowerBound) / ranksCount
+		let minRankStat: Float = Float(rank.rawValue) * statsSlice + Float(BF_Monster.Stats.range.lowerBound)
+		let maxRankStat: Float = minRankStat + statsSlice
 		
-		stats.hp = Int(max(Float(BF_Monster.Stats.range.lowerBound),Float.random(in: minStat ... maxStat)))
-		stats.mp = Int(max(Float(BF_Monster.Stats.range.lowerBound),Float.random(in: minStat ... maxStat)))
-		stats.atk = Int(max(Float(BF_Monster.Stats.range.lowerBound),Float.random(in: minStat ... maxStat)))
-		stats.def = Int(max(Float(BF_Monster.Stats.range.lowerBound),Float.random(in: minStat ... maxStat)))
-		stats.luk = Int(max(Float(BF_Monster.Stats.range.lowerBound),Float.random(in: minStat ... maxStat)))
+		let percentSlice: Float = (maxRankStat - minRankStat) / 100.0
+		let adjustedPercent = min(max(Float(percent), 0.0), 100.0)
+		let minStat: Float = minRankStat + percentSlice * (adjustedPercent - 10.0)
+		let maxStat: Float = minRankStat + percentSlice * adjustedPercent
+		
+		let targetMean: Float = (minStat + maxStat) / 2.0
+		
+		var statsArray: [Float] = (0..<5).map { _ in
+			
+			let randomFactor: Float = Float.random(in: 0.7...1.3)
+			let baseStat: Float = Float.random(in: minStat...maxStat)
+			return max(min(baseStat * randomFactor,Float(BF_Monster.Stats.range.upperBound)),Float(BF_Monster.Stats.range.lowerBound))
+		}
+		
+		func adjustStats(toMean targetMean: Float, for stats: inout [Float]) {
+			
+			let currentMean = stats.reduce(0, +) / Float(stats.count)
+			let adjustmentFactor: Float = targetMean / currentMean
+			stats = stats.map { $0 * adjustmentFactor }
+		}
+		
+		adjustStats(toMean: targetMean, for: &statsArray)
+		
+		func clampStat(_ stat: Float) -> Float {
+			
+			return min(max(stat, Float(BF_Monster.Stats.range.lowerBound)), Float(BF_Monster.Stats.range.upperBound))
+		}
+		
+		stats.hp = Int(clampStat(statsArray[0]))
+		stats.mp = Int(clampStat(statsArray[1]))
+		stats.atk = Int(clampStat(statsArray[2]))
+		stats.def = Int(clampStat(statsArray[3]))
+		stats.luk = Int(clampStat(statsArray[4]))
 		
 		status.hp = stats.hp
 		status.mp = stats.mp
@@ -54,22 +80,23 @@ extension BF_Monster {
 						
 						BF_User.current?.monsters.removeAll(where: { $0 == monsters?.first })
 						
-						let alertController:BF_Alert_ViewController = .presentLoading()
-						
-						BF_User.current?.update({ [weak self] error in
+						BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 							
-							alertController.close { [weak self] in
+							BF_User.current?.update({ [weak self] error in
 								
-								if let error {
+								alertController?.close { [weak self] in
 									
-									BF_Alert_ViewController.present(error)
+									if let error {
+										
+										BF_Alert_ViewController.present(error)
+									}
+									else {
+										
+										self?.add(completion)
+									}
 								}
-								else {
-									
-									self?.add(completion)
-								}
-							}
-						})
+							})
+						}
 					}
 					
 					UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
@@ -87,26 +114,65 @@ extension BF_Monster {
 		}
 		else {
 			
-			let alertController:BF_Alert_ViewController = .presentLoading()
-			
-			BF_User.current?.monsters.append(self)
-			BF_User.current?.updateAndAddExperience(BF_Firebase.shared.config.int(.ExperienceMonsterEnrollment), withToast: true) { error in
+			BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 				
-				alertController.close {
+				if let weakSelf = self {
 					
-					if let error = error {
+					weakSelf.scanDate = .init()
+					BF_User.current?.monsters.append(weakSelf)
+					BF_User.current?.updateAndAddExperience(BF_Firebase.shared.config.int(.ExperienceMonsterEnrollment)) { error in
 						
-						BF_Alert_ViewController.present(error)
-					}
-					else {
+						BF_Challenge.increase(Challenges.Monsters)
 						
-						NotificationCenter.post(.updateMonsters)
-						
-						completion?()
+						alertController?.close {
+							
+							if let error = error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								NotificationCenter.post(.updateMonsters)
+								
+								completion?()
+							}
+						}
 					}
 				}
 			}
 		}
+	}
+	
+	public static func presentEmptyMonstersAlertController() {
+		
+		let alertController:BF_Alert_ViewController = .init()
+		alertController.title = String(key: "fights.emptyMonsters.alert.title")
+		alertController.add(UIImage(named: "placeholder_empty"))
+		alertController.add(String(key: "fights.emptyMonsters.alert.label.0"))
+		
+		if !(BF_User.current?.monsters.isEmpty ?? true) {
+			
+			alertController.add(String(key: "fights.emptyMonsters.alert.label.1"))
+			alertController.addButton(title: String(key: "fights.emptyMonsters.alert.button.0")) { _ in
+				
+				alertController.close {
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_Items_ViewController()), animated: true)
+				}
+			}
+		}
+		
+		alertController.add(String(key: "fights.emptyMonsters.alert.label.2"))
+		alertController.addButton(title: String(key: "fights.emptyMonsters.alert.button.1")) { _ in
+			
+			alertController.close {
+				
+				BF_Scan.scan()
+			}
+		}
+		
+		alertController.addDismissButton()
+		alertController.present()
 	}
 }
 
@@ -141,7 +207,7 @@ extension [BF_Monster] {
 		switch sort {
 		
 		case .Date:
-			return sorted(by: { $0.scanDate ?? Date() > $1.scanDate ?? Date() })
+			return sorted(by: { $0.scanDate ?? Date() < $1.scanDate ?? Date() })
 		case .Name:
 			return sorted(by: { $0.name < $1.name })
 		case .Rank:
@@ -256,7 +322,7 @@ extension BF_Monster.Element {
 		case .Darkness:
 			return Colors.Monsters.Elements.Darkness
 		case .Neutral:
-			return Colors.Monsters.Elements.Neutral
+			return .clear
 		}
 	}
 }

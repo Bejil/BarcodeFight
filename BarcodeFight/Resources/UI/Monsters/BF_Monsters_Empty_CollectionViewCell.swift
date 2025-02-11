@@ -33,6 +33,28 @@ public class BF_Monsters_Empty_CollectionViewCell : BF_CollectionViewCell {
 		contentView.layer.cornerRadius = UI.CornerRadius/2
 		contentView.clipsToBounds = true
 		contentView.layer.addSublayer(shapeLayer)
+		
+		let imageView:BF_ImageView = .init(image: UIImage(named: "scan_icon")?.noir)
+		imageView.alpha = 0.85
+		imageView.contentMode = .scaleAspectFit
+		imageView.snp.makeConstraints { make in
+			make.height.equalTo(65)
+		}
+		
+		let subtitleLabel:BF_Label = .init(String(key: "monsters.placeholder.button"))
+		subtitleLabel.textColor = Colors.Content.Text.withAlphaComponent(0.5)
+		subtitleLabel.adjustsFontSizeToFitWidth = true
+		subtitleLabel.minimumScaleFactor = 0.5
+		subtitleLabel.textAlignment = .center
+		
+		let stackView:UIStackView = .init(arrangedSubviews: [imageView,subtitleLabel])
+		stackView.axis = .vertical
+		stackView.spacing = UI.Margins
+		contentView.addSubview(stackView)
+		stackView.snp.makeConstraints { make in
+			make.top.equalToSuperview().inset(1.25*UI.Margins)
+			make.right.bottom.left.equalToSuperview().inset(UI.Margins)
+		}
 	}
 	
 	required init?(coder: NSCoder) {

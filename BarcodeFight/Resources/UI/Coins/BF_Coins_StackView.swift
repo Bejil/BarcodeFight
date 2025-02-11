@@ -14,7 +14,8 @@ public class BF_Coins_StackView : UIStackView {
 		
 		didSet {
 			
-			label.text = "\(user?.coins ?? 0)"
+			let coinAvailable = user?.coins ?? 0
+			label.text = coinAvailable > 999 ? "+999" : "\(coinAvailable)"
 		}
 	}
 	private lazy var label:BF_Label = {
@@ -45,6 +46,16 @@ public class BF_Coins_StackView : UIStackView {
 		
 		snp.makeConstraints { make in
 			make.height.lessThanOrEqualTo(UI.Margins)
+		}
+		
+		NotificationCenter.add(.updateAccount) { [weak self] _ in
+			
+			self?.user = BF_User.current
+		}
+		
+		defer {
+			
+			user = BF_User.current
 		}
 	}
 	

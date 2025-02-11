@@ -40,7 +40,7 @@ public class BF_Account_DisplayName_Alert_ViewController : BF_Alert_ViewControll
 					else {
 						
 						NotificationCenter.post(.updateAccount)
-						BF_Toast.shared.present(title: String(key: "account.settings.displayName.toast.title"), subtitle: String(key: "account.settings.displayName.toast.subtitle"), style: .Success)
+						BF_Toast_Manager.shared.addToast(title: String(key: "account.settings.displayName.toast.title"), subtitle: String(key: "account.settings.displayName.toast.subtitle"), style: .Success)
 					}
 				}
 			}

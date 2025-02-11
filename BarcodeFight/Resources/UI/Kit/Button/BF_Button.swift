@@ -27,6 +27,13 @@ public class BF_Button : UIButton {
 		}
 	}
 	public var showTouchEffect:Bool = true
+	public override var isEnabled: Bool {
+		
+		didSet {
+			
+			alpha = isEnabled ? 1.0 : 0.45
+		}
+	}
 	public var isLoading:Bool = false {
 		
 		didSet {
@@ -93,6 +100,53 @@ public class BF_Button : UIButton {
 	}
 	public typealias Handler = ((BF_Button?)->Void)?
 	public var action:Handler = nil
+	public var badge:String? {
+		
+		didSet {
+			
+			if let badgeText = badge, !badgeText.isEmpty {
+				
+				badgeView.text = badgeText
+				badgeView.isHidden = false
+				
+				badgeTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [weak self] _ in
+					
+					self?.badgeView.pulse()
+				})
+			}
+			else {
+				
+				badgeView.isHidden = true
+				
+				badgeTimer?.invalidate()
+				badgeTimer = nil
+			}
+		}
+	}
+	private lazy var badgeView:BF_Label = {
+		
+		$0.backgroundColor = Colors.Button.Delete.Background
+		$0.textColor = .white
+		$0.textAlignment = .center
+		$0.font = Fonts.Content.Text.Bold.withSize(Fonts.Size-2)
+		$0.layer.cornerRadius = UI.Margins/2
+		$0.clipsToBounds = true
+		$0.contentInsets = .init(2)
+		$0.isHidden = true
+		$0.snp.makeConstraints { make in
+			make.height.equalTo(UI.Margins)
+			make.width.greaterThanOrEqualTo(UI.Margins)
+		}
+		return $0
+		
+	}(BF_Label())
+	private var badgeTimer:Timer?
+	
+	deinit {
+		
+		badgeTimer?.invalidate()
+		badgeTimer = nil
+	}
 	
 	convenience init(_ title:String? = nil, _ handler:Handler = nil) {
 		
@@ -118,6 +172,11 @@ public class BF_Button : UIButton {
 			make.size.greaterThanOrEqualTo(4*UI.Margins)
 		}
 		
+		addSubview(badgeView)
+		badgeView.snp.makeConstraints { make in
+			make.top.right.equalToSuperview()
+		}
+		
 		update()
 		
 		addAction(.init(handler: { [weak self] _ in
@@ -137,6 +196,7 @@ public class BF_Button : UIButton {
 		super.touchesBegan(touches, with: event)
 		
 		UIApplication.feedBack(.On)
+		BF_Audio.shared.playOn()
 		
 		if showTouchEffect, style != .transparent, let touch = event?.allTouches?.first, let touchView = touch.view {
 			
@@ -229,7 +289,7 @@ public class BF_Button : UIButton {
 		}
 		
 		let inset = 3*UI.Margins/4
-		configuration?.contentInsets = .init(top: inset, leading: inset, bottom: inset, trailing: inset)
+		configuration?.contentInsets = .init(inset)
 		
 		let textColor = style == .tinted ? configuration?.baseBackgroundColor : (style == .bordered || style == .transparent ? (isText ? Colors.Button.Text.Background : isDelete ? Colors.Button.Delete.Background : isPrimary ? Colors.Button.Primary.Background : Colors.Button.Secondary.Background) : (isText ? Colors.Button.Text.Content : isDelete ? Colors.Button.Delete.Content : isPrimary ? Colors.Button.Primary.Content : Colors.Button.Secondary.Content))
 		

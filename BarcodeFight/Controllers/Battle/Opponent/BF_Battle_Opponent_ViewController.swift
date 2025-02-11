@@ -10,6 +10,7 @@ import UIKit
 
 public class BF_Battle_Opponent_ViewController : BF_ViewController {
 	
+	public var isStoryOpponent:Bool = false
 	public var victoryHandler:(()->Void)?
 	public var opponent:BF_User?
 	public var opponentMonsters:[BF_Monster]? {
@@ -17,10 +18,10 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 		didSet {
 			
 			opponentMonstersStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
-			 
-			opponentMonsters?.sort(.Rank).forEach({
+			
+			opponentMonsters?.forEach({
 				
-				let stackView:BF_Monsters_StackView = .init()
+				let stackView:BF_Monsters_Min_StackView = .init()
 				stackView.monster = $0
 				stackView.flip()
 				opponentMonstersStackView.addArrangedSubview(stackView)
@@ -44,8 +45,9 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 			
 			teamMonsters?.forEach({
 				
-				let stackView:BF_Monsters_StackView = .init()
+				let stackView:BF_Monsters_Min_StackView = .init()
 				stackView.monster = $0
+				stackView.flip()
 				teamMonstersStackView.addArrangedSubview(stackView)
 			})
 			
@@ -77,6 +79,17 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 		placeholderView.contentStackView.addArrangedSubview(opponentStackView)
 		
 		let teamStackView = createStackView(title: String(key: "fights.opponent.team.title"), subtitle: String(key: "fights.opponent.team.subtitle"), monstersStackView: teamMonstersStackView)
+		
+		let segmentedControl:BF_SegmentedControl = .init(items: [String(key: "fights.opponent.team.best"),String(key: "fights.opponent.team.last")])
+		segmentedControl.selectedSegmentIndex = 0
+		segmentedControl.addAction(.init(handler: { [weak self] _ in
+			
+			self?.teamMonsters = segmentedControl.selectedSegmentIndex == 0 ? BF_User.current?.bestTeam(against: self?.opponentMonsters) : BF_User.current?.lastTeam
+			
+		}), for: .valueChanged)
+		
+		teamStackView.insertArrangedSubview(segmentedControl, at: teamStackView.arrangedSubviews.count - 1)
+		
 		placeholderView.contentStackView.addArrangedSubview(teamStackView)
 		
 		let editButton:BF_Button = .init(String(key: "fights.opponent.team.edit.button")) { [weak self] _ in
@@ -85,7 +98,7 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 				
 				let viewController:BF_Battle_Team_ViewController = .init()
 				viewController.monsters = monsters.filter({ !$0.isDead })
-				viewController.selectedMonsters = (self?.teamMonstersStackView.arrangedSubviews as? [BF_Monsters_StackView])?.compactMap({ $0.monster })
+				viewController.selectedMonsters = (self?.teamMonstersStackView.arrangedSubviews as? [BF_Monsters_Min_StackView])?.compactMap({ $0.monster })
 				viewController.handler = { [weak self] selectedMonsters in
 					
 					self?.teamMonsters = selectedMonsters
@@ -120,7 +133,10 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 			make.bottom.equalToSuperview()
 		}
 		
-		teamMonsters = BF_User.current?.playerTeam
+		UIApplication.wait { [weak self] in
+			
+			self?.teamMonsters = BF_User.current?.bestTeam(against: self?.opponentMonsters)
+		}
 	}
 	
 	private func startFight() {
@@ -128,11 +144,12 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 		dismiss({ [weak self] in
 			
 			let viewController:BF_Battle_Fight_Fake_ViewController = .init()
+			viewController.isStoryFight = self?.isStoryOpponent
 			viewController.playerTeam = self?.teamMonsters
 			viewController.enemyUser = self?.opponent
 			viewController.enemyTeam = self?.opponentMonsters
 			viewController.victoryHandler = self?.victoryHandler
-			UI.MainController.present(viewController, animated: true)
+			UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
 		})
 	}
 	
@@ -185,5 +202,24 @@ public class BF_Battle_Opponent_ViewController : BF_ViewController {
 			make.height.equalTo(9.5*UI.Margins)
 		}
 		return stackView
+	}
+	
+	public override func close() {
+		
+		let alertController:BF_Alert_ViewController = .init()
+		alertController.title = String(key: "fights.opponent.dropout.alert.title")
+		alertController.add(UIImage(named: "dropout_icon"))
+		alertController.add(String(key: "fights.opponent.dropout.alert.content.0"))
+		alertController.add(String(key: "fights.opponent.dropout.alert.content.1"))
+		let button = alertController.addButton(title: String(key: "fights.opponent.dropout.alert.button")) { [weak self] _ in
+			
+			alertController.close { [weak self] in
+				
+				self?.dismiss()
+			}
+		}
+		button.isDelete = true
+		alertController.addCancelButton()
+		alertController.present()
 	}
 }

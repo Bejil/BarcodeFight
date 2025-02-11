@@ -19,7 +19,7 @@ public class BF_Monsters_Add_CollectionViewCell : BF_CollectionViewCell {
 		
 		super.init(frame: frame)
 		
-		let visualEffectView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .regular))
+		let visualEffectView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .dark))
 		visualEffectView.alpha = 0.15
 		contentView.addSubview(visualEffectView)
 		visualEffectView.snp.makeConstraints { make in

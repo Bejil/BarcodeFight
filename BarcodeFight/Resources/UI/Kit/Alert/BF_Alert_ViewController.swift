@@ -146,6 +146,13 @@ public class BF_Alert_ViewController : UIViewController {
 		return $0
 		
 	}(UIScrollView())
+	private lazy var stickyButtonsStackView:UIStackView = {
+		
+		$0.axis = .vertical
+		$0.spacing = UI.Margins
+		return $0
+		
+	}(UIStackView())
 	
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		
@@ -162,8 +169,12 @@ public class BF_Alert_ViewController : UIViewController {
 		
 		view.addSubview(containerView)
 		
-		containerView.addSubview(containerScrollView)
-		containerScrollView.snp.makeConstraints { make in
+		let stackView:UIStackView = .init(arrangedSubviews: [containerScrollView,stickyButtonsStackView])
+		stackView.axis = .vertical
+		stackView.spacing = UI.Margins
+		
+		containerView.addSubview(stackView)
+		stackView.snp.makeConstraints { make in
 			
 			make.top.bottom.equalToSuperview().inset(2*UI.Margins)
 			make.left.right.equalToSuperview().inset(UI.Margins)
@@ -230,7 +241,7 @@ public class BF_Alert_ViewController : UIViewController {
 		
 		if style == .Alert {
 			
-			containerView.layer.cornerRadius = UI.CornerRadius
+			containerView.layer.cornerRadius = UI.CornerRadius * 5
 			dismissIndicatorView.isHidden = true
 			
 			containerView.snp.makeConstraints { make in
@@ -259,7 +270,7 @@ public class BF_Alert_ViewController : UIViewController {
 		}
 		else if style == .Sheet {
 			
-			containerView.layer.cornerRadius = UI.CornerRadius
+			containerView.layer.cornerRadius = UI.CornerRadius * 5
 			containerView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
 			dismissIndicatorView.isHidden = false
 			
@@ -352,16 +363,17 @@ public class BF_Alert_ViewController : UIViewController {
 		return viewController
 	}
 	
-	public static func presentLoading() -> BF_Alert_ViewController {
+	public static func presentLoading(_ completion:((BF_Alert_ViewController?)->Void)? = nil) {
 		
 		let viewController:BF_Alert_ViewController = .init()
 		viewController.backgroundView.isUserInteractionEnabled = false
 		viewController.titleLabel.text = String(key: "alert.loading.title")
 		viewController.add(UIImage(named: "placeholder_loading"))
 		viewController.add(String(key: "alert.loading.content"))
-		viewController.present()
-		
-		return viewController
+		viewController.present() {
+			
+			completion?(viewController)
+		}
 	}
 	
 	public func close(_ completion:(()->Void)? = nil) {
@@ -412,18 +424,27 @@ public class BF_Alert_ViewController : UIViewController {
 		return imageView
 	}
 	
-	@discardableResult public func addButton(title:String, subtitle:String? = nil,image:UIImage? = nil, _ handler:BF_Button.Handler = nil) -> BF_Button {
+	@discardableResult public func addButton(sticky:Bool = false, title:String, subtitle:String? = nil,image:UIImage? = nil, _ handler:BF_Button.Handler = nil) -> BF_Button {
 		
 		let button:BF_Button = .init(title,handler)
 		button.subtitle = subtitle
 		button.image = image
-		add(button)
+		
+		if sticky {
+			
+			stickyButtonsStackView.addArrangedSubview(button)
+		}
+		else {
+			
+			add(button)
+		}
+		
 		return button
 	}
 	
-	@discardableResult public func addCancelButton(_ handler:BF_Button.Handler = nil) -> BF_Button {
+	@discardableResult public func addCancelButton(sticky:Bool = false, _ handler:BF_Button.Handler = nil) -> BF_Button {
 		
-		let button:BF_Button = addButton(title: String(key: "alert.cancel.button")) { [weak self] button in
+		let button:BF_Button = addButton(sticky:sticky, title: String(key: "alert.cancel.button")) { [weak self] button in
 			
 			self?.close({
 				
@@ -440,9 +461,9 @@ public class BF_Alert_ViewController : UIViewController {
 		return button
 	}
 	
-	@discardableResult public func addDismissButton(_ handler:BF_Button.Handler = nil) -> BF_Button {
+	@discardableResult public func addDismissButton(sticky:Bool = false, _ handler:BF_Button.Handler = nil) -> BF_Button {
 		
-		let button:BF_Button = addButton(title: String(key: "alert.dismiss.button")) { [weak self] button in
+		let button:BF_Button = addButton(sticky:sticky, title: String(key: "alert.dismiss.button")) { [weak self] button in
 			
 			self?.close({
 				

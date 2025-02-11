@@ -28,51 +28,56 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 			}
 		}
 	}
-	private lazy var scanButton:BF_Menu_Button = {
+	private lazy var scanButton:BF_Menu_Button_StackView = {
 		
-		$0.backgroundView.backgroundColor = Colors.Button.Primary.Background
-		$0.iconImageView.image = UIImage(named: "scan_icon")
+		$0.color = Colors.Button.Primary.Background
+		$0.image = UIImage(named: "scan_icon")
+		$0.title = String(key: "menu.scan.title")
+		$0.handler = { _ in
+			
+			BF_Scan.scan()
+		}
 		return $0
 		
-	}(BF_Menu_Button() { _ in
+	}(BF_Menu_Button_StackView())
+	private lazy var battleButton:BF_Menu_Button_StackView = {
 		
-		BF_Scan.scan()
-	})
-	private lazy var battleButton:BF_Menu_Button = {
-		
-		$0.backgroundView.backgroundColor = Colors.Button.Secondary.Background
-		$0.iconImageView.image = UIImage(named: "battle_icon")
+		$0.color = Colors.Button.Secondary.Background
+		$0.image = UIImage(named: "battle_icon")
+		$0.title = String(key: "menu.fight.title")
+		$0.handler = { _ in
+			
+			BF_Fight.new()
+		}
 		return $0
 		
-	}(BF_Menu_Button() { _ in
+	}(BF_Menu_Button_StackView())
+	private lazy var storyButton:BF_Menu_Button_StackView = {
 		
-		BF_Fight.new()
-	})
-	private lazy var storyButton:BF_Menu_Button = {
+		$0.color = Colors.Button.Secondary.Background
+		$0.image = UIImage(named: "map_icon")
+		$0.title = String(key: "menu.story.title")
+		$0.handler = { _ in
 		
-		$0.backgroundView.backgroundColor = Colors.Button.Secondary.Background
-		$0.iconImageView.image = UIImage(named: "map_icon")
+			UI.MainController.present(BF_NavigationController(rootViewController: BF_Story_ViewController()), animated: true)
+		}
 		return $0
 		
-	}(BF_Menu_Button() { _ in
-		
-		UI.MainController.present(BF_Story_ViewController(), animated: true)
-	})
+	}(BF_Menu_Button_StackView())
 	private lazy var menuElementsStackView:UIStackView = {
 		
 		$0.axis = .horizontal
 		$0.spacing = UI.Margins/2
-		$0.alignment = .center
+		$0.alignment = .bottom
 		$0.isLayoutMarginsRelativeArrangement = true
 		$0.layoutMargins = .init(UI.Margins)
-		$0.setCustomSpacing(2*UI.Margins, after: userStackView)
+		$0.setCustomSpacing(UI.Margins, after: userStackView)
+		
 		return $0
 		
 	}(UIStackView(arrangedSubviews: [userStackView,scanButton,battleButton,storyButton]))
 	private lazy var editStackView:UIStackView = {
 		
-		$0.layer.masksToBounds = true
-		$0.layer.cornerRadius = UI.CornerRadius
 		$0.axis = .horizontal
 		$0.spacing = UI.Margins
 		$0.alignment = .center
@@ -103,16 +108,6 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 	private lazy var bannerView = BF_Ads.shared.presentBanner(BF_Ads.Identifiers.Banner.Home, self)
 	private lazy var menuView:UIView = { view in
 		
-		view.layer.masksToBounds = true
-		view.layer.cornerRadius = UI.CornerRadius
-		view.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
-		
-		let visualEffectView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .regular))
-		view.addSubview(visualEffectView)
-		visualEffectView.snp.makeConstraints { make in
-			make.edges.equalToSuperview()
-		}
-		
 		let menuStackView:UIStackView = .init(arrangedSubviews: [menuElementsStackView,editStackView,bannerView].compactMap({ $0 }))
 		menuStackView.axis = .vertical
 		view.addSubview(menuStackView)
@@ -123,19 +118,7 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 		return view
 		
 	}(UIView())
-	private lazy var userStackView:BF_User_StackView = {
-		
-		$0.addGestureRecognizer(UITapGestureRecognizer(block: { _ in
-			
-			UIApplication.feedBack(.On)
-			UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Infos_ViewController()), animated: true)
-		}))
-		$0.snp.makeConstraints { make in
-			make.width.equalTo(12*UI.Margins)
-		}
-		return $0
-		
-	}(BF_User_StackView())
+	private lazy var userStackView:BF_User_StackView = .init()
 	
 	public override func loadView() {
 		
@@ -143,6 +126,12 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 		
 		navigationItem.title = String(key: "monsters.navigation.title")
 		
+		let challengesView:BF_Challenges_View = .init()
+		stackView.addArrangedSubview(challengesView)
+		
+		stackView.addArrangedSubview(collectionView)
+		
+		//collectionView.contentInset.top = 2*UI.Margins
 		collectionView.register(BF_Monsters_Add_CollectionViewCell.self, forCellWithReuseIdentifier: BF_Monsters_Add_CollectionViewCell.identifier)
 		collectionView.register(BF_Monsters_Empty_CollectionViewCell.self, forCellWithReuseIdentifier: BF_Monsters_Empty_CollectionViewCell.identifier)
 		collectionView.addGestureRecognizer(UILongPressGestureRecognizer(block: { [weak self] gesture in
@@ -158,7 +147,23 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 			}
 		}))
 		
+		stackView.setCustomSpacing(-2*UI.Margins, after: collectionView)
 		stackView.addArrangedSubview(menuView)
+		
+		let menuElementsVisualEffectView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .dark))
+		menuElementsStackView.insertSubview(menuElementsVisualEffectView, at: 0)
+		menuElementsVisualEffectView.snp.makeConstraints { make in
+			make.top.equalToSuperview().inset(2*UI.Margins)
+			make.left.right.equalToSuperview()
+			make.bottom.equalTo(view)
+		}
+		
+		let editVisualEffectView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .dark))
+		editStackView.insertSubview(editVisualEffectView, at: 0)
+		editVisualEffectView.snp.makeConstraints { make in
+			make.top.left.right.equalToSuperview()
+			make.bottom.equalTo(view)
+		}
 		
 		NotificationCenter.add(.updateAccount) { [weak self] _ in
 			
@@ -198,7 +203,7 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 			
 			return nil
 		})
-		UI.MainController.present(viewController, animated: true)
+		viewController.present()
 	}
 	
 	public override func setEditing(_ editing: Bool, animated: Bool) {
@@ -276,6 +281,12 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 		infosButton.menu = UIMenu(children: [
 			
 			UIMenu(title: "", options: .displayInline, children: [
+				UIAction(title:String(key:"monsters.actions.news"), image: UIImage(systemName: "newspaper.fill"), handler: { _ in
+					
+					UI.MainController.present(BF_NavigationController(rootViewController: BF_News_ViewController()), animated: true)
+				})
+			]),
+			UIMenu(title: "", options: .displayInline, children: [
 				UIAction(title:String(key:"monsters.actions.account"), image: UIImage(systemName: "person.crop.circle"), handler: { _ in
 					
 					UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Infos_ViewController()), animated: true)
@@ -309,6 +320,19 @@ public class BF_Monsters_List_Home_ViewController : BF_Monsters_List_ViewControl
 		infosButton.configuration?.contentInsets = .zero
 		infosButton.configuration?.imagePadding = UI.Margins/2
 		navigationItem.rightBarButtonItems?.append(.init(customView: infosButton))
+		
+		NotificationCenter.add(.updateNews) { _ in
+			
+			BF_News.getUnreadCount { count in
+				
+				if count > 0 {
+					
+					infosButton.badge = "\(count)"
+				}
+			}
+		}
+		
+		NotificationCenter.post(.updateNews)
 	}
 	
 	private func launchRequest() {

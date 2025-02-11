@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>freeScanTimeInterval</key>
-	<integer>86400</integer>
 	<key>levelRewardScanNumber</key>
-	<integer>1</integer>
+	<integer>5</integer>
 	<key>experienceMonsterScan</key>
 	<integer>10</integer>
 	<key>experienceMonsterEnrollment</key>
@@ -15,23 +13,17 @@
 	<key>experienceFakeFightVictory</key>
 	<integer>25</integer>
 	<key>experienceFightDefeat</key>
-	<integer>10</integer>
+	<integer>0</integer>
 	<key>experienceFakeFightDefeat</key>
-	<integer>5</integer>
+	<integer>0</integer>
 	<key>experienceFightDropout</key>
 	<integer>-20</integer>
 	<key>experienceFakeFightDropout</key>
 	<integer>-10</integer>
 	<key>levelRewardCoinsNumber</key>
 	<integer>10</integer>
-	<key>scanMaxNumber</key>
-	<integer>99</integer>
 	<key>rubiesFightCost</key>
 	<integer>1</integer>
-	<key>freeRubyTimeInterval</key>
-	<integer>43200</integer>
-	<key>rubiesMaxNumber</key>
-	<integer>99</integer>
 	<key>fightMonstersCount</key>
 	<integer>3</integer>
 	<key>maxMonstersCount</key>

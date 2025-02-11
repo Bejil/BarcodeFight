@@ -163,96 +163,99 @@ public class BF_Fight_Live_Manager: NSObject {
 								
 								var expirationTimer:Timer? = nil
 								
-								let alertController:BF_Alert_ViewController = .presentLoading()
-								alertController.backgroundView.isUserInteractionEnabled = false
-								
-								alertController.addButton(title: String(key: "fights.live.alert.cancel.button")) { [weak self] button in
+								BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 									
-									self?.stateListener?.remove()
+									alertController?.backgroundView.isUserInteractionEnabled = false
 									
-									fight.state = .DemandCancelled
-									
-									button?.isLoading = true
-									
-									fight.update { error in
+									alertController?.addButton(title: String(key: "fights.live.alert.cancel.button")) { [weak self] button in
 										
-										button?.isLoading = false
+										self?.stateListener?.remove()
 										
-										if let error {
+										fight.state = .DemandCancelled
+										
+										button?.isLoading = true
+										
+										fight.update { error in
 											
-											BF_Alert_ViewController.present(error)
-										}
-										else {
+											button?.isLoading = false
 											
-											button?.isLoading = true
-											
-											fight.delete { error in
+											if let error {
 												
-												button?.isLoading = false
-												
-												alertController.close {
-													
-													if let error {
-														
-														BF_Alert_ViewController.present(error)
-													}
-												}
+												BF_Alert_ViewController.present(error)
 											}
-										}
-									}
-								}
-								
-								self?.stateListener = fight.listen({ [weak self] fight in
-									
-									if let fight {
-										
-										if fight.state == .DemandAccepted {
-											
-											self?.stateListener?.remove()
-											
-											expirationTimer?.invalidate()
-											expirationTimer = nil
-											
-											alertController.close {
+											else {
 												
-												let viewController:BF_Battle_Opponent_User_ViewController = .init()
-												viewController.fight = fight
-												viewController.opponent = user
-												viewController.opponentMonsters = user.enemyTeam
-												UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
-												
-												BF_Toast().present(title: String(key: "fights.live.demandAccepted.toast.title"), style: .Success)
-											}
-										}
-										else if fight.state == .DemandRefused {
-											
-											self?.stateListener?.remove()
-											
-											expirationTimer?.invalidate()
-											expirationTimer = nil
-											
-											alertController.close {
-												
-												let alertController:BF_Alert_ViewController = .presentLoading()
+												button?.isLoading = true
 												
 												fight.delete { error in
 													
-													alertController.close {
+													button?.isLoading = false
+													
+													alertController?.close {
 														
 														if let error {
 															
 															BF_Alert_ViewController.present(error)
 														}
-														else {
-															
-															BF_Alert_ViewController.present(BF_Error(String(key: "fights.live.demandRefused.toast.title")))
-														}
 													}
 												}
 											}
 										}
 									}
-								})
+									
+									self?.stateListener = fight.listen({ [weak self] fight in
+										
+										if let fight {
+											
+											if fight.state == .DemandAccepted {
+												
+												self?.stateListener?.remove()
+												
+												expirationTimer?.invalidate()
+												expirationTimer = nil
+												
+												alertController?.close {
+													
+													let viewController:BF_Battle_Opponent_User_ViewController = .init()
+													viewController.fight = fight
+													viewController.opponent = user
+													viewController.opponentMonsters = user.enemyTeam
+													UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
+													
+													BF_Toast_Manager.shared.addToast(title: String(key: "fights.live.demandAccepted.toast.title"), style: .Success)
+												}
+											}
+											else if fight.state == .DemandRefused {
+												
+												self?.stateListener?.remove()
+												
+												expirationTimer?.invalidate()
+												expirationTimer = nil
+												
+												alertController?.close {
+													
+													BF_Alert_ViewController.presentLoading() { alertController in
+														
+														fight.delete { error in
+															
+															alertController?.close {
+																
+																if let error {
+																	
+																	BF_Alert_ViewController.present(error)
+																}
+																else {
+																	
+																	BF_Alert_ViewController.present(BF_Error(String(key: "fights.live.demandRefused.toast.title")))
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									})
+								}
 							}
 						}
 					}

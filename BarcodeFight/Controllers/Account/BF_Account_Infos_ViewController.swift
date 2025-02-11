@@ -38,14 +38,6 @@ public class BF_Account_Infos_ViewController : BF_ViewController {
 				let scanCountString = "\(user.scanCount)"
 				scanCountLabel.text = [String(key: "account.infos.stats.scanCount.label"),scanCountString].joined(separator: " ")
 				scanCountLabel.set(font: Fonts.Content.Text.Regular, string: scanCountString)
-				
-				scanAvailableStepper.value = Double(user.scanAvailable)
-				
-				coinsStackView.user = user
-				coinsStepper.value = Double(user.coins)
-				
-				rubiesStackView.user = user
-				rubiesStepper.value = Double(user.rubies)
 			}
 		}
 	}
@@ -87,99 +79,12 @@ public class BF_Account_Infos_ViewController : BF_ViewController {
 		return $0
 		
 	}(BF_Label())
-	private lazy var scanAvailableStackView:BF_Scans_StackView = .init()
-	private lazy var scanAvailableStepper:BF_Stepper = {
-		
-		$0.maximumValue = Double(BF_Firebase.shared.config.int(.ScanMaxNumber))
-		$0.isHidden = !UIApplication.isDebug
-		$0.addAction(.init(handler: { [weak self] _ in
-			
-			let previousScanAvailable = BF_User.current?.scanAvailable
-			
-			BF_User.current?.scanAvailable = Int(self?.scanAvailableStepper.value ?? 0.0)
-			BF_User.current?.update { [weak self] error in
-				
-				if let error = error {
-					
-					BF_User.current?.scanAvailable = previousScanAvailable ?? 0
-					self?.scanAvailableStepper.value = Double(previousScanAvailable ?? 0)
-					
-					BF_Alert_ViewController.present(error)
-				}
-				else {
-					
-					NotificationCenter.post(.updateAccount)
-				}
-			}
-			
-		}), for: .valueChanged)
-		return $0
-		
-	}(BF_Stepper())
 	private lazy var coinsLabel:BF_Label = {
 		
 		$0.font = Fonts.Content.Text.Bold
 		return $0
 		
 	}(BF_Label())
-	private lazy var coinsStackView:BF_Coins_StackView = .init()
-	private lazy var coinsStepper:BF_Stepper = {
-		
-		$0.maximumValue = .infinity
-		$0.isHidden = !UIApplication.isDebug
-		$0.addAction(.init(handler: { [weak self] _ in
-			
-			let previousCoins = BF_User.current?.coins
-			
-			BF_User.current?.coins = Int(self?.coinsStepper.value ?? 0.0)
-			BF_User.current?.update { [weak self] error in
-				
-				if let error = error {
-					
-					BF_User.current?.coins = previousCoins ?? 0
-					self?.coinsStepper.value = Double(previousCoins ?? 0)
-					
-					BF_Alert_ViewController.present(error)
-				}
-				else {
-					
-					NotificationCenter.post(.updateAccount)
-				}
-			}
-			
-		}), for: .valueChanged)
-		return $0
-		
-	}(BF_Stepper())
-	private lazy var rubiesStackView:BF_Rubies_StackView = .init()
-	private lazy var rubiesStepper:BF_Stepper = {
-		
-		$0.maximumValue = Double(BF_Firebase.shared.config.int(.RubiesMaxNumber))
-		$0.isHidden = !UIApplication.isDebug
-		$0.addAction(.init(handler: { [weak self] _ in
-			
-			let previousCoins = BF_User.current?.rubies
-			
-			BF_User.current?.rubies = Int(self?.rubiesStepper.value ?? 0.0)
-			BF_User.current?.update { [weak self] error in
-				
-				if let error = error {
-					
-					BF_User.current?.rubies = previousCoins ?? 0
-					self?.rubiesStepper.value = Double(previousCoins ?? 0)
-					
-					BF_Alert_ViewController.present(error)
-				}
-				else {
-					
-					NotificationCenter.post(.updateAccount)
-				}
-			}
-			
-		}), for: .valueChanged)
-		return $0
-		
-	}(BF_Stepper())
 	private lazy var placeholderView:BF_Placeholder_View = {
 		
 		$0.isCentered = false
@@ -262,28 +167,229 @@ public class BF_Account_Infos_ViewController : BF_ViewController {
 		let scanAvailableLabel:BF_Label = .init(String(key: "account.infos.stats.scanAvailable.label"))
 		scanAvailableLabel.font = Fonts.Content.Text.Bold
 		
-		let scanAvailableStackView:UIStackView = .init(arrangedSubviews: [scanAvailableLabel,self.scanAvailableStackView,.init(),scanAvailableStepper])
+		let scanAvailableStackView:UIStackView = .init(arrangedSubviews: [scanAvailableLabel,BF_Scans_StackView(),.init()])
 		scanAvailableStackView.axis = .horizontal
 		scanAvailableStackView.alignment = .center
 		scanAvailableStackView.spacing = UI.Margins
 		
-		let coinsLabel:BF_Label = .init(String(key: "account.infos.stats.coins.label"))
-		coinsLabel.font = Fonts.Content.Text.Bold
+#if DEBUG
+			
+		let scanAvailableButton:UIButton = UIButton(type: .infoLight)
+		scanAvailableButton.tintColor = Colors.Content.Text
+		scanAvailableButton.addAction(.init(handler: { _ in
+			
+			let alertController:BF_Alert_ViewController = .init()
+			alertController.title = String(key: "account.edit.scan.alert.title")
+			alertController.add(String(key: "account.edit.scan.alert.content"))
+			alertController.add(UIImage(named: "scan_icon"))
+			
+			let textField:BF_TextField = .init()
+			textField.text = "\(BF_User.current?.scanAvailable ?? 0)"
+			textField.placeholder = String(key: "account.edit.scan.alert.placeholder")
+			textField.keyboardType = .numberPad
+			textField.changeHandler = { textField in
+				
+				if let count = Int(textField?.text ?? "0"), count < 0 {
+						
+					textField?.text = "0"
+				}
+			}
+			alertController.add(textField)
+			
+			let button = alertController.addButton(title: String(key: "account.edit.scan.alert.button")) { button in
+				
+				if let count = Int(textField.text ?? "0") {
+					
+					button?.isLoading = true
+					
+					BF_User.current?.scanAvailable = count
+					BF_User.current?.update({ error in
+						
+						button?.isLoading = false
+						
+						alertController.close {
+							
+							if let error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								NotificationCenter.post(.updateAccount)
+							}
+						}
+					})
+				}
+			}
+			
+			textField.returnHandler = { _ in
+				
+				button.sendActions(for: .touchUpInside)
+			}
+			
+			alertController.addCancelButton()
+			alertController.present(as: .Sheet) {
+				
+				textField.becomeFirstResponder()
+			}
+			
+		}), for: .touchUpInside)
+		scanAvailableStackView.addArrangedSubview(scanAvailableButton)
 		
-		let coinsStackView:UIStackView = .init(arrangedSubviews: [coinsLabel,self.coinsStackView,.init(),coinsStepper])
-		coinsStackView.axis = .horizontal
-		coinsStackView.alignment = .center
-		coinsStackView.spacing = UI.Margins
+#endif
 		
 		let rubiesLabel:BF_Label = .init(String(key: "account.infos.stats.rubies.label"))
 		rubiesLabel.font = Fonts.Content.Text.Bold
 		
-		let rubiesStackView:UIStackView = .init(arrangedSubviews: [rubiesLabel,self.rubiesStackView,.init(),rubiesStepper])
+		let rubiesStackView:UIStackView = .init(arrangedSubviews: [rubiesLabel,BF_Rubies_StackView(),.init()])
 		rubiesStackView.axis = .horizontal
 		rubiesStackView.alignment = .center
 		rubiesStackView.spacing = UI.Margins
 		
-		let statsStackView:UIStackView = .init(arrangedSubviews: [creationDateLabel,scanCountLabel,scanAvailableStackView,coinsStackView,rubiesStackView])
+#if DEBUG
+			
+		let rubiesButton:UIButton = UIButton(type: .infoLight)
+		rubiesButton.tintColor = Colors.Content.Text
+		rubiesButton.addAction(.init(handler: { _ in
+			
+			let alertController:BF_Alert_ViewController = .init()
+			alertController.title = String(key: "account.edit.rubies.alert.title")
+			alertController.add(String(key: "account.edit.rubies.alert.content"))
+			alertController.add(UIImage(named: "items_rubies"))
+			
+			let textField:BF_TextField = .init()
+			textField.text = "\(BF_User.current?.rubies ?? 0)"
+			textField.placeholder = String(key: "account.edit.rubies.alert.placeholder")
+			textField.keyboardType = .numberPad
+			textField.changeHandler = { textField in
+				
+				if let count = Int(textField?.text ?? "0"),  count < 0 {
+						
+					textField?.text = "0"
+				}
+			}
+			alertController.add(textField)
+			
+			let button = alertController.addButton(title: String(key: "account.edit.rubies.alert.button")) { button in
+				
+				if let count = Int(textField.text ?? "0") {
+					
+					button?.isLoading = true
+					
+					BF_User.current?.rubies = count
+					BF_User.current?.update({ error in
+						
+						button?.isLoading = false
+						
+						alertController.close {
+							
+							if let error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								NotificationCenter.post(.updateAccount)
+							}
+						}
+					})
+				}
+			}
+			
+			textField.returnHandler = { _ in
+				
+				button.sendActions(for: .touchUpInside)
+			}
+			
+			alertController.addCancelButton()
+			alertController.present(as: .Sheet) {
+				
+				textField.becomeFirstResponder()
+			}
+			
+		}), for: .touchUpInside)
+		rubiesStackView.addArrangedSubview(rubiesButton)
+		
+#endif
+		
+		let coinsLabel:BF_Label = .init(String(key: "account.infos.stats.coins.label"))
+		coinsLabel.font = Fonts.Content.Text.Bold
+		
+		let coinsStackView:UIStackView = .init(arrangedSubviews: [coinsLabel,BF_Coins_StackView(),.init()])
+		coinsStackView.axis = .horizontal
+		coinsStackView.alignment = .center
+		coinsStackView.spacing = UI.Margins
+		
+#if DEBUG
+			
+		let coinsButton:UIButton = UIButton(type: .infoLight)
+		coinsButton.tintColor = Colors.Content.Text
+		coinsButton.addAction(.init(handler: { _ in
+			
+			let alertController:BF_Alert_ViewController = .init()
+			alertController.title = String(key: "account.edit.coins.alert.title")
+			alertController.add(String(key: "account.edit.coins.alert.content"))
+			alertController.add(UIImage(named: "items_coins"))
+			
+			let textField:BF_TextField = .init()
+			textField.text = "\(BF_User.current?.coins ?? 0)"
+			textField.placeholder = String(key: "account.edit.coins.alert.placeholder")
+			textField.keyboardType = .numberPad
+			textField.changeHandler = { textField in
+				
+				if let count = Int(textField?.text ?? "0") {
+					
+					if count < 0 {
+						
+						textField?.text = "0"
+					}
+				}
+			}
+			alertController.add(textField)
+			
+			let button = alertController.addButton(title: String(key: "account.edit.coins.alert.button")) { button in
+				
+				if let count = Int(textField.text ?? "0") {
+					
+					button?.isLoading = true
+					
+					BF_User.current?.coins = count
+					BF_User.current?.update({ error in
+						
+						button?.isLoading = false
+						
+						alertController.close {
+							
+							if let error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								NotificationCenter.post(.updateAccount)
+							}
+						}
+					})
+				}
+			}
+			
+			textField.returnHandler = { _ in
+				
+				button.sendActions(for: .touchUpInside)
+			}
+			
+			alertController.addCancelButton()
+			alertController.present(as: .Sheet) {
+				
+				textField.becomeFirstResponder()
+			}
+			
+		}), for: .touchUpInside)
+		coinsStackView.addArrangedSubview(coinsButton)
+		
+#endif
+		
+		let statsStackView:UIStackView = .init(arrangedSubviews: [creationDateLabel,scanCountLabel,scanAvailableStackView,rubiesStackView,coinsStackView])
 		statsStackView.axis = .vertical
 		statsStackView.spacing = UI.Margins
 		$0.contentStackView.addArrangedSubview(statsStackView)
@@ -402,13 +508,6 @@ public class BF_Account_Infos_ViewController : BF_ViewController {
 		if let bannerView {
 			
 			stackView.addArrangedSubview(bannerView)
-		}
-		
-		NotificationCenter.add(.updateAccount) { [weak self] _ in
-			
-			self?.scanAvailableStackView.user = BF_User.current
-			self?.coinsStackView.user = BF_User.current
-			self?.rubiesStackView.user = BF_User.current
 		}
 	}
 	

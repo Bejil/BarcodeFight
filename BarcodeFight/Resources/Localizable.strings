@@ -6,6 +6,11 @@
   
 */
 
+//MARK: - Menu
+"menu.scan.title" = "Scan";
+"menu.fight.title" = "Combat";
+"menu.story.title" = "Étapes";
+
 //MARK: - Notifications
 "notifications.action.dismiss" = "Annuler";
 "notifications.action.confirm" = "Consulter";
@@ -82,7 +87,6 @@
 "onboarding.ads.placeholder.content.1" = "Pour un coût minime, obtenez un confort de jeu optimal et supportez directement notre équipe de développement.";
 "onboarding.ads.placeholder.button" = "Supprimer les pubs";
 
-
 //MARK: - Account
 "account.infos.title" = "Mon compte";
 "account.infos.settings.button" = "Réglages";
@@ -156,6 +160,18 @@
 "account.fights.fight.button" = "Défier";
 "account.rewards.off.alert.title" = "Félicitations";
 "account.rewards.off.alert.content" = "Pendant votre absence vous avez gagné";
+"account.edit.scan.alert.title" = "Scans disponibles";
+"account.edit.scan.alert.content" = "Modifier le nombre de scans disponibles";
+"account.edit.scan.alert.placeholder" = "Nombre de scans disponibles";
+"account.edit.scan.alert.button" = "Modifier";
+"account.edit.coins.alert.title" = "Pièces";
+"account.edit.coins.alert.content" = "Modifier le nombre de pièces";
+"account.edit.coins.alert.placeholder" = "Nombre de pièces";
+"account.edit.coins.alert.button" = "Modifier";
+"account.edit.rubies.alert.title" = "Rubis";
+"account.edit.rubies.alert.content" = "Modifier le nombre de rubis";
+"account.edit.rubies.alert.placeholder" = "Nombre de rubis";
+"account.edit.rubies.alert.button" = "Modifier";
 
 //MARK: - User
 "user.passwordValidation.characters" = "Au moins 8 caractères";
@@ -166,7 +182,7 @@
 "user.experience.up.toast.title" = "Félicitations";
 "user.experience.up.toast.subtitle.0" = "Vous avez gagné";
 "user.experience.up.toast.subtitle.1" = "points d'expérience !";
-"user.experience.down.toast.title" = "Attention";
+"user.experience.down.toast.title" = "Dommage";
 "user.experience.down.toast.subtitle.0" = "Vous avez perdu";
 "user.experience.down.toast.subtitle.1" = "points d'expérience !";
 "user.level.up.toast.title" = "Félicitations";
@@ -174,8 +190,6 @@
 "user.level.up.toast.subtitle.1" = "Vos obtenez: ";
 "user.level.up.toast.subtitle.scans" = "scans gratuits";
 "user.level.up.toast.subtitle.coins" = "pièces";
-"user.level.down.toast.title" = "attention";
-"user.level.down.toast.subtitle" = "Vous avez perdu un niveau !";
 "user.freeScan.toast.title" = "Félicitations";
 "user.freeScan.toast.subtitle" = "Un nouveau scan est disponible !";
 "user.freeRuby.toast.title" = "Félicitations";
@@ -187,6 +201,7 @@
 "monsters.shop.button" = "Boutique";
 "monsters.places.add.label" = "Obtenir un emplacement";
 "monsters.actions.button" = "Actions";
+"monsters.actions.news" = "Actualités";
 "monsters.actions.account" = "Compte";
 "monsters.actions.ranking" = "Classement";
 "monsters.actions.fights" = "Combats";
@@ -214,13 +229,6 @@
 "monsters.sort.fights.dropouts.button" = "Abandons";
 "monsters.placeholder.button" = "Scanner un code-barres";
 "monsters.scan.error" = "Code-barres invalide. Veuillez réessayer";
-"monsters.scan.empty.alert.title" = "Attention";
-"monsters.scan.empty.alert.label.0" = "Vous n'avez plus de scan disponible";
-"monsters.scan.loading.alert.title" = "Prochain Scan";
-"monsters.scan.empty.alert.label.1" = "Patience... le prochain scan gratuit sera disponible dans";
-"monsters.scan.empty.button" = "Acheter un scan";
-"monsters.scan.empty.free.button.title" = "Obtenir un scan";
-"monsters.scan.empty.free.button.subtitle" = "après une publicité";
 "monsters.genre.label" = "Genre";
 "monsters.genre.0" = "Mâle";
 "monsters.genre.1" = "Femelle";
@@ -289,6 +297,8 @@
 
 
 //MARK: - Fights
+"fights.toss.title" = "Qui prendra la main ?";
+"fights.toss.subtitle" = "Lancez la pièce et laissez le sort décider qui aura l'honneur de débuter la partie. Pile ou face, que la chance soit avec vous !";
 "fights.victories.label" = "Victoires";
 "fights.defeats.label" = "Défaites";
 "fights.dropouts.label" = "Abandons";
@@ -304,13 +314,6 @@
 "fights.alert.label.1" = "Défiez vos amis en scannant leur QR code et engagez-vous dans un combat épique en face à face !";
 "fights.alert.button.1" = "Combat local";
 "fights.alert.notFound.error" = "Cet utilisateur n'a pas été trouvé";
-"fights.ruby.error.alert.title" = "Attention";
-"fights.ruby.error.alert.label.0" = "Vous n'avez pas assez de rubis pour commencer un combat";
-"fights.ruby.loading.alert.title" = "Prochain rubis";
-"fights.ruby.error.alert.label.1" = "Patience... le prochain rubis gratuit sera disponible dans";
-"fights.ruby.error.alert.button" = "Achater des rubis";
-"fights.ruby.error.alert.free.button.title" = "Obtenir des rubis";
-"fights.ruby.error.alert.free.button.subtitle" = "après une publicité";
 "fights.emptyOpponent.alert.title" = "Attention";
 "fights.emptyOpponent.alert.label.0" = "Aucun adversaire n'a été trouvé";
 "fights.emptyOpponent.alert.label.1" = "Voulez-vous tout de même combattre une équipe sélectionnée au hasard ?";
@@ -323,19 +326,25 @@
 "fights.emptyMonsters.alert.button.1" = "Scanner un code-barres";
 "fights.opponent.title" = "Combat";
 "fights.opponent.enemy.title" = "Votre adversaire";
-"fights.opponent.team.title" = "Équipe recommandée";
-"fights.opponent.team.subtitle" = "Basée sur votre dernier combat ainsi que les rangs et les points de vie de vos monstres";
+"fights.opponent.team.title" = "Votre équipe";
+"fights.opponent.team.subtitle" = "Choisissez bien les monstres qui formeront votre équipe pendant le combat";
+"fights.opponent.team.best" = "Meilleure équipe";
+"fights.opponent.team.last" = "Dernière équipe";
 "fights.opponent.team.edit.button" = "Modifier l'équipe";
 "fights.opponent.start.button" = "Commencer";
 "fights.opponent.user.start.button.timer" = "Début du combat dans ";
 "fights.opponent.user.start.button.loading" = "Chargement en cours...";
 "fights.opponent.user.cancelled.error" = "Votre adversaire a annulé le combat";
+"fights.opponent.dropout.alert.title" = "Attention";
+"fights.opponent.dropout.alert.content.0" = "Vous êtes sur le point d'abandonner.";
+"fights.opponent.dropout.alert.content.1" = "Si vous abandonnez vous perdrez votre rubis mis en jeu...";
+"fights.opponent.dropout.alert.button" = "Abandonner";
 "fights.battle.isPlayerTurn" = "À vous !";
 "fights.battle.toss.player" = "Vous avez l'avantage !";
 "fights.battle.toss.enemy" = "Votre adversaire commence !";
 "fights.battle.dropout.alert.title" = "Attention";
 "fights.battle.dropout.alert.content.0" = "Vous êtes sur le point d'abandonner.";
-"fights.battle.dropout.alert.content.1" = "Si vous abandonnez vous perdrez de l'expérience...";
+"fights.battle.dropout.alert.content.1" = "Si vous abandonnez vous perdrez votre rubis mis en jeu et de l'expérience...";
 "fights.battle.dropout.alert.button" = "Abandonner";
 "fights.battle.finish.victory" = "Vous avez gagné !";
 "fights.battle.finish.defeat" = "Vous avez perdu...";
@@ -344,15 +353,12 @@
 "fights.battle.finish.victory.alert.title" = "Félicitations !";
 "fights.battle.finish.victory.alert.label.0" = "Vous avez été le plus fort.";
 "fights.battle.finish.victory.alert.label.1" = "Vous avez gagné :";
-"fights.battle.finish.victory.alert.experience" = "points d'expérience";
 "fights.battle.finish.victory.alert.button" = "Ok";
 "fights.battle.finish.defeat.alert.title" = "Dommage !";
 "fights.battle.finish.defeat.alert.label.0" = "Vous êtiez si proche de la victoire...";
-"fights.battle.finish.defeat.alert.experience" = "points d'expérience !";
 "fights.battle.finish.defeat.alert.button" = "Ok";
 "fights.battle.finish.dropout.alert.title" = "Dommage !";
 "fights.battle.finish.dropout.alert.label.0" = "Sachez que rien n'est jamais perdu d'avance...";
-"fights.battle.finish.dropout.alert.experience" = "points d'expérience !";
 "fights.battle.finish.dropout.alert.button" ="Ok";
 "fights.battle.dodge" = "Raté !";
 "fights.battle.blocked" = "Bloqué !";
@@ -374,6 +380,8 @@
 "fights.live.alert.cancel.button" = "Annuler la demande";
 "fights.live.demandAccepted.toast.title" = "La demande a été acceptée";
 "fights.live.demandRefused.toast.title" = "La demande a été refusée";
+"fights.tutorial.button" = "Aides";
+"fights.audio.button" = "Audio";
 
 //MARK: - Battle
 "battle.team.title" = "Modifier l'équipe";
@@ -442,6 +450,51 @@
 "tutorial.home.2.title" = "Combat";
 "tutorial.home.2.subtitle" = "Appuyez sur ce bouton pour entrer en mode combat. Affrontez d’autres joueurs ou des adversaires contrôlés par l’IA";
 "tutorial.home.2.button" = "Suivant...";
-"tutorial.home.3.title" = "Histoire";
+"tutorial.home.3.title" = "Étapes";
 "tutorial.home.3.subtitle" = "Appuyez sur ce bouton pour suivre votre propre voie et rencontrer des monstres de plus en plus forts !";
 "tutorial.home.3.button" = "Suivant...";
+
+//MARK: - Challenges
+"challenges.header.title" = "Challenges en cours";
+"challenges.header.empty" = "Félicitations !";
+"challenges.header.subtitle" = "Terminez les et décrochez des récompenses exclusives !";
+"challenges.header.subtitle.empty" = "Vous avez terminé les challenges quotidiens, votre récompense vous attend !";
+"challenges.title" = "Challenges quotidiens";
+"challenges.section.0" = "En cours";
+"challenges.section.1" = "Réalisés";
+"challenges.toast.content" = "Une récompense vous attend 🎁";
+"challenges.toast.progress.content" = "Continuer vos challenge quotidients 💪";
+
+//MARK: - Story
+"story.title" = "Étapes";
+"story.chest.error" = "Vous avez déjà ouvert ce coffre";
+"story.dropout.alert.title" = "Étapes";
+"story.dropout.alert.content" = "Progressez et affrontez des équipes de monstres de plus en plus dures !";
+"story.dropout.alert.button" = "Combattre";
+"story.dropout.alert.button.subtitle.1" = "Coûte ";
+"story.dropout.alert.button.subtitle.2" = " rubis";
+
+//MARK: - Rubies
+"rubies.alert.title" = "Rubis";
+"rubies.alert.content.empty" = "Vous n'avez aucun rubis malheureusement...";
+"rubies.alert.content.default" = "Vous avez actuellement %i rubis";
+"rubies.alert.content.loading" = "Patience... le prochain rubis gratuit sera disponible dans";
+"rubies.alert.button.shop" = "Acheter des rubis";
+"rubies.alert.button.ad.title" = "Obtenir un rubis";
+"rubies.alert.button.ad.subtitle" = "après une publicité";
+"rubies.success.alert.title" = "Félicitations";
+"rubies.success.alert.content" = "Vous avez gagné un rubis";
+
+//MARK: - Scans
+"scans.alert.title" = "Scans";
+"scans.alert.content.empty" = "Vous n'avez aucun scans disponibles malheureusement...";
+"scans.alert.content.default" = "Vous avez actuellement %i scans disponibles";
+"scans.alert.content.loading" = "Patience... le prochain scan gratuit sera disponible dans";
+"scans.alert.button.shop" = "Acheter des scans";
+"scans.alert.button.ad.title" = "Obtenir un scan";
+"scans.alert.button.ad.subtitle" = "après une publicité";
+"scans.success.alert.title" = "Félicitations";
+"scans.success.alert.content" = "Vous avez gagné un rubis";
+
+//MARK: - News
+"news.title" = "Actualités";

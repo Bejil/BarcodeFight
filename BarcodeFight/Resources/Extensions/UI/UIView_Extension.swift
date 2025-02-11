@@ -39,18 +39,13 @@ extension UIView {
 			let visualEffectView:UIVisualEffectView = .init()
 			if blurBackground {
 				
-				visualEffectView.effect = UIBlurEffect.init(style: self.traitCollection.userInterfaceStyle == .light ? .extraLight : .dark)
+				visualEffectView.effect = UIBlurEffect.init(style: .dark)
 			}
 			visualEffectView.accessibilityLabel = "loadingView"
 			view.addSubview(visualEffectView)
 			
 			let activityIndicatorView:UIActivityIndicatorView = .init()
-			if #available(iOS 13, *) {
-				activityIndicatorView.style = .medium
-			}
-			else{
-				activityIndicatorView.style = self.traitCollection.userInterfaceStyle == .light ? .gray : .white
-			}
+			activityIndicatorView.style = .medium
 			activityIndicatorView.color = color
 			activityIndicatorView.startAnimating()
 			visualEffectView.contentView.addSubview(activityIndicatorView)
@@ -116,6 +111,11 @@ extension UIView {
 	
 	func pulse(_ color:UIColor = Colors.Primary, _ completion:(()->Void)? = nil){
 		
+		stopPulse()
+		
+		let view:UIView = (self as? UIVisualEffectView)?.contentView ?? self
+		view.subviews.first(where: {$0.accessibilityLabel == "pulseView"})?.removeFromSuperview()
+		
 		let initialScale = transform
 		let initialScaleX = initialScale.a
 		let initialScaleY = initialScale.d
@@ -123,6 +123,8 @@ extension UIView {
 		superview?.layoutIfNeeded()
 		
 		let pulseView:UIView = .init()
+		pulseView.accessibilityLabel = "pulseView"
+		pulseView.isUserInteractionEnabled = false
 		
 		if color != .clear {
 			
@@ -176,7 +178,7 @@ extension UIView {
 	
 	func jiggle(isRepeat:Bool = false, duration:TimeInterval = 0.1) {
 		
-		let amplitude: Float = 2.0 // degrees
+		let amplitude: Float = 2.0
 		let r = (Float(arc4random()) / Float(RAND_MAX)) - 0.5
 		let angleInDegrees = amplitude * (1.0 + r * 0.1)
 		let animationRotate = angleInDegrees / 180.0 * .pi

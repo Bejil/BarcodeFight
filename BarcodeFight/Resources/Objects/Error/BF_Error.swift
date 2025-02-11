@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class BF_Error : NSError {
+public class BF_Error : NSError, @unchecked Sendable {
 	
 	public convenience init(_ string:String?) {
 		

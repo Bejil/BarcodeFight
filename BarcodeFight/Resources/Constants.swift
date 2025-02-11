@@ -8,6 +8,17 @@
 import Foundation
 import UIKit
 
+struct Challenges {
+	
+	static let Max:Int = 7
+	
+	static let Connexions:String = "5a9d83e1-1144-4ff4-9ff5-918168d2d76e"
+	static let Fights:String = "8f0c55a9-fff6-47eb-aeda-a9c2f002dc71"
+	static let Scans:String = "01e506e2-b8a3-454b-a5dc-1a0b0bb77b95"
+	static let Story:String = "dd443c46-a12a-4eac-af5c-c086636fbe74"
+	static let Monsters:String = "dc7fe587-c09f-4039-afd1-2d223c985f1e"
+}
+
 struct Items {
 	
 	static let ChestObjects:String = "0e1df00a-c430-407f-994a-7336a7c20546"
@@ -37,7 +48,7 @@ struct UI {
 		return UIApplication.shared.topMostViewController()!
 	}
 	static let Margins:CGFloat = 15.0
-	static let CornerRadius:CGFloat = 2*Margins
+	static let CornerRadius:CGFloat = 10.0
 }
 
 public struct Colors {
@@ -61,13 +72,13 @@ public struct Colors {
 		
 		public struct Primary {
 			
-			public static let Background:UIColor = Colors.Secondary
+			public static let Background:UIColor = UIColor(named: "ButtonPrimaryBackground")!
 			public static let Content:UIColor = UIColor(named: "ButtonPrimaryContent")!
 		}
 		
 		public struct Secondary {
 			
-			public static let Background:UIColor = Colors.Primary
+			public static let Background:UIColor = UIColor(named: "ButtonSecondaryBackground")!
 			public static let Content:UIColor = UIColor(named: "ButtonSecondaryContent")!
 		}
 		
@@ -80,14 +91,8 @@ public struct Colors {
 		public struct Text {
 			
 			public static let Background:UIColor = UIColor(named: "ButtonTextBackground")!
-			public static let Content:UIColor = Colors.Secondary
+			public static let Content:UIColor = Colors.Button.Primary.Background
 		}
-	}
-	
-	public struct TextField {
-		
-		public static let Tint:UIColor = Colors.Secondary
-		public static let Invalid:UIColor = UIColor(named: "TextFieldInvalid")!
 	}
 	
 	public struct Monsters {
@@ -137,7 +142,7 @@ public struct Fonts {
 			public static let Small:UIFont = UIFont(name: Name.Black, size: Fonts.Size+12)!
 		}
 		
-		public static let Button:UIFont = UIFont(name: Name.Bold, size: Fonts.Size-2)!
+		public static let Button:UIFont = UIFont(name: Name.Regular, size: Fonts.Size-2)!
 	}
 	
 	public struct Content {

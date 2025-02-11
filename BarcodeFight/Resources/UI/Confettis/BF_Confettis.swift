@@ -13,7 +13,7 @@ public class BF_Confettis {
 	public static func start() {
 		
 		SPConfettiConfiguration.particlesConfig.birthRate = 30
-		SPConfettiConfiguration.particlesConfig.colors = [Colors.Primary,Colors.Secondary]
+		SPConfettiConfiguration.particlesConfig.colors = [Colors.Button.Primary.Background,Colors.Button.Secondary.Background]
 		SPConfetti.startAnimating(.fullWidthToDown, particles: [.arc])
 	}
 	

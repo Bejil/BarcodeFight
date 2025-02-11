@@ -15,187 +15,86 @@ public class BF_User_StackView : UIStackView {
 		
 		didSet {
 			
-			stackView.user = user
-			rubiesStackView.user = user
-			scansStackView.user = user
+			imageView.url = user?.pictureUrl
+			levelLabel.text = "\(user?.level.number ?? 1)"
+			displayNameLabel.text = user?.displayName
 		}
 	}
-	private lazy var stackView:BF_User_Opponent_StackView = {
+	private lazy var imageView:BF_ImageView = {
 		
-		$0.imageView.snp.makeConstraints { make in
-			make.size.equalTo(1.5*UI.Margins)
-		}
-		$0.fightsStackView.isHidden = true
-		
-		return $0
-		
-	}(BF_User_Opponent_StackView())
-	private lazy var rubiesStackView:BF_Rubies_StackView = .init()
-	public lazy var rubiesProgressView:UIProgressView = {
-		
-		let height = UI.Margins/2
-		
-		$0.progressViewStyle = .bar
-		$0.progressTintColor = Colors.Primary.withAlphaComponent(0.5)
-		$0.trackTintColor = Colors.Primary.withAlphaComponent(0.1)
-		$0.layer.cornerRadius = height/2
+		$0.contentMode = .scaleAspectFill
 		$0.clipsToBounds = true
-		$0.layer.sublayers?.first?.cornerRadius = $0.layer.cornerRadius
-		$0.subviews.first?.clipsToBounds = $0.clipsToBounds
+		$0.layer.cornerRadius = 3*UI.Margins
+		$0.setContentHuggingPriority(.init(1000), for: .horizontal)
+		$0.setContentCompressionResistancePriority(.init(1000), for: .horizontal)
+		$0.layer.borderColor = UIColor.white.cgColor
+		$0.layer.borderWidth = 5.0
 		$0.snp.makeConstraints { make in
-			make.height.equalTo(height)
+			make.size.equalTo(UI.Margins*6)
 		}
-		
-		nextRubyTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-			
-			self?.rubiesProgressView.setProgress(BF_Ruby.shared.progress, animated: true)
-		}
-		
 		return $0
 		
-	}(UIProgressView())
-	private lazy var scansStackView:BF_Scans_StackView = .init()
-	public lazy var scansProgressView:UIProgressView = {
+	}(BF_ImageView(image: UIImage(named: "placeholder_profile")))
+	private lazy var levelLabel:BF_Label = {
 		
-		let height = UI.Margins/2
-		
-		$0.progressViewStyle = .bar
-		$0.progressTintColor = Colors.Primary.withAlphaComponent(0.5)
-		$0.trackTintColor = Colors.Primary.withAlphaComponent(0.1)
-		$0.layer.cornerRadius = height/2
-		$0.clipsToBounds = true
-		$0.layer.sublayers?.first?.cornerRadius = $0.layer.cornerRadius
-		$0.subviews.first?.clipsToBounds = $0.clipsToBounds
+		$0.textAlignment = .center
+		$0.font = Fonts.Content.Title.H4
+		$0.adjustsFontSizeToFitWidth = true
+		$0.minimumScaleFactor = 0.5
+		$0.contentInsets = .init(UI.Margins/2)
+		$0.layer.cornerRadius = UI.Margins
 		$0.snp.makeConstraints { make in
-			make.height.equalTo(height)
+			make.size.equalTo(2*UI.Margins)
 		}
-		
-		nextScanTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-			
-			self?.scansProgressView.setProgress(BF_Scan.shared.progress, animated: true)
-		}
-		
+		$0.backgroundColor = Colors.Button.Secondary.Background
+		$0.layer.borderColor = UIColor.white.cgColor
+		$0.layer.borderWidth = 3.0
 		return $0
 		
-	}(UIProgressView())
-	private var nextRubyTimer:Timer?
-	private var nextScanTimer:Timer?
-	
-	deinit {
+	}(BF_Label())
+	private lazy var displayNameLabel:BF_Label = {
 		
-		nextRubyTimer?.invalidate()
-		nextRubyTimer = nil
+		$0.font = Fonts.Content.Title.H4
+		$0.numberOfLines = 1
+		return $0
 		
-		nextScanTimer?.invalidate()
-		nextScanTimer = nil
-	}
+	}(BF_Label())
 	
 	public override init(frame: CGRect) {
 		
 		super.init(frame: frame)
 		
 		axis = .vertical
-		spacing = UI.Margins/5
-		
-		addArrangedSubview(stackView)
-		setCustomSpacing(UI.Margins/2, after: stackView)
-		
-		let infoButton:(()->BF_Button) = {
+		spacing = UI.Margins
+		addGestureRecognizer(UITapGestureRecognizer(block: { _ in
 			
-			let button:BF_Button = .init()
-			button.isUserInteractionEnabled = false
-			button.image = UIImage(systemName: "info.circle.fill")?.applyingSymbolConfiguration(.init(scale: .small))
-			button.isText = true
-			button.style = .transparent
-			button.configuration?.contentInsets = .zero
-			button.configuration?.imagePadding = 0
-			button.snp.makeConstraints { make in
-				make.size.equalTo(UI.Margins)
-			}
-			return button
+			UIApplication.feedBack(.On)
+			UI.MainController.present(BF_NavigationController(rootViewController: BF_Account_Infos_ViewController()), animated: true)
+		}))
+		
+		let stackView:UIStackView = .init()
+		stackView.axis = .horizontal
+		stackView.alignment = .bottom
+		stackView.spacing = UI.Margins
+		addArrangedSubview(stackView)
+		
+		let avatarView:UIView = .init()
+		stackView.addArrangedSubview(avatarView)
+		
+		avatarView.addSubview(imageView)
+		imageView.snp.makeConstraints { make in
+			make.edges.equalToSuperview()
 		}
 		
-		let rubiesStackView:UIStackView = .init(arrangedSubviews: [self.rubiesStackView,rubiesProgressView,infoButton()])
-		rubiesStackView.axis = .horizontal
-		rubiesStackView.alignment = .center
-		rubiesStackView.spacing = UI.Margins/2
-		rubiesStackView.addGestureRecognizer(UITapGestureRecognizer(block: { _ in
-			
-			UIApplication.feedBack(.On)
-			
-			let alertController:BF_Alert_ViewController = .init()
-			alertController.title = String(key: "fights.ruby.loading.alert.title")
-			alertController.add(UIImage(named: "items_rubies"))
-			alertController.add(String(key: "fights.ruby.error.alert.label.1"))
-			
-			let nextRubyAlertControllerLabel:BF_Label = .init(BF_Ruby.shared.nextRubyString)
-			nextRubyAlertControllerLabel.font = Fonts.Content.Title.H3
-			nextRubyAlertControllerLabel.textAlignment = .center
-			alertController.add(nextRubyAlertControllerLabel)
-			
-			var nextFreeRubyTimer:Timer? = nil
-			nextFreeRubyTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-				
-				nextRubyAlertControllerLabel.text = BF_Ruby.shared.nextRubyString
-			}
-			
-			alertController.addButton(title: String(key: "fights.ruby.error.alert.button"), image: UIImage(named: "items_rubies")) { _ in
-				
-				alertController.close {
-					
-					UI.MainController.present(BF_NavigationController(rootViewController: BF_Items_Shop_ViewController()), animated: true)
-				}
-			}
-			alertController.addDismissButton()
-			alertController.present(as: .Sheet)
-			alertController.dismissHandler = {
-				
-				nextFreeRubyTimer?.invalidate()
-				nextFreeRubyTimer = nil
-			}
-		}))
-		addArrangedSubview(rubiesStackView)
+		avatarView.addSubview(levelLabel)
+		levelLabel.snp.makeConstraints { make in
+			make.left.bottom.equalToSuperview()
+		}
 		
-		let scansStackView:UIStackView = .init(arrangedSubviews: [self.scansStackView,scansProgressView,infoButton()])
-		scansStackView.axis = .horizontal
-		scansStackView.alignment = .center
-		scansStackView.spacing = UI.Margins/2
-		scansStackView.addGestureRecognizer(UITapGestureRecognizer(block: { _ in
-			
-			UIApplication.feedBack(.On)
-			
-			let alertController:BF_Alert_ViewController = .init()
-			alertController.add(UIImage(named: "scan_icon"))
-			alertController.title = String(key: "monsters.scan.loading.alert.title")
-			alertController.add(String(key: "monsters.scan.empty.alert.label.1"))
-			
-			let nextScanAlertControllerLabel:BF_Label = .init(BF_Scan.shared.nextScanString)
-			nextScanAlertControllerLabel.font = Fonts.Content.Title.H3
-			nextScanAlertControllerLabel.textAlignment = .center
-			alertController.add(nextScanAlertControllerLabel)
-			
-			var nextFreeScanTimer:Timer? = nil
-			nextFreeScanTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-				
-				nextScanAlertControllerLabel.text = BF_Scan.shared.nextScanString
-			}
-			
-			alertController.addButton(title: String(key: "monsters.scan.empty.button"), image: UIImage(named: "scan_icon")) { _ in
-				
-				alertController.close {
-					
-					UI.MainController.present(BF_NavigationController(rootViewController: BF_Items_Shop_ViewController()), animated: true)
-				}
-			}
-			alertController.addDismissButton()
-			alertController.present(as: .Sheet)
-			alertController.dismissHandler = {
-				
-				nextFreeScanTimer?.invalidate()
-				nextFreeScanTimer = nil
-			}
-		}))
-		addArrangedSubview(scansStackView)
+		let detailsStackView:UIStackView = .init(arrangedSubviews: [displayNameLabel,BF_Scans_StackView(),BF_Rubies_StackView()])
+		detailsStackView.spacing = UI.Margins/3
+		detailsStackView.axis = .vertical
+		stackView.addArrangedSubview(detailsStackView)
 	}
 	
 	required init(coder: NSCoder) {

@@ -39,7 +39,7 @@ public class BF_Monsters_Delete_Alert_ViewController : BF_Alert_ViewController {
 						NotificationCenter.post(.updateAccount)
 						NotificationCenter.post(.updateMonsters)
 						
-						BF_Toast.shared.present(title: String(key: "monsters.alert.delete.success.toast.title"), subtitle: String(key: "monsters.alert.delete.success.toast.subtitle"), style: .Success)
+						BF_Toast_Manager.shared.addToast(title: String(key: "monsters.alert.delete.success.toast.title"), subtitle: String(key: "monsters.alert.delete.success.toast.subtitle"), style: .Success)
 					}
 				}
 			}

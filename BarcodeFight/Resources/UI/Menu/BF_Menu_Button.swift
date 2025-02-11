@@ -10,13 +10,6 @@ import UIKit
 
 public class BF_Menu_Button : BF_Button {
 	
-	public override var isEnabled: Bool {
-		
-		didSet {
-			
-			alpha = isEnabled ? 1.0 : 0.5
-		}
-	}
 	public lazy var backgroundView:UIView = {
 		
 		$0.isUserInteractionEnabled = false
@@ -38,7 +31,7 @@ public class BF_Menu_Button : BF_Button {
 		
 		style = .transparent
 		snp.makeConstraints { make in
-			make.size.equalTo(4*UI.Margins)
+			make.size.equalTo(3*UI.Margins)
 		}
 		
 		addSubview(backgroundView)

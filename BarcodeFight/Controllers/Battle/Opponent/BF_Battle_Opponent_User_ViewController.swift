@@ -132,19 +132,21 @@ public class BF_Battle_Opponent_User_ViewController : BF_Battle_Opponent_ViewCon
 			viewController.enemyUser = self?.opponent
 			viewController.enemyTeam = self?.opponentMonsters
 			viewController.fight = fight
-			UI.MainController.present(viewController, animated: true)
+			viewController.victoryHandler = self?.victoryHandler
+			UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
 		})
 	}
 	
 	public override func close() {
 		
-		let alertController:BF_Alert_ViewController = .presentLoading()
-		
-		BF_Fight_Live.deleteActives {
+		BF_Alert_ViewController.presentLoading() { alertController in
 			
-			alertController.close {
+			BF_Fight_Live.deleteActives {
 				
-				super.close()
+				alertController?.close {
+					
+					super.close()
+				}
 			}
 		}
 	}

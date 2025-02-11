@@ -61,36 +61,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	private func start() {
 		
-		BF_Notifications.shared.cancelAll()
-		
-		BF_User.current?.lastConnexionDate = Date()
-		BF_User.current?.update(nil)
-		
 		BF_Fight_Live.deleteActives(nil)
 	}
 	
 	private func end() {
 		
 		BF_Fight_Live.deleteActives(nil)
+	}
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 		
-		BF_Notifications.shared.scheduleWelcome()
-		BF_Notifications.shared.scheduleWalkingDead()
-		
-		if let nextTimes = BF_Scan.shared.nextScanTimes(count: 15) {
-			
-			nextTimes.forEach({ date in
-				
-				BF_Notifications.shared.scheduleFreeScan(date)
-			})
-		}
-		
-		if let nextTimes = BF_Ruby.shared.nextRubyTimes(count: 15) {
-			
-			nextTimes.forEach({ date in
-				
-				BF_Notifications.shared.scheduleFreeRuby(date)
-			})
-		}
+		BF_Notifications.shared.apnsToken = deviceToken
 	}
 }
 

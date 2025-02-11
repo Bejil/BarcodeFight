@@ -25,24 +25,12 @@ public class BF_Account_SignIn_ViewController : BF_ViewController {
 		let emailTextField:BF_TextField = .init()
 		emailTextField.isMandatory = true
 		emailTextField.type = .email
-		
-		if UIApplication.isDebug {
-			
-			emailTextField.text = "michou855@hotmail.com"
-		}
-		
 		emailTextField.placeholder = String(key: "onboarding.signIn.email.placeholder")
 		placeholderView.contentStackView.addArrangedSubview(emailTextField)
 		
 		let passwordTextField:BF_TextField = .init()
 		passwordTextField.isMandatory = true
 		passwordTextField.type = .password
-		
-		if UIApplication.isDebug {
-			
-			passwordTextField.text = "Mich211326#"
-		}
-		
 		passwordTextField.placeholder = String(key: "onboarding.signIn.password.placeholder")
 		placeholderView.contentStackView.addArrangedSubview(passwordTextField)
 		placeholderView.contentStackView.setCustomSpacing(placeholderView.contentStackView.spacing/2, after: passwordTextField)
@@ -76,7 +64,7 @@ public class BF_Account_SignIn_ViewController : BF_ViewController {
 						}
 						else {
 							
-							BF_Toast.shared.present(title: String(key: "onboarding.signIn.password.reset.alert.toast.title"), subtitle: String(key: "onboarding.signIn.password.reset.alert.toast.subtitle"), style: .Success)
+							BF_Toast_Manager.shared.addToast(title: String(key: "onboarding.signIn.password.reset.alert.toast.title"), subtitle: String(key: "onboarding.signIn.password.reset.alert.toast.subtitle"), style: .Success)
 						}
 					}
 				}
@@ -112,7 +100,7 @@ public class BF_Account_SignIn_ViewController : BF_ViewController {
 				}
 				else {
 					
-					BF_Toast.shared.present(title: String(key: "onboarding.signIn.success.toast.title"), subtitle: String(key: "onboarding.signIn.success.toast.subtitle"), style: .Success)
+					BF_Toast_Manager.shared.addToast(title: String(key: "onboarding.signIn.success.toast.title"), subtitle: String(key: "onboarding.signIn.success.toast.subtitle"), style: .Success)
 				}
 			}
 		}

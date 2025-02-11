@@ -15,11 +15,11 @@ public class BF_TextField: MB_TextField {
 		
 		super.setUp()
 		
-		tintColor = Colors.TextField.Tint
+		tintColor = Colors.Button.Primary.Background
 		backgroundColor = .white
 		textColor = .black
-		invalidColor = Colors.TextField.Invalid
-		mandatoryColor = Colors.TextField.Invalid
+		invalidColor = Colors.Button.Delete.Background
+		mandatoryColor = Colors.Button.Delete.Background
 		borderColor = Colors.Content.Text.withAlphaComponent(0.1)
 		placeholderColor = .black.withAlphaComponent(0.5)
 		font = Fonts.Content.Text.Regular

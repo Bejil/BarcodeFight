@@ -20,6 +20,8 @@
 		D40506E62C14EFAA00210F84 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = D40506E52C14EFAA00210F84 /* GoogleMobileAds */; };
 		D40506E82C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506E72C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift */; };
 		D40506EA2C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */; };
+		D40D3E362C7C7BA800E7E854 /* BF_Challenges_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D3E352C7C7BA800E7E854 /* BF_Challenges_View.swift */; };
+		D40D3E382C7CAAF800E7E854 /* BF_Challenges_Stars_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D3E372C7CAAF800E7E854 /* BF_Challenges_Stars_TableViewCell.swift */; };
 		D412F16B2A8A761E000AFCC1 /* BF_User_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F16A2A8A761E000AFCC1 /* BF_User_Extension.swift */; };
 		D412F16D2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F16C2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift */; };
 		D412F1702A8A8DBD000AFCC1 /* BF_Fight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412F16F2A8A8DBD000AFCC1 /* BF_Fight.swift */; };
@@ -73,8 +75,8 @@
 		D4158DE32A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4158DE22A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift */; };
 		D4158DE52A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4158DE42A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift */; };
 		D41D2E262C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E252C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift */; };
-		D41D2E282C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */; };
-		D41D2E2A2C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */; };
+		D41D2E282C4E8AE200D9C16C /* BF_Monsters_PointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E272C4E8AE200D9C16C /* BF_Monsters_PointAnnotation.swift */; };
+		D41D2E2A2C4E8BD100D9C16C /* BF_Monsters_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D2E292C4E8BD100D9C16C /* BF_Monsters_AnnotationView.swift */; };
 		D42C5BD62BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */; };
 		D42C5BD92BDBD97700765CC6 /* BF_Confettis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BD82BDBD97700765CC6 /* BF_Confettis.swift */; };
 		D42C5BDC2BDC110A00765CC6 /* BF_Rubies_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C5BDB2BDC10D500765CC6 /* BF_Rubies_StackView.swift */; };
@@ -137,7 +139,7 @@
 		D467546A2A7FD6C9003DCFAF /* BF_Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46754692A7FD6C9003DCFAF /* BF_Error.swift */; };
 		D467546D2A7FDE39003DCFAF /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = D467546C2A7FDE39003DCFAF /* SwiftLocation */; };
 		D46754702A7FE037003DCFAF /* BF_Monster_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */; };
-		D46D9A222C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D9A212C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift */; };
+		D46D9A222C52752D00A73FF5 /* BF_Monsters_Cluster_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46D9A212C52752D00A73FF5 /* BF_Monsters_Cluster_AnnotationView.swift */; };
 		D477BA862A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */; };
 		D477BA882A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */; };
 		D49B176B2A80E9D4002B80D6 /* BF_CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */; };
@@ -146,6 +148,13 @@
 		D49B17732A811852002B80D6 /* BF_Monsters_ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B17722A811852002B80D6 /* BF_Monsters_ImageView.swift */; };
 		D4B653BF2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B653BE2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift */; };
 		D4B653C72AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B653C62AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift */; };
+		D4BB30C32C8F91A30016904B /* BF_Monsters_Details_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB30C22C8F91A30016904B /* BF_Monsters_Details_StackView.swift */; };
+		D4BB30C52C8F99130016904B /* BF_Monsters_Stats_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB30C42C8F99130016904B /* BF_Monsters_Stats_StackView.swift */; };
+		D4BB30C72C9032400016904B /* BF_Monsters_Full_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB30C62C9032400016904B /* BF_Monsters_Full_StackView.swift */; };
+		D4BB30C92C9052930016904B /* BF_Monsters_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB30C82C9052930016904B /* BF_Monsters_Alert_ViewController.swift */; };
+		D4BB30CC2C90DD920016904B /* BF_Monsters_Add_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB30CB2C90DD920016904B /* BF_Monsters_Add_Alert_ViewController.swift */; };
+		D4BB30D32C90F3720016904B /* BF_Item_Chest_Monsters_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BB30D22C90F3720016904B /* BF_Item_Chest_Monsters_ViewController.swift */; };
+		D4BB30D92C92D1490016904B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BB30D72C92D1490016904B /* Assets.xcassets */; };
 		D4BE14132A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14102A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift */; };
 		D4BE14142A811DB200F20782 /* BF_Account_SignUp_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14112A811DB200F20782 /* BF_Account_SignUp_ViewController.swift */; };
 		D4BE14152A811DB200F20782 /* BF_Account_SignIn_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14122A811DB200F20782 /* BF_Account_SignIn_ViewController.swift */; };
@@ -171,6 +180,24 @@
 		D4BE144F2A8179F600F20782 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE144E2A8179F600F20782 /* Alamofire */; };
 		D4BE14522A817A0700F20782 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = D4BE14512A817A0700F20782 /* AlamofireImage */; };
 		D4BE14582A81977500F20782 /* BF_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE14552A81977500F20782 /* BF_TableViewCell.swift */; };
+		D4C178BD2D3801CC0084C573 /* GLTFKit2 in Frameworks */ = {isa = PBXBuildFile; productRef = D4C178BC2D3801CC0084C573 /* GLTFKit2 */; };
+		D4CE187A2D39000A0083A5AA /* BF_Rubies_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18792D38FFFE0083A5AA /* BF_Rubies_Alert_ViewController.swift */; };
+		D4CE187C2D39045A0083A5AA /* BF_Scans_Alert_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE187B2D39045A0083A5AA /* BF_Scans_Alert_ViewController.swift */; };
+		D4CE187E2D39182D0083A5AA /* BF_Challenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE187D2D3918270083A5AA /* BF_Challenges.swift */; };
+		D4CE18812D3A46580083A5AA /* BF_Toss_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18802D3A46500083A5AA /* BF_Toss_ViewController.swift */; };
+		D4CE18832D3E9E640083A5AA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D4CE18822D3E9E640083A5AA /* FirebaseMessaging */; };
+		D4CE18962D421DEF0083A5AA /* BF_Menu_Button_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18952D421DEE0083A5AA /* BF_Menu_Button_StackView.swift */; };
+		D4CE18982D438F8F0083A5AA /* BF_Challenges_Stars_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18972D438F870083A5AA /* BF_Challenges_Stars_StackView.swift */; };
+		D4CE189B2D47E0690083A5AA /* TimeInterval_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE189A2D47E05D0083A5AA /* TimeInterval_Extension.swift */; };
+		D4CE18A02D4A21900083A5AA /* BF_News.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE189F2D4A218D0083A5AA /* BF_News.swift */; };
+		D4CE18A22D4A21CB0083A5AA /* BF_Challenges_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18A12D4A21C40083A5AA /* BF_Challenges_Extension.swift */; };
+		D4CE18A52D4A26390083A5AA /* BF_News_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18A42D4A26300083A5AA /* BF_News_ViewController.swift */; };
+		D4CE18A82D4A36000083A5AA /* BF_News_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18A72D4A35F80083A5AA /* BF_News_TableViewCell.swift */; };
+		D4CE18AB2D4A68450083A5AA /* BF_News_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CE18AA2D4A683F0083A5AA /* BF_News_Extension.swift */; };
+		D4DC564E2C7F5A1C0077CBF7 /* BF_Challenges_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC564D2C7F5A1C0077CBF7 /* BF_Challenges_ViewController.swift */; };
+		D4DC56512C7F835E0077CBF7 /* BF_Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC56502C7F835E0077CBF7 /* BF_Challenge.swift */; };
+		D4DC56532C80DB3E0077CBF7 /* BF_Challenges_TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC56522C80DB3E0077CBF7 /* BF_Challenges_TableViewHeaderView.swift */; };
+		D4DC56562C81C79E0077CBF7 /* BF_Challenge_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC56552C81C79E0077CBF7 /* BF_Challenge_Extension.swift */; };
 		D4DD053B2AA6337F00E418E2 /* QRCode in Frameworks */ = {isa = PBXBuildFile; productRef = D4DD053A2AA6337F00E418E2 /* QRCode */; };
 		D4EA29D62A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA29D52A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift */; };
 		D4EA29D82A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA29D72A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift */; };
@@ -183,7 +210,7 @@
 		D4EE6CE82A935A2500697CC5 /* UserDefaults_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CE72A935A2500697CC5 /* UserDefaults_Extension.swift */; };
 		D4EE6CEB2A935B0300697CC5 /* BF_UrlScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CEA2A935B0300697CC5 /* BF_UrlScheme.swift */; };
 		D4EE6CF02A93FE5500697CC5 /* Bool_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CEF2A93FE5500697CC5 /* Bool_Extension.swift */; };
-		D4EE6CF22A95016C00697CC5 /* BF_Monsters_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF12A95016C00697CC5 /* BF_Monsters_StackView.swift */; };
+		D4EE6CF22A95016C00697CC5 /* BF_Monsters_Min_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF12A95016C00697CC5 /* BF_Monsters_Min_StackView.swift */; };
 		D4EE6CF52A96972200697CC5 /* BF_Monsters_Particules_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF42A96972200697CC5 /* BF_Monsters_Particules_View.swift */; };
 		D4EE6CF82A9893A400697CC5 /* BF_Items_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF72A9893A400697CC5 /* BF_Items_ViewController.swift */; };
 		D4EE6CFA2A98D43500697CC5 /* BF_Items_Shop_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EE6CF92A98D43500697CC5 /* BF_Items_Shop_ViewController.swift */; };
@@ -201,6 +228,19 @@
 		D4F364B02BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F364AF2BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D4CE18942D3EA99F0083A5AA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D40506CA2C011C8800210F84 /* BF_Monsters_Details_Page_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Details_Page_ViewController.swift; sourceTree = "<group>"; };
 		D40506CE2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Game_Page_ViewController.swift; sourceTree = "<group>"; };
@@ -211,10 +251,11 @@
 		D40506D92C09BEF000210F84 /* BF_User_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_TableViewCell.swift; sourceTree = "<group>"; };
 		D40506DB2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Fights_ViewController.swift; sourceTree = "<group>"; };
 		D40506DD2C106A8F00210F84 /* BF_Fights_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fights_TableViewCell.swift; sourceTree = "<group>"; };
-		D40506DF2C13549400210F84 /* BF_UnusedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_UnusedStrings.swift; sourceTree = "<group>"; };
 		D40506E22C14EF4E00210F84 /* BF_Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Ads.swift; sourceTree = "<group>"; };
 		D40506E72C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Ads_ViewController.swift; sourceTree = "<group>"; };
 		D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Chest_Monsters_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D40D3E352C7C7BA800E7E854 /* BF_Challenges_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges_View.swift; sourceTree = "<group>"; };
+		D40D3E372C7CAAF800E7E854 /* BF_Challenges_Stars_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges_Stars_TableViewCell.swift; sourceTree = "<group>"; };
 		D412F16A2A8A761E000AFCC1 /* BF_User_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_User_Extension.swift; sourceTree = "<group>"; };
 		D412F16C2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Settings_ViewController.swift; sourceTree = "<group>"; };
 		D412F16F2A8A8DBD000AFCC1 /* BF_Fight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Fight.swift; sourceTree = "<group>"; };
@@ -266,8 +307,8 @@
 		D4158DE22A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_CollectionViewCell.swift; sourceTree = "<group>"; };
 		D4158DE42A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Stat_ProgressView.swift; sourceTree = "<group>"; };
 		D41D2E252C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Locations_ViewController.swift; sourceTree = "<group>"; };
-		D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_PointAnnotation.swift; sourceTree = "<group>"; };
-		D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_AnnotationView.swift; sourceTree = "<group>"; };
+		D41D2E272C4E8AE200D9C16C /* BF_Monsters_PointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_PointAnnotation.swift; sourceTree = "<group>"; };
+		D41D2E292C4E8BD100D9C16C /* BF_Monsters_AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_AnnotationView.swift; sourceTree = "<group>"; };
 		D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Item_Chest_Objects_Alert_ViewController.swift; sourceTree = "<group>"; };
 		D42C5BD82BDBD97700765CC6 /* BF_Confettis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Confettis.swift; sourceTree = "<group>"; };
 		D42C5BDB2BDC10D500765CC6 /* BF_Rubies_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Rubies_StackView.swift; sourceTree = "<group>"; };
@@ -328,7 +369,7 @@
 		D46754662A7C41AC003DCFAF /* BF_Authorizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Authorizations.swift; sourceTree = "<group>"; };
 		D46754692A7FD6C9003DCFAF /* BF_Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Error.swift; sourceTree = "<group>"; };
 		D467546F2A7FE037003DCFAF /* BF_Monster_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_Extension.swift; sourceTree = "<group>"; };
-		D46D9A212C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monster_Cluster_AnnotationView.swift; sourceTree = "<group>"; };
+		D46D9A212C52752D00A73FF5 /* BF_Monsters_Cluster_AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Cluster_AnnotationView.swift; sourceTree = "<group>"; };
 		D477BA852A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets_Extension.swift; sourceTree = "<group>"; };
 		D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Delete_Alert_ViewController.swift; sourceTree = "<group>"; };
 		D49B176A2A80E9D4002B80D6 /* BF_CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -337,6 +378,13 @@
 		D49B17722A811852002B80D6 /* BF_Monsters_ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_ImageView.swift; sourceTree = "<group>"; };
 		D4B653BE2AA7C1E00099B0E0 /* BF_Battle_Fight_User_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Fight_User_ViewController.swift; sourceTree = "<group>"; };
 		D4B653C62AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Battle_Fight_Fake_ViewController.swift; sourceTree = "<group>"; };
+		D4BB30C22C8F91A30016904B /* BF_Monsters_Details_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Details_StackView.swift; sourceTree = "<group>"; };
+		D4BB30C42C8F99130016904B /* BF_Monsters_Stats_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Stats_StackView.swift; sourceTree = "<group>"; };
+		D4BB30C62C9032400016904B /* BF_Monsters_Full_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Full_StackView.swift; sourceTree = "<group>"; };
+		D4BB30C82C9052930016904B /* BF_Monsters_Alert_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4BB30CB2C90DD920016904B /* BF_Monsters_Add_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Add_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4BB30D22C90F3720016904B /* BF_Item_Chest_Monsters_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Item_Chest_Monsters_ViewController.swift; sourceTree = "<group>"; };
+		D4BB30D72C92D1490016904B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4BE14102A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Onboarding_Account_ViewController.swift; sourceTree = "<group>"; };
 		D4BE14112A811DB200F20782 /* BF_Account_SignUp_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_SignUp_ViewController.swift; sourceTree = "<group>"; };
 		D4BE14122A811DB200F20782 /* BF_Account_SignIn_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_Account_SignIn_ViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +401,22 @@
 		D4BE144B2A8179C700F20782 /* BF_Account_Infos_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Account_Infos_ViewController.swift; sourceTree = "<group>"; };
 		D4BE14552A81977500F20782 /* BF_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_TableViewCell.swift; sourceTree = "<group>"; };
 		D4BE14562A81977500F20782 /* BF_TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_TableView.swift; sourceTree = "<group>"; };
+		D4CE18792D38FFFE0083A5AA /* BF_Rubies_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Rubies_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4CE187B2D39045A0083A5AA /* BF_Scans_Alert_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Scans_Alert_ViewController.swift; sourceTree = "<group>"; };
+		D4CE187D2D3918270083A5AA /* BF_Challenges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges.swift; sourceTree = "<group>"; };
+		D4CE18802D3A46500083A5AA /* BF_Toss_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Toss_ViewController.swift; sourceTree = "<group>"; };
+		D4CE18952D421DEE0083A5AA /* BF_Menu_Button_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Menu_Button_StackView.swift; sourceTree = "<group>"; };
+		D4CE18972D438F870083A5AA /* BF_Challenges_Stars_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges_Stars_StackView.swift; sourceTree = "<group>"; };
+		D4CE189A2D47E05D0083A5AA /* TimeInterval_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval_Extension.swift; sourceTree = "<group>"; };
+		D4CE189F2D4A218D0083A5AA /* BF_News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_News.swift; sourceTree = "<group>"; };
+		D4CE18A12D4A21C40083A5AA /* BF_Challenges_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges_Extension.swift; sourceTree = "<group>"; };
+		D4CE18A42D4A26300083A5AA /* BF_News_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_News_ViewController.swift; sourceTree = "<group>"; };
+		D4CE18A72D4A35F80083A5AA /* BF_News_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_News_TableViewCell.swift; sourceTree = "<group>"; };
+		D4CE18AA2D4A683F0083A5AA /* BF_News_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_News_Extension.swift; sourceTree = "<group>"; };
+		D4DC564D2C7F5A1C0077CBF7 /* BF_Challenges_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges_ViewController.swift; sourceTree = "<group>"; };
+		D4DC56502C7F835E0077CBF7 /* BF_Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenge.swift; sourceTree = "<group>"; };
+		D4DC56522C80DB3E0077CBF7 /* BF_Challenges_TableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenges_TableViewHeaderView.swift; sourceTree = "<group>"; };
+		D4DC56552C81C79E0077CBF7 /* BF_Challenge_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Challenge_Extension.swift; sourceTree = "<group>"; };
 		D4EA29D52A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Elements_StackView.swift; sourceTree = "<group>"; };
 		D4EA29D72A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_List_ViewController.swift; sourceTree = "<group>"; };
 		D4EA29DC2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Details_Add_ViewController.swift; sourceTree = "<group>"; };
@@ -365,7 +429,7 @@
 		D4EE6CE72A935A2500697CC5 /* UserDefaults_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults_Extension.swift; sourceTree = "<group>"; };
 		D4EE6CEA2A935B0300697CC5 /* BF_UrlScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BF_UrlScheme.swift; sourceTree = "<group>"; };
 		D4EE6CEF2A93FE5500697CC5 /* Bool_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool_Extension.swift; sourceTree = "<group>"; };
-		D4EE6CF12A95016C00697CC5 /* BF_Monsters_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_StackView.swift; sourceTree = "<group>"; };
+		D4EE6CF12A95016C00697CC5 /* BF_Monsters_Min_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Min_StackView.swift; sourceTree = "<group>"; };
 		D4EE6CF42A96972200697CC5 /* BF_Monsters_Particules_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Monsters_Particules_View.swift; sourceTree = "<group>"; };
 		D4EE6CF72A9893A400697CC5 /* BF_Items_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Items_ViewController.swift; sourceTree = "<group>"; };
 		D4EE6CF92A98D43500697CC5 /* BF_Items_Shop_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_Items_Shop_ViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +460,7 @@
 				D46754292A7BD54A003DCFAF /* SnapKit in Frameworks */,
 				D4BE143F2A81297C00F20782 /* FirebaseStorage in Frameworks */,
 				D467546D2A7FDE39003DCFAF /* SwiftLocation in Frameworks */,
+				D4C178BD2D3801CC0084C573 /* GLTFKit2 in Frameworks */,
 				D432D48E2BDA464D00E91F5A /* StoreKit.framework in Frameworks */,
 				D4BE143B2A81297C00F20782 /* FirebaseFirestore in Frameworks */,
 				D414B53D2BD7B49400A006FE /* SwiftySound in Frameworks */,
@@ -407,6 +472,7 @@
 				D4EE6CFD2A99019B00697CC5 /* FirebaseRemoteConfig in Frameworks */,
 				D4BE14252A81225800F20782 /* MB_TextField in Frameworks */,
 				D414B5452BD7BC7400A006FE /* SPConfetti in Frameworks */,
+				D4CE18832D3E9E640083A5AA /* FirebaseMessaging in Frameworks */,
 				D4BE143D2A81297C00F20782 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +503,17 @@
 				D40506E22C14EF4E00210F84 /* BF_Ads.swift */,
 			);
 			path = Ads;
+			sourceTree = "<group>";
+		};
+		D40D3E342C7C7B8D00E7E854 /* Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				D40D3E352C7C7BA800E7E854 /* BF_Challenges_View.swift */,
+				D40D3E372C7CAAF800E7E854 /* BF_Challenges_Stars_TableViewCell.swift */,
+				D4CE18972D438F870083A5AA /* BF_Challenges_Stars_StackView.swift */,
+				D4DC56522C80DB3E0077CBF7 /* BF_Challenges_TableViewHeaderView.swift */,
+			);
+			path = Challenges;
 			sourceTree = "<group>";
 		};
 		D412F1692A8A7610000AFCC1 /* User */ = {
@@ -628,6 +705,7 @@
 			isa = PBXGroup;
 			children = (
 				D42C5BDB2BDC10D500765CC6 /* BF_Rubies_StackView.swift */,
+				D4CE18792D38FFFE0083A5AA /* BF_Rubies_Alert_ViewController.swift */,
 			);
 			path = Rubies;
 			sourceTree = "<group>";
@@ -660,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				D42C5BF62BE3950A00765CC6 /* BF_Menu_Button.swift */,
+				D4CE18952D421DEE0083A5AA /* BF_Menu_Button_StackView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -676,6 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				D42C5BFC2BE3DEDE00765CC6 /* BF_Scans_StackView.swift */,
+				D4CE187B2D39045A0083A5AA /* BF_Scans_Alert_ViewController.swift */,
 			);
 			path = Scans;
 			sourceTree = "<group>";
@@ -760,7 +840,6 @@
 		D46753F02A762DE4003DCFAF = {
 			isa = PBXGroup;
 			children = (
-				D40506DF2C13549400210F84 /* BF_UnusedStrings.swift */,
 				D46753FB2A762DE4003DCFAF /* BarcodeFight */,
 				D46753FA2A762DE4003DCFAF /* Products */,
 				D4EE6CFB2A99019B00697CC5 /* Frameworks */,
@@ -811,8 +890,11 @@
 		D46754112A762E01003DCFAF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D4CE187F2D3A46450083A5AA /* Toss */,
 				D46754072A762DE5003DCFAF /* LaunchScreen.storyboard */,
 				D46754052A762DE5003DCFAF /* Assets.xcassets */,
+				D4CE18A62D4A35F20083A5AA /* News */,
+				D40D3E342C7C7B8D00E7E854 /* Challenges */,
 				D4352E2B2C4AF2F80059D6E2 /* Product */,
 				D4352E0F2C4250410059D6E2 /* Tutorial */,
 				D42C5BDA2BDC10CF00765CC6 /* Rubies */,
@@ -843,6 +925,8 @@
 		D46754132A762FDE003DCFAF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				D4CE189E2D4A21870083A5AA /* News */,
+				D4DC564F2C7F83520077CBF7 /* Challenge */,
 				D42C5BFA2BE3A80600765CC6 /* Ruby */,
 				D4EE6D032A99095600697CC5 /* Item */,
 				D412F1802A8CF1EE000AFCC1 /* Scan */,
@@ -906,6 +990,7 @@
 		D467542C2A7BD7A9003DCFAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D4CE18992D47E0530083A5AA /* TimeInterval */,
 				D4EE6D002A99058B00697CC5 /* Firebase */,
 				D4EE6CEE2A93FE4200697CC5 /* Bool */,
 				D4EE6CE62A935A2500697CC5 /* UserDefaults */,
@@ -1004,6 +1089,8 @@
 		D467545C2A7C15AF003DCFAF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4CE18A32D4A26230083A5AA /* News */,
+				D4DC564C2C7F59480077CBF7 /* Challenges */,
 				D40506D22C04C47700210F84 /* Story */,
 				D4EE6D272AA0946B00697CC5 /* Battle */,
 				D44EED832BF3625F0058C4ED /* Scanner */,
@@ -1042,6 +1129,8 @@
 		D467546E2A7FE02A003DCFAF /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				D4CE18A92D4A683A0083A5AA /* News */,
+				D4DC56542C81C78A0077CBF7 /* Challenge */,
 				D42C5BFE2BE41B3800765CC6 /* Scan */,
 				D42C5BF02BE0DB9A00765CC6 /* Items */,
 				D412F18F2A8EA880000AFCC1 /* Fight */,
@@ -1062,18 +1151,22 @@
 		D49B17622A800046002B80D6 /* Monsters */ = {
 			isa = PBXGroup;
 			children = (
+				D4BB30CA2C90DD800016904B /* Alert */,
+				D4BB30C62C9032400016904B /* BF_Monsters_Full_StackView.swift */,
 				D4158DE22A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift */,
 				D44EED852BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift */,
 				D44EED802BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift */,
-				D4EE6CF12A95016C00697CC5 /* BF_Monsters_StackView.swift */,
+				D4EE6CF12A95016C00697CC5 /* BF_Monsters_Min_StackView.swift */,
 				D477BA872A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift */,
 				D49B17722A811852002B80D6 /* BF_Monsters_ImageView.swift */,
 				D4158DE42A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift */,
 				D4EE6CF32A9696FA00697CC5 /* Particules */,
 				D412F1862A8E5C6A000AFCC1 /* Element */,
-				D41D2E272C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift */,
-				D41D2E292C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift */,
-				D46D9A212C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift */,
+				D41D2E272C4E8AE200D9C16C /* BF_Monsters_PointAnnotation.swift */,
+				D41D2E292C4E8BD100D9C16C /* BF_Monsters_AnnotationView.swift */,
+				D46D9A212C52752D00A73FF5 /* BF_Monsters_Cluster_AnnotationView.swift */,
+				D4BB30C22C8F91A30016904B /* BF_Monsters_Details_StackView.swift */,
+				D4BB30C42C8F99130016904B /* BF_Monsters_Stats_StackView.swift */,
 			);
 			path = Monsters;
 			sourceTree = "<group>";
@@ -1137,6 +1230,33 @@
 				D4EE6CF92A98D43500697CC5 /* BF_Items_Shop_ViewController.swift */,
 			);
 			path = Shop;
+			sourceTree = "<group>";
+		};
+		D4BB30CA2C90DD800016904B /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB30C82C9052930016904B /* BF_Monsters_Alert_ViewController.swift */,
+				D4BB30CB2C90DD920016904B /* BF_Monsters_Add_Alert_ViewController.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		D4BB30D42C91F5E00016904B /* Chest */ = {
+			isa = PBXGroup;
+			children = (
+				D4BB30D52C91F5E90016904B /* Monsters */,
+				D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */,
+			);
+			path = Chest;
+			sourceTree = "<group>";
+		};
+		D4BB30D52C91F5E90016904B /* Monsters */ = {
+			isa = PBXGroup;
+			children = (
+				D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */,
+				D4BB30D22C90F3720016904B /* BF_Item_Chest_Monsters_ViewController.swift */,
+			);
+			path = Monsters;
 			sourceTree = "<group>";
 		};
 		D4BE140E2A811DA400F20782 /* Monsters */ = {
@@ -1233,6 +1353,80 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		D4CE187F2D3A46450083A5AA /* Toss */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE18802D3A46500083A5AA /* BF_Toss_ViewController.swift */,
+			);
+			path = Toss;
+			sourceTree = "<group>";
+		};
+		D4CE18992D47E0530083A5AA /* TimeInterval */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE189A2D47E05D0083A5AA /* TimeInterval_Extension.swift */,
+			);
+			path = TimeInterval;
+			sourceTree = "<group>";
+		};
+		D4CE189E2D4A21870083A5AA /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE189F2D4A218D0083A5AA /* BF_News.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		D4CE18A32D4A26230083A5AA /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE18A42D4A26300083A5AA /* BF_News_ViewController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		D4CE18A62D4A35F20083A5AA /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE18A72D4A35F80083A5AA /* BF_News_TableViewCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		D4CE18A92D4A683A0083A5AA /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE18AA2D4A683F0083A5AA /* BF_News_Extension.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		D4DC564C2C7F59480077CBF7 /* Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				D4DC564D2C7F5A1C0077CBF7 /* BF_Challenges_ViewController.swift */,
+			);
+			path = Challenges;
+			sourceTree = "<group>";
+		};
+		D4DC564F2C7F83520077CBF7 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE187D2D3918270083A5AA /* BF_Challenges.swift */,
+				D4DC56502C7F835E0077CBF7 /* BF_Challenge.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
+		D4DC56542C81C78A0077CBF7 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				D4CE18A12D4A21C40083A5AA /* BF_Challenges_Extension.swift */,
+				D4DC56552C81C79E0077CBF7 /* BF_Challenge_Extension.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
 		D4EA29DB2A8EDBC500A76B25 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,6 +1483,7 @@
 			children = (
 				D462452C2A86749400E54CB8 /* BF_Monsters_Particules.sks */,
 				D4EE6CF42A96972200697CC5 /* BF_Monsters_Particules_View.swift */,
+				D4BB30D72C92D1490016904B /* Assets.xcassets */,
 			);
 			path = Particules;
 			sourceTree = "<group>";
@@ -1340,8 +1535,7 @@
 		D4EE6D0C2A992B3A00697CC5 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				D42C5BD52BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift */,
-				D40506E92C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift */,
+				D4BB30D42C91F5E00016904B /* Chest */,
 				D4EE6D122A99F64100697CC5 /* BF_Item_TableViewCell.swift */,
 				D432D4922BDA8A7300E91F5A /* BF_Item_Object_TableViewCell.swift */,
 				D432D4962BDA8C8D00E91F5A /* Shop */,
@@ -1377,6 +1571,7 @@
 				D46753F52A762DE4003DCFAF /* Sources */,
 				D46753F62A762DE4003DCFAF /* Frameworks */,
 				D46753F72A762DE4003DCFAF /* Resources */,
+				D4CE18942D3EA99F0083A5AA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1403,6 +1598,8 @@
 				D42C5BEC2BDFD14500765CC6 /* SVGKit */,
 				D42C5BEE2BDFD14500765CC6 /* SVGKitSwift */,
 				D40506E52C14EFAA00210F84 /* GoogleMobileAds */,
+				D4C178BC2D3801CC0084C573 /* GLTFKit2 */,
+				D4CE18822D3E9E640083A5AA /* FirebaseMessaging */,
 			);
 			productName = BarcodeFight;
 			productReference = D46753F92A762DE4003DCFAF /* BarcodeFight.app */;
@@ -1415,7 +1612,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					D46753F82A762DE4003DCFAF = {
@@ -1446,6 +1643,7 @@
 				D414B5432BD7BC7400A006FE /* XCRemoteSwiftPackageReference "SPConfetti" */,
 				D42C5BEB2BDFD14500765CC6 /* XCRemoteSwiftPackageReference "SVGKit" */,
 				D40506E42C14EFAA00210F84 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				D4C178BB2D3801CC0084C573 /* XCRemoteSwiftPackageReference "GLTFKit2" */,
 			);
 			productRefGroup = D46753FA2A762DE4003DCFAF /* Products */;
 			projectDirPath = "";
@@ -1492,6 +1690,7 @@
 				D414B51D2BD7B41D00A006FE /* Death_0.mp3 in Resources */,
 				D414B5352BD7B41D00A006FE /* Impact_10.mp3 in Resources */,
 				D467545B2A7C1467003DCFAF /* Localizable.strings in Resources */,
+				D4BB30D92C92D1490016904B /* Assets.xcassets in Resources */,
 				D414B5312BD7B41D00A006FE /* Impact_6.mp3 in Resources */,
 				D414B5412BD7BA0600A006FE /* Battle.mp3 in Resources */,
 				D414B5272BD7B41D00A006FE /* Dodge_3.mp3 in Resources */,
@@ -1526,9 +1725,11 @@
 				D467542B2A7BD788003DCFAF /* Constants.swift in Sources */,
 				D42C5BF92BE3A7FF00765CC6 /* BF_Ruby.swift in Sources */,
 				D46754202A799F0A003DCFAF /* BF_Markov.swift in Sources */,
+				D4DC56512C7F835E0077CBF7 /* BF_Challenge.swift in Sources */,
 				D46754472A7BD956003DCFAF /* BF_Label.swift in Sources */,
 				D4352E1F2C4933A30059D6E2 /* BF_BarcodeLookup.swift in Sources */,
 				D4F364B02BF27F5400C12DB1 /* BF_Monsters_List_Select_ViewController.swift in Sources */,
+				D4CE187C2D39045A0083A5AA /* BF_Scans_Alert_ViewController.swift in Sources */,
 				D432D4882BD93B9400E91F5A /* BF_Battle_Opponent_User_ViewController.swift in Sources */,
 				D4EE6D022A99059700697CC5 /* RemoteConfig_Extension.swift in Sources */,
 				D46754462A7BD956003DCFAF /* BF_Button.swift in Sources */,
@@ -1541,6 +1742,7 @@
 				D467544F2A7BDA46003DCFAF /* UIViewController_Extension.swift in Sources */,
 				D4EE6D052A99096300697CC5 /* BF_Item.swift in Sources */,
 				D40506CF2C01210B00210F84 /* BF_Onboarding_Game_Page_ViewController.swift in Sources */,
+				D4CE18A02D4A21900083A5AA /* BF_News.swift in Sources */,
 				D40506EA2C18349D00210F84 /* BF_Item_Chest_Monsters_Alert_ViewController.swift in Sources */,
 				D4EE6CF82A9893A400697CC5 /* BF_Items_ViewController.swift in Sources */,
 				D4352E2E2C4E53B40059D6E2 /* BF_Monsters_List_Products_ViewController.swift in Sources */,
@@ -1549,6 +1751,7 @@
 				D42C5C022BE4D88F00765CC6 /* BF_Fight_Live.swift in Sources */,
 				D4EA29D82A8ECD0E00A76B25 /* BF_Monsters_List_ViewController.swift in Sources */,
 				D414B53A2BD7B45000A006FE /* BF_Audio.swift in Sources */,
+				D4BB30CC2C90DD920016904B /* BF_Monsters_Add_Alert_ViewController.swift in Sources */,
 				D4EE6D0E2A992B4A00697CC5 /* BF_Item_Shop_InAppPurchase_TableViewCell.swift in Sources */,
 				D4BE14132A811DB200F20782 /* BF_Onboarding_Account_ViewController.swift in Sources */,
 				D4EE6CE02A934E5100697CC5 /* BF_Notifications.swift in Sources */,
@@ -1560,6 +1763,7 @@
 				D4158DE52A84E7D10068E3D6 /* BF_Monsters_Stat_ProgressView.swift in Sources */,
 				D412F16B2A8A761E000AFCC1 /* BF_User_Extension.swift in Sources */,
 				D46753FD2A762DE4003DCFAF /* AppDelegate.swift in Sources */,
+				D4CE18A82D4A36000083A5AA /* BF_News_TableViewCell.swift in Sources */,
 				D40506D82C09BAA600210F84 /* BF_Account_Ranking_ViewController.swift in Sources */,
 				D4BE141B2A811EE000F20782 /* BF_Account_DisplayName_Alert_ViewController.swift in Sources */,
 				D432D48C2BD964AF00E91F5A /* BF_SegmentedControl.swift in Sources */,
@@ -1568,25 +1772,31 @@
 				D4BE14312A8123FA00F20782 /* BF_User.swift in Sources */,
 				D4352E132C45AEFD0059D6E2 /* BF_Items_Alert_ViewController.swift in Sources */,
 				D42C5BD62BDBAACB00765CC6 /* BF_Item_Chest_Objects_Alert_ViewController.swift in Sources */,
+				D4BB30C92C9052930016904B /* BF_Monsters_Alert_ViewController.swift in Sources */,
 				D4EE6CD92A90FBE200697CC5 /* BF_Battle_Team_ViewController.swift in Sources */,
+				D4CE187A2D39000A0083A5AA /* BF_Rubies_Alert_ViewController.swift in Sources */,
 				D46754562A7BDAE0003DCFAF /* UIView_Extension.swift in Sources */,
-				D46D9A222C52752D00A73FF5 /* BF_Monster_Cluster_AnnotationView.swift in Sources */,
+				D46D9A222C52752D00A73FF5 /* BF_Monsters_Cluster_AnnotationView.swift in Sources */,
 				D40506E82C1789BA00210F84 /* BF_Onboarding_Ads_ViewController.swift in Sources */,
 				D467546A2A7FD6C9003DCFAF /* BF_Error.swift in Sources */,
 				D40506E32C14EF4E00210F84 /* BF_Ads.swift in Sources */,
+				D4CE189B2D47E0690083A5AA /* TimeInterval_Extension.swift in Sources */,
 				D432D4912BDA482B00E91F5A /* BF_InAppPurchase.swift in Sources */,
+				D4CE18982D438F8F0083A5AA /* BF_Challenges_Stars_StackView.swift in Sources */,
 				D44EED882BF4DA360058C4ED /* BF_User_Opponent_StackView.swift in Sources */,
 				D412F18A2A8E5C8D000AFCC1 /* BF_Monster_Descriptions.swift in Sources */,
 				D4EE6CFA2A98D43500697CC5 /* BF_Items_Shop_ViewController.swift in Sources */,
 				D42C5BE72BDFC21200765CC6 /* UIColor_Extension.swift in Sources */,
 				D49B17732A811852002B80D6 /* BF_Monsters_ImageView.swift in Sources */,
 				D42C5BF72BE3950A00765CC6 /* BF_Menu_Button.swift in Sources */,
+				D4DC56532C80DB3E0077CBF7 /* BF_Challenges_TableViewHeaderView.swift in Sources */,
 				D40506DC2C1061BD00210F84 /* BF_Account_Fights_ViewController.swift in Sources */,
 				D4EE6D292AA0948C00697CC5 /* BF_Battle_Fight_ViewController.swift in Sources */,
 				D4EA29D62A8EC1CD00A76B25 /* BF_Monsters_Elements_StackView.swift in Sources */,
 				D4EE6D152A99FCCC00697CC5 /* BF_Items_Monsters_ViewController.swift in Sources */,
+				D4BB30C32C8F91A30016904B /* BF_Monsters_Details_StackView.swift in Sources */,
 				D432D4952BDA8A7600E91F5A /* BF_Item_Shop_TableViewCell.swift in Sources */,
-				D4EE6CF22A95016C00697CC5 /* BF_Monsters_StackView.swift in Sources */,
+				D4EE6CF22A95016C00697CC5 /* BF_Monsters_Min_StackView.swift in Sources */,
 				D41D2E262C4E746300D9C16C /* BF_Monsters_Locations_ViewController.swift in Sources */,
 				D42C5BF22BE0DBA700765CC6 /* BF_Item_Extension.swift in Sources */,
 				D46754512A7BDA87003DCFAF /* UIGestureRecognizer_Extension.swift in Sources */,
@@ -1599,36 +1809,48 @@
 				D412F1702A8A8DBD000AFCC1 /* BF_Fight.swift in Sources */,
 				D46754332A7BD835003DCFAF /* BF_ViewController.swift in Sources */,
 				D4BE142F2A8123EC00F20782 /* BF_Account.swift in Sources */,
+				D4CE18812D3A46580083A5AA /* BF_Toss_ViewController.swift in Sources */,
+				D4BB30D32C90F3720016904B /* BF_Item_Chest_Monsters_ViewController.swift in Sources */,
+				D4BB30C72C9032400016904B /* BF_Monsters_Full_StackView.swift in Sources */,
 				D4158DE32A83DE600068E3D6 /* BF_Monsters_CollectionViewCell.swift in Sources */,
 				D4EE6CE82A935A2500697CC5 /* UserDefaults_Extension.swift in Sources */,
 				D4EA29DD2A8EDBD500A76B25 /* BF_Monsters_Details_Add_ViewController.swift in Sources */,
 				D42C5BF42BE1428D00765CC6 /* BF_Scanner_ViewController.swift in Sources */,
 				D4EE6CF52A96972200697CC5 /* BF_Monsters_Particules_View.swift in Sources */,
 				D46245332A86D3FA00E54CB8 /* BF_Monsters_Element_View.swift in Sources */,
+				D4BB30C52C8F99130016904B /* BF_Monsters_Stats_StackView.swift in Sources */,
 				D40506D42C04C48800210F84 /* BF_Story_ViewController.swift in Sources */,
+				D4CE18A22D4A21CB0083A5AA /* BF_Challenges_Extension.swift in Sources */,
 				D4B653C72AA7C25F0099B0E0 /* BF_Battle_Fight_Fake_ViewController.swift in Sources */,
 				D4352E2A2C4AF2F40059D6E2 /* BF_Product_Add_Alert_ViewController.swift in Sources */,
+				D4DC56562C81C79E0077CBF7 /* BF_Challenge_Extension.swift in Sources */,
 				D412F16D2A8A8C2D000AFCC1 /* BF_Account_Settings_ViewController.swift in Sources */,
+				D40D3E362C7C7BA800E7E854 /* BF_Challenges_View.swift in Sources */,
 				D4BE14152A811DB200F20782 /* BF_Account_SignIn_ViewController.swift in Sources */,
 				D4BE144C2A8179C700F20782 /* BF_Account_Infos_ViewController.swift in Sources */,
-				D41D2E2A2C4E8BD100D9C16C /* BF_Monster_AnnotationView.swift in Sources */,
+				D41D2E2A2C4E8BD100D9C16C /* BF_Monsters_AnnotationView.swift in Sources */,
 				D467545E2A7C15BD003DCFAF /* BF_Monsters_List_Home_ViewController.swift in Sources */,
+				D4CE18A52D4A26390083A5AA /* BF_News_ViewController.swift in Sources */,
 				D477BA862A83902E00A1887F /* NSDirectionalEdgeInsets_Extension.swift in Sources */,
 				D477BA882A83994100A1887F /* BF_Monsters_Delete_Alert_ViewController.swift in Sources */,
-				D41D2E282C4E8AE200D9C16C /* BF_Monster_PointAnnotation.swift in Sources */,
+				D41D2E282C4E8AE200D9C16C /* BF_Monsters_PointAnnotation.swift in Sources */,
 				D4BE14282A81227700F20782 /* BF_TextField.swift in Sources */,
+				D4CE187E2D39182D0083A5AA /* BF_Challenges.swift in Sources */,
 				D4EE6D132A99F64100697CC5 /* BF_Item_TableViewCell.swift in Sources */,
 				D49B176F2A80F8C7002B80D6 /* BF_Barcode_StackView.swift in Sources */,
 				D4EE6CE52A934F6400697CC5 /* UNNotificationAction_Extension.swift in Sources */,
 				D46754262A7BD40E003DCFAF /* BF_Alert_ViewController.swift in Sources */,
 				D412F18E2A8E64AC000AFCC1 /* BF_Fights_StackView.swift in Sources */,
 				D44EED812BF35BB10058C4ED /* BF_Monsters_Add_CollectionViewCell.swift in Sources */,
+				D4DC564E2C7F5A1C0077CBF7 /* BF_Challenges_ViewController.swift in Sources */,
 				D46754672A7C41AC003DCFAF /* BF_Authorizations.swift in Sources */,
 				D4BE14582A81977500F20782 /* BF_TableViewCell.swift in Sources */,
 				D44EED862BF3BCA60058C4ED /* BF_Monsters_Empty_CollectionViewCell.swift in Sources */,
 				D467544E2A7BDA46003DCFAF /* UIApplication_Extension.swift in Sources */,
+				D40D3E382C7CAAF800E7E854 /* BF_Challenges_Stars_TableViewCell.swift in Sources */,
 				D49B176B2A80E9D4002B80D6 /* BF_CollectionViewCell.swift in Sources */,
 				D4BE141C2A811EE000F20782 /* BF_Account_PasswordValidation_StackView.swift in Sources */,
+				D4CE18962D421DEF0083A5AA /* BF_Menu_Button_StackView.swift in Sources */,
 				D40506DE2C106A8F00210F84 /* BF_Fights_TableViewCell.swift in Sources */,
 				D40506DA2C09BEF000210F84 /* BF_User_TableViewCell.swift in Sources */,
 				D42C5BDC2BDC110A00765CC6 /* BF_Rubies_StackView.swift in Sources */,
@@ -1640,6 +1862,7 @@
 				D412F1822A8CF200000AFCC1 /* BF_Scan.swift in Sources */,
 				D42C5BFD2BE3DEED00765CC6 /* BF_Scans_StackView.swift in Sources */,
 				D412F17C2A8C163E000AFCC1 /* BF_User_StackView.swift in Sources */,
+				D4CE18AB2D4A68450083A5AA /* BF_News_Extension.swift in Sources */,
 				D46754702A7FE037003DCFAF /* BF_Monster_Extension.swift in Sources */,
 				D4BE14492A813ED200F20782 /* BF_Firebase.swift in Sources */,
 				D4EE6CF02A93FE5500697CC5 /* Bool_Extension.swift in Sources */,
@@ -1962,6 +2185,14 @@
 				minimumVersion = 4.2.0;
 			};
 		};
+		D4C178BB2D3801CC0084C573 /* XCRemoteSwiftPackageReference "GLTFKit2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/warrenm/GLTFKit2";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.12;
+			};
+		};
 		D4DD05392AA6337F00E418E2 /* XCRemoteSwiftPackageReference "QRCode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dagronf/QRCode.git";
@@ -2057,6 +2288,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D4BE14502A817A0700F20782 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
 			productName = AlamofireImage;
+		};
+		D4C178BC2D3801CC0084C573 /* GLTFKit2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4C178BB2D3801CC0084C573 /* XCRemoteSwiftPackageReference "GLTFKit2" */;
+			productName = GLTFKit2;
+		};
+		D4CE18822D3E9E640083A5AA /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseMessaging;
 		};
 		D4DD053A2AA6337F00E418E2 /* QRCode */ = {
 			isa = XCSwiftPackageProductDependency;

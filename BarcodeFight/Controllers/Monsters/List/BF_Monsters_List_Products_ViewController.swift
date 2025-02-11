@@ -67,7 +67,7 @@ public class BF_Monsters_List_Products_ViewController : BF_Monsters_List_ViewCon
 			else {
 				
 				self?.sort = .Rank
-				self?.monsters = monsters?.filter({ ($0.product?.name != nil || $0.product?.picture != nil) && $0.location != nil }).sort(.Rank)
+				self?.monsters = monsters?.sort(.Rank)
 				self?.sortBarButtonItem.menu = self?.sortMenu
 			}
 		}

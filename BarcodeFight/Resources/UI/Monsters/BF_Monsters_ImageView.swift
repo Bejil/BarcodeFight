@@ -14,28 +14,13 @@ public class BF_Monsters_ImageView : BF_ImageView {
 		
 		didSet {
 			
-			animate(false)
-			
 			if let monster = monster {
 				
-				if monster.isDead {
-					
-					image = UIImage(named: "dead")
-					image = image?.noir
-					alpha = 0.25
-					
-					deadMonsterImageView.image = UIImage(named: monster.picture)?.withHorizontallyFlippedOrientation().noir
-					deadMonsterImageView.isHidden = false
-				}
-				else {
-					
-					image = UIImage(named: monster.picture)?.withHorizontallyFlippedOrientation()
-					alpha = 1.0
-					
-					animate(true)
-					
-					deadMonsterImageView.isHidden = true
-				}
+				image = monster.isDead ? UIImage(named: "dead")?.noir : UIImage(named: monster.picture)?.withHorizontallyFlippedOrientation()
+				deadMonsterImageView.image = monster.isDead ? UIImage(named: monster.picture)?.withHorizontallyFlippedOrientation().noir : nil
+				alpha = monster.isDead ? 0.5 : 1.0
+				deadMonsterImageView.isHidden = !monster.isDead
+				animate(!monster.isDead)
 			}
 		}
 	}
@@ -70,13 +55,13 @@ public class BF_Monsters_ImageView : BF_ImageView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	private func animate(_ state:Bool) {
+	public func animate(_ state:Bool) {
 		
 		layer.removeAllAnimations()
 		
 		if state {
 			
-			UIApplication.wait { [weak self] in
+			UIApplication.wait(0.5) { [weak self] in
 				
 				self?.shakeAnimation()
 				self?.pulseAnimation()

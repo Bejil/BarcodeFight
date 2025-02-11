@@ -16,10 +16,11 @@ public class BF_Monsters_Details_Add_ViewController : BF_Monsters_Details_ViewCo
 			
 			BF_User.current?.scanAvailable -= 1
 			BF_User.current?.scanCount += 1
+			BF_Challenge.increase(Challenges.Scans)
 			
 			if let monster = monster, !(BF_User.current?.monsters.contains(monster) ?? true) {
 				
-				BF_User.current?.updateAndAddExperience(BF_Firebase.shared.config.int(.ExperienceMonsterScan), withToast: true)
+				BF_User.current?.updateAndAddExperience(BF_Firebase.shared.config.int(.ExperienceMonsterScan))
 				
 				button.isHidden = false
 				
@@ -37,7 +38,7 @@ public class BF_Monsters_Details_Add_ViewController : BF_Monsters_Details_ViewCo
 				
 				BF_User.current?.update(nil)
 				
-				BF_Toast.shared.present(title: String(key: "monsters.add.toast.title"), subtitle: String(key: "monsters.add.toast.subtitle"), style: .Warning)
+				BF_Toast_Manager.shared.addToast(title: String(key: "monsters.add.toast.title"), subtitle: String(key: "monsters.add.toast.subtitle"), style: .Warning)
 			}
 		}
 	}
@@ -61,7 +62,19 @@ public class BF_Monsters_Details_Add_ViewController : BF_Monsters_Details_ViewCo
 		
 		super.loadView()
 		
-		contentStackView.addArrangedSubview(button)
+		let buttonView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .dark))
+		buttonView.contentView.addSubview(button)
+		button.snp.makeConstraints { make in
+			make.edges.equalTo(buttonView.safeAreaLayoutGuide).inset(UI.Margins)
+		}
+		
+		let stackView:UIStackView = .init(arrangedSubviews: [scrollView,buttonView])
+		stackView.axis = .vertical
+		stackView.spacing = UI.Margins
+		view.addSubview(stackView)
+		stackView.snp.makeConstraints { make in
+			make.edges.equalToSuperview()
+		}
 	}
 	
 	public override func viewWillDisappear(_ animated: Bool) {

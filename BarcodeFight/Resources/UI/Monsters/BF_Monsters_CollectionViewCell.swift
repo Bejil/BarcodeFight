@@ -27,12 +27,12 @@ public class BF_Monsters_CollectionViewCell : BF_CollectionViewCell {
 		return $0
 		
 	}(UIVisualEffectView(effect: UIBlurEffect.init(style: .regular)))
-	private lazy var stackView:BF_Monsters_StackView = {
+	private lazy var stackView:BF_Monsters_Min_StackView = {
 		
 		$0.isUserInteractionEnabled = false
 		return $0
 		
-	}(BF_Monsters_StackView())
+	}(BF_Monsters_Min_StackView())
 	public var menu:UIMenu? {
 		
 		get{
@@ -115,26 +115,27 @@ public class BF_Monsters_CollectionViewCell : BF_CollectionViewCell {
 				
 				BF_User.current?.items.remove(at: index)
 				
-				let alertController:BF_Alert_ViewController = .presentLoading()
-				
-				BF_User.current?.update({ error in
+				BF_Alert_ViewController.presentLoading() { alertController in
 					
-					alertController.close {
+					BF_User.current?.update({ error in
 						
-						if let error = error {
+						alertController?.close {
 							
-							BF_Alert_ViewController.present(error)
+							if let error = error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								NotificationCenter.post(.updateAccount)
+								NotificationCenter.post(.updateMonsters)
+								
+								UIApplication.feedBack(.Success)
+								BF_Audio.shared.playSuccess()
+							}
 						}
-						else {
-							
-							NotificationCenter.post(.updateAccount)
-							NotificationCenter.post(.updateMonsters)
-							
-							UIApplication.feedBack(.Success)
-							BF_Audio.shared.playSuccess()
-						}
-					}
-				})
+					})
+				}
 			}
 		}
 		alertController.present(as: .Sheet)

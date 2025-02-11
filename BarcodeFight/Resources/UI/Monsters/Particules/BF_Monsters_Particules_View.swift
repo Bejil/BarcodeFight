@@ -14,10 +14,34 @@ public class BF_Monsters_Particules_View : SKView {
 		
 		didSet {
 			
-			particulesEmitterNode.particleColor = monster?.element.color ?? .white
+			if monster?.isDead ?? true {
+				
+				alpha = 0.5
+				particulesEmitterNode.particleColor = .white
+			}
+			else {
+				
+				alpha = 1.0
+				particulesEmitterNode.particleColor = monster?.element.color ?? .white
+			}
+			
+			layoutSubviews()
 		}
 	}
+	public var scale:CGFloat = 1.0 {
+		
+		didSet {
 			
+			layoutSubviews()
+		}
+	}
+	public var isFade:Bool = true {
+		
+		didSet {
+			
+			layoutSubviews()
+		}
+	}
 	private lazy var particulesScene:SKScene = {
 		
 		$0.backgroundColor = .clear
@@ -52,7 +76,45 @@ public class BF_Monsters_Particules_View : SKView {
 		
 		super.layoutSubviews()
 		
-		particulesScene.size = frame.size
-		particulesEmitterNode.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
+		particulesScene.size = .init(width: frame.size.width*scale, height: frame.size.height*scale)
+		particulesEmitterNode.position = CGPoint(x: particulesScene.size.width/2, y: particulesScene.size.height/2)
+		
+		if isFade {
+			
+			configureRadialGradientMask()
+		}
+	}
+	
+	private func configureRadialGradientMask() {
+		
+		let radialGradientLayer = RadialGradientLayer()
+		radialGradientLayer.frame = bounds
+		radialGradientLayer.setNeedsDisplay()
+		layer.mask = radialGradientLayer
+	}
+}
+
+class RadialGradientLayer: CALayer {
+	
+	override func draw(in ctx: CGContext) {
+		
+		ctx.saveGState()
+		defer { ctx.restoreGState() }
+		
+		let colors = [UIColor.black.cgColor, UIColor.clear.cgColor] as CFArray
+		let locations: [CGFloat] = [0.5, 1.0]
+		
+		let colorSpace = CGColorSpaceCreateDeviceRGB()
+		guard let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: locations) else { return }
+		
+		let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
+		let radius = bounds.width / 2
+		
+		ctx.drawRadialGradient(
+			gradient,
+			startCenter: center, startRadius: 0,
+			endCenter: center, endRadius: radius,
+			options: .drawsAfterEndLocation
+		)
 	}
 }

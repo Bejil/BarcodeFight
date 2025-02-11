@@ -23,13 +23,7 @@ extension RemoteConfig {
 		case ExperienceFakeFightDropout = "experienceFakeFightDropout"
 		case LevelRewardCoinsNumber = "levelRewardCoinsNumber"
 		
-		case ScanMaxNumber = "scanMaxNumber"
-		case FreeScanTimeInterval = "freeScanTimeInterval"
-		
 		case RubiesFightCost = "rubiesFightCost"
-		
-		case RubiesMaxNumber = "rubiesMaxNumber"
-		case FreeRubyTimeInterval = "freeRubyTimeInterval"
 		
 		case FightMonstersCount = "fightMonstersCount"
 		case MaxMonstersCount = "maxMonstersCount"

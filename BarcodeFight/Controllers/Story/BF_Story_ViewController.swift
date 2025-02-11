@@ -61,6 +61,10 @@ public class BF_Story_ViewController : BF_ViewController {
 		
 		isModal = true
 		
+		navigationItem.title = String(key: "story.title")
+		
+		navigationItem.rightBarButtonItem = .init(customView: BF_Rubies_StackView())
+		
 		view.addSubview(scrollView)
 		scrollView.snp.makeConstraints { make in
 			make.edges.equalTo(view.safeAreaLayoutGuide)
@@ -103,8 +107,10 @@ public class BF_Story_ViewController : BF_ViewController {
 		
 		for i in 1...numberOfPoints {
 			
-			let state = i % numberOfParts == 0
-			let pointSize = UI.Margins * 3
+			let bossState = i % numberOfParts == 0
+			let chestState = i % ((numberOfParts/2)+1) == 0
+			let sizeRatio = bossState ? 1.75 : chestState ? 1.5 : 1.0
+			let pointSize = sizeRatio * UI.Margins * 3
 			
 			let pointContentView:UIView = .init()
 			contentStackView.addArrangedSubview(pointContentView)
@@ -113,7 +119,8 @@ public class BF_Story_ViewController : BF_ViewController {
 			let randomXPosition = CGFloat.random(in: 0...(pointContentWidth-pointSize))
 			
 			let pointButton:UIButton = .init()
-			pointButton.backgroundColor = state ? Colors.Primary : Colors.Content.Text
+			pointButton.backgroundColor = bossState ? Colors.Button.Secondary.Background : chestState ? Colors.Button.Primary.Background : Colors.Content.Text
+			pointButton.setTitleColor(Colors.Button.Secondary.Background, for: .normal)
 			pointButton.layer.borderWidth = UI.Margins/4
 			pointButton.layer.cornerRadius = pointSize/2
 			pointButton.layer.shadowOffset = .zero
@@ -128,85 +135,203 @@ public class BF_Story_ViewController : BF_ViewController {
 					
 				self?.scrollTo(i, animated:true)
 				
-				if i <= BF_User.current?.currentStoryPoint ?? 1 {
+				let userState = i == BF_User.current?.currentStoryPoint ?? 1
+				
+				if chestState {
 					
-					if BF_User.current?.monsters.filter({ !$0.isDead }).isEmpty ?? true {
+					if userState {
 						
-						BF_Scan.shared.presentEmptyMonstersAlertController()
-					}
-					else {
-						
-						let pointByRank = (self?.numberOfPoints ?? 0) / BF_Monster.Stats.Rank.allCases.count
-						
-						if let rank = BF_Monster.Stats.Rank(rawValue: (i/pointByRank) - (state ? 1 : 0)) {
+						BF_Alert_ViewController.presentLoading { [weak self] controller in
 							
-							let startPoint = Float(rank.rawValue*pointByRank)
-							let currentPoint = Float(i)
-							let endPoint = Float((rank.rawValue+1)*pointByRank)
-							let proportion = (currentPoint - startPoint) / (endPoint - startPoint)
-							let percentage = Int(proportion * 100.0)
-							
-							var monsters = [
-								BF_Monster(rank: rank, percent: percentage),
-								BF_Monster(rank: rank, percent: percentage),
-								BF_Monster(rank: rank, percent: percentage)
-							]
-							
-							if rank.rawValue != BF_Monster.Stats.Rank.allCases.count - 1, let newRank = BF_Monster.Stats.Rank(rawValue: rank.rawValue + 1) {
+							BF_Item.get { [weak self] items, error in
 								
-								let newPercentage = Int(1.0/Float(pointByRank) * 100.0)
-								
-								for i in 0..<monsters.count {
+								controller?.close({ [weak self] in
 									
-									if (state || (!state && Bool.random(probability: 0.25))) {
+									if let error {
 										
-										monsters[i] = BF_Monster(rank: newRank, percent: newPercentage)
+										BF_Alert_ViewController.present(error)
 									}
-								}
-							}
-							
-							let alertController:BF_Alert_ViewController = .presentLoading()
-							
-							BF_Ads.shared.presentRewardedInterstitial(BF_Ads.Identifiers.FullScreen.StoryContinue) {
-								
-								alertController.close {
-									
-									let viewController:BF_Battle_Opponent_ViewController = .init()
-									viewController.opponentMonsters = monsters
-									viewController.victoryHandler = { [weak self] in
+									else if let chest = items?.first(where: { $0.uid == Items.ChestObjects }) {
 										
+										BF_User.current?.items.append(chest)
 										BF_User.current?.currentStoryPoint += 1
 										
-										let alertController:BF_Alert_ViewController = .presentLoading()
-										
-										BF_User.current?.update({ [weak self] error in
+										BF_Alert_ViewController.presentLoading { [weak self] controller in
 											
-											alertController.close { [weak self] in
+											BF_User.current?.update({ [weak self] error in
 												
-												if let error {
+												controller?.close { [weak self] in
 													
-													BF_User.current?.currentStoryPoint -= 1
-													BF_Alert_ViewController.present(error)
+													if let error {
+														
+														if let index = BF_User.current?.items.firstIndex(of: chest) {
+															
+															BF_User.current?.items.remove(at: index)
+														}
+														
+														BF_User.current?.currentStoryPoint -= 1
+														BF_Alert_ViewController.present(error)
+													}
+													else {
+														
+														self?.updatePoints()
+														
+														self?.drawBezierPath(isUserPath: true, from: i, to: BF_User.current?.currentStoryPoint ?? 1, animated:true)
+														
+														let alertController:BF_Item_Chest_Objects_Alert_ViewController = .init()
+														alertController.present()
+													}
 												}
-												else {
+											})
+										}
+									}
+								})
+							}
+						}
+					}
+					else if i < BF_User.current?.currentStoryPoint ?? 1 {
+						
+						BF_Alert_ViewController.present(BF_Error(String(key: "story.chest.error")))
+					}
+				}
+				else if i <= BF_User.current?.currentStoryPoint ?? 1 {
+					
+					let alertController:BF_Alert_ViewController = .init()
+					alertController.title = String(key: "story.dropout.alert.title")
+					alertController.add(UIImage(named: "map_icon"))
+					alertController.add(String(key: "story.dropout.alert.content"))
+					alertController.addButton(title: String(key: "story.dropout.alert.button"), subtitle: String(key: "story.dropout.alert.button.subtitle.1") + "\(BF_Firebase.shared.config.int(.RubiesFightCost))" + String(key: "story.dropout.alert.button.subtitle.2"), image: UIImage(named: "items_rubies")?.resize(25)) { [weak self] _ in
+						
+						alertController.close { [weak self] in
+							
+							if BF_User.current?.rubies ?? 0 < BF_Firebase.shared.config.int(.RubiesFightCost) {
+								
+								let alertController:BF_Rubies_Alert_ViewController = .init()
+								alertController.present()
+							}
+							else {
+								
+								if BF_User.current?.monsters.filter({ !$0.isDead }).isEmpty ?? true {
+									
+									BF_Monster.presentEmptyMonstersAlertController()
+								}
+								else {
+									
+									let pointByRank = (self?.numberOfPoints ?? 0) / BF_Monster.Stats.Rank.allCases.count
+									
+									if let rank = BF_Monster.Stats.Rank(rawValue: (i/pointByRank) - (bossState ? 1 : 0)) {
+										
+										let startPoint = Float(rank.rawValue*pointByRank)
+										let currentPoint = Float(i)
+										let endPoint = Float((rank.rawValue+1)*pointByRank)
+										let proportion = (currentPoint - startPoint) / (endPoint - startPoint)
+										let percentage = Int(proportion * 100.0)
+										
+										var monsters = [
+											BF_Monster(rank: rank, percent: percentage),
+											BF_Monster(rank: rank, percent: percentage),
+											BF_Monster(rank: rank, percent: percentage)
+										]
+										
+										if rank.rawValue != BF_Monster.Stats.Rank.allCases.count - 1, let newRank = BF_Monster.Stats.Rank(rawValue: rank.rawValue + 1) {
+											
+											let newPercentage = Int(1.0/Float(pointByRank) * 100.0)
+											
+											for i in 0..<monsters.count {
+												
+												if (bossState || (!bossState && Bool.random(probability: 0.25))) {
 													
-													self?.drawBezierPath(isUserPath: true, from: i, to: BF_User.current?.currentStoryPoint ?? 1, animated:true)
+													monsters[i] = BF_Monster(rank: newRank, percent: newPercentage)
 												}
 											}
-										})
+										}
+										
+										BF_Alert_ViewController.presentLoading() { [weak self] alertController in
+											
+											BF_Ads.shared.presentRewardedInterstitial(BF_Ads.Identifiers.FullScreen.StoryContinue) { [weak self] in
+												
+												alertController?.close {
+													
+													BF_Alert_ViewController.presentLoading() { [weak self] alertController in
+														
+														BF_User.current?.rubies -= BF_Firebase.shared.config.int(.RubiesFightCost)
+														BF_User.current?.update({ error in
+															
+															alertController?.close {
+																
+																if let error = error {
+																	
+																	BF_Alert_ViewController.present(error)
+																}
+																else {
+																	
+																	NotificationCenter.post(.updateAccount)
+																	
+																	let viewController:BF_Battle_Opponent_ViewController = .init()
+																	viewController.isStoryOpponent = true
+																	viewController.opponentMonsters = monsters
+																	viewController.victoryHandler = { [weak self] in
+																		
+																		if i == BF_User.current?.currentStoryPoint ?? 1 {
+																			
+																			BF_Challenge.increase(Challenges.Story)
+																			
+																			if userState && BF_User.current?.currentStoryPoint ?? 0 < self?.numberOfPoints ?? 0 {
+																				
+																				BF_User.current?.currentStoryPoint += 1
+																				
+																				BF_Alert_ViewController.presentLoading() { [weak self] alertController in
+																					
+																					BF_User.current?.update({ [weak self] error in
+																						
+																						alertController?.close { [weak self] in
+																							
+																							if let error {
+																								
+																								BF_User.current?.currentStoryPoint -= 1
+																								BF_Alert_ViewController.present(error)
+																							}
+																							else {
+																								
+																								self?.drawBezierPath(isUserPath: true, from: i, to: BF_User.current?.currentStoryPoint ?? 1, animated:true)
+																							}
+																						}
+																					})
+																				}
+																			}
+																		}
+																	}
+																	UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
+																}
+															}
+														})
+													}
+												}
+											}
+										}
 									}
-									UI.MainController.present(BF_NavigationController(rootViewController: viewController), animated: true)
 								}
 							}
 						}
 					}
+					alertController.addCancelButton()
+					alertController.present()
 				}
 				
 			}), for: .touchUpInside)
 			
-			if state {
+			if bossState {
 				
 				let imageView:BF_ImageView = .init(image: UIImage(named: "placeholder_delete"))
+				imageView.contentMode = .scaleAspectFit
+				pointButton.addSubview(imageView)
+				imageView.snp.makeConstraints { make in
+					make.edges.equalToSuperview().inset(2*UI.Margins/3)
+				}
+			}
+			else if chestState {
+				
+				let imageView:BF_ImageView = .init(image: UIImage(named: i < (BF_User.current?.currentStoryPoint ?? 1) ? "items_chestObjects_open" : "items_chestObjects"))
 				imageView.contentMode = .scaleAspectFit
 				pointButton.addSubview(imageView)
 				imageView.snp.makeConstraints { make in
@@ -225,11 +350,6 @@ public class BF_Story_ViewController : BF_ViewController {
 				make.size.equalTo(pointSize)
 				make.top.bottom.equalToSuperview()
 				make.left.equalToSuperview().offset(randomXPosition)
-			}
-			
-			if state {
-				
-				pointButton.transform = .init(scaleX: 1.75, y: 1.75)
 			}
 			
 			pointButtons.append(pointButton)
@@ -300,7 +420,7 @@ public class BF_Story_ViewController : BF_ViewController {
 				centerLayer.lineCap = .round
 				centerLayer.lineJoin = .round
 				centerLayer.fillColor = UIColor.clear.cgColor
-				centerLayer.strokeColor = Colors.Secondary.cgColor
+				centerLayer.strokeColor = Colors.Button.Secondary.Background.cgColor
 				centerLayer.lineWidth = 3*UI.Margins/4
 				scrollView.layer.insertSublayer(centerLayer, at: isUserPath ? 2 : 1)
 			}
@@ -348,12 +468,10 @@ public class BF_Story_ViewController : BF_ViewController {
 		
 		for i in 1...pointButtons.count {
 			
-			let state = i % numberOfParts == 0
-			let isCurrent = i == BF_User.current?.currentStoryPoint ?? 1
-			let ratio = state ? 1.75 : isCurrent ? 1.5 : 1.0
-			pointButtons[i-1].transform = .init(scaleX: ratio, y: ratio)
-			pointButtons[i-1].layer.borderColor = state ? UIColor.white.cgColor : isCurrent ? Colors.Primary.cgColor : Colors.Secondary.cgColor
-			pointButtons[i-1].setTitleColor(isCurrent ? Colors.Primary : Colors.Secondary, for: .normal)
+			let bossState = i % numberOfParts == 0
+			let chestState = i % ((numberOfParts/2)+1) == 0
+			
+			pointButtons[i-1].layer.borderColor = bossState || chestState ? UIColor.white.cgColor : Colors.Button.Secondary.Background.cgColor
 		}
 	}
 	
@@ -401,7 +519,7 @@ extension BF_Story_ViewController: UIScrollViewDelegate {
 		firstCloudsScrollView.contentOffset = .init(x: 0, y: contentOffsetY)
 		secondCloudsScrollView.contentOffset = .init(x: 0, y: contentOffsetY)
 		
-		let targetSubview = pointButtons[BF_User.current?.currentStoryPoint ?? 1]
+		let targetSubview = pointButtons[(BF_User.current?.currentStoryPoint ?? 1)-1]
 		let targetFrame = targetSubview.convert(targetSubview.bounds, to: scrollView)
 		let visibleRect = CGRect(origin: scrollView.contentOffset, size: scrollView.bounds.size)
 		

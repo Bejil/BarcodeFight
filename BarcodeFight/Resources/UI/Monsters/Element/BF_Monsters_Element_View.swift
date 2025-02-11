@@ -24,7 +24,11 @@ public class BF_Monsters_Element_Button : UIButton {
 				])
 			}
 			
+			layer.borderColor = element == .Neutral ? Colors.Content.Text.cgColor : nil
+			layer.borderWidth = element == .Neutral ? 0.5 : 0.0
+			
 			backgroundColor = element?.color ?? .clear
+			
 			elementImageView.image = element?.image
 			elementImageView.tintColor = element == .Lightness ? .black : .white
 		}

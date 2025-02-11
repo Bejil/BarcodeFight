@@ -15,16 +15,12 @@ public class BF_Scans_StackView : UIStackView {
 		didSet {
 			
 			let scanAvailable = user?.scanAvailable ?? 0
-			label.text = (scanAvailable > 99 ? "+" : "") + "\(scanAvailable)"
+			label.text = scanAvailable > 999 ? "+999" : "\(scanAvailable)"
 		}
 	}
 	private lazy var label:BF_Label = {
 		
-		$0.textAlignment = .center
 		$0.font = Fonts.Content.Text.Bold.withSize(Fonts.Size-2)
-		$0.snp.makeConstraints { make in
-			make.width.equalTo(1.5*UI.Margins)
-		}
 		return $0
 		
 	}(BF_Label())
@@ -45,6 +41,24 @@ public class BF_Scans_StackView : UIStackView {
 		addArrangedSubview(imageView)
 		
 		addArrangedSubview(label)
+		
+		addGestureRecognizer(UITapGestureRecognizer(block: { _ in
+			
+			UIApplication.feedBack(.On)
+			
+			let alertController:BF_Scans_Alert_ViewController = .init()
+			alertController.present(as: .Sheet)
+		}))
+		
+		NotificationCenter.add(.updateAccount) { [weak self] _ in
+			
+			self?.user = BF_User.current
+		}
+		
+		defer {
+			
+			user = BF_User.current
+		}
 	}
 	
 	required init(coder: NSCoder) {

@@ -70,88 +70,152 @@ public class BF_Account: NSObject {
 				
 				let closure:(()->Void) = {
 					
+					NotificationCenter.post(.updateChallenges)
 					NotificationCenter.post(.updateMonsters)
 					NotificationCenter.post(.updateAccount)
 					
-					let dispatchGroup = DispatchGroup()
+					BF_Scan.shared.start()
+					BF_Ruby.shared.start()
 					
-					var newScans:Int = 0
-					dispatchGroup.enter()
+					let newScans = BF_Scan.shared.newCount
+					let newRubies = BF_Scan.shared.newCount
 					
-					BF_Scan.shared.start { occurence in
+					if newScans + newRubies > 0 {
 						
-						newScans = occurence
-						dispatchGroup.leave()
-					}
-					
-					var newrubies:Int = 0
-					dispatchGroup.enter()
-					
-					BF_Ruby.shared.start { occurence in
+						BF_User.current?.scanAvailable += newScans
+						BF_User.current?.rubies += newRubies
 						
-						newrubies = occurence
-						dispatchGroup.leave()
-					}
-					
-					dispatchGroup.notify(queue: .main) { [weak self] in
-						
-						if newScans + newrubies > 0 {
+						BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 							
-							let alertController:BF_Alert_ViewController = .presentLoading()
-							
-							BF_Item.get { [weak self] items, error in
+							BF_User.current?.update({ [weak self] error in
 								
-								alertController.close { [weak self] in
+								alertController?.close { [weak self] in
 									
-									self?.items = .init()
-									
-									if newScans > 0, let item = items?.first(where: { $0.uid == Items.Scan }) {
+									if let error {
 										
-										for _ in 0..<newScans {
+										BF_User.current?.scanAvailable -= newScans
+										BF_User.current?.rubies -= newRubies
+										
+										BF_Alert_ViewController.present(error)
+									}
+									else {
+										
+										BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 											
-											self?.items?.append(item)
+											BF_Item.get { [weak self] items, error in
+												
+												alertController?.close { [weak self] in
+													
+													self?.items = .init()
+													
+													if newScans > 0, let item = items?.first(where: { $0.uid == Items.Scan }) {
+														
+														for _ in 0..<newScans {
+															
+															self?.items?.append(item)
+														}
+													}
+													
+													if newRubies > 0, let item = items?.first(where: { $0.uid == Items.Rubies }) {
+														
+														for _ in 0..<newRubies {
+															
+															self?.items?.append(item)
+														}
+													}
+													
+													let alertController:BF_Alert_ViewController = .init()
+													alertController.title = String(key: "account.rewards.off.alert.title")
+													alertController.add(String(key: "account.rewards.off.alert.content"))
+													
+													let itemsTableView:BF_TableView = .init()
+													itemsTableView.register(BF_Item_Object_TableViewCell.self, forCellReuseIdentifier: BF_Item_Object_TableViewCell.identifier)
+													itemsTableView.delegate = self
+													itemsTableView.dataSource = self
+													itemsTableView.separatorInset = .zero
+													itemsTableView.separatorColor = .white.withAlphaComponent(0.25)
+													itemsTableView.isHeightDynamic = true
+													itemsTableView.isUserInteractionEnabled = false
+													alertController.add(itemsTableView)
+													
+													alertController.addDismissButton()
+													alertController.dismissHandler = { [weak self] in
+														
+														self?.items = nil
+														BF_Confettis.stop()
+													}
+													alertController.present {
+														
+														BF_Confettis.start()
+													}
+												}
+											}
 										}
 									}
 									
-									if newrubies > 0, let item = items?.first(where: { $0.uid == Items.Rubies }) {
-										
-										for _ in 0..<newrubies {
-											
-											self?.items?.append(item)
-										}
-									}
-									
-									let alertController:BF_Alert_ViewController = .init()
-									alertController.title = String(key: "account.rewards.off.alert.title")
-									alertController.add(String(key: "account.rewards.off.alert.content"))
-									
-									let itemsTableView:BF_TableView = .init()
-									itemsTableView.register(BF_Item_Object_TableViewCell.self, forCellReuseIdentifier: BF_Item_Object_TableViewCell.identifier)
-									itemsTableView.delegate = self
-									itemsTableView.dataSource = self
-									itemsTableView.separatorInset = .zero
-									itemsTableView.separatorColor = .white.withAlphaComponent(0.25)
-									itemsTableView.isHeightDynamic = true
-									itemsTableView.isUserInteractionEnabled = false
-									alertController.add(itemsTableView)
-									
-									alertController.addDismissButton()
-									alertController.dismissHandler = { [weak self] in
-										
-										self?.items = nil
-										BF_Confettis.stop()
-									}
-									alertController.present {
-										
-										BF_Confettis.start()
-									}
+									NotificationCenter.post(.updateAccount)
 								}
-							}
+							})
 						}
 					}
+					else {
+						
+#if DEBUG
+						
+						let alertController: BF_Alert_ViewController = .init()
+						alertController.title = String(key: "Debug")
+						
+						let rubiesTitleLabel = alertController.add("Rubis (12h)")
+						rubiesTitleLabel.font = Fonts.Content.Title.H4
+						
+						let lastRubyLabel = alertController.add("")
+						let nextRubyLabel = alertController.add("")
+						let newRubyCountLabel = alertController.add("")
+						
+						let scansTitleLabel = alertController.add("Scans (16h)")
+						scansTitleLabel.font = Fonts.Content.Title.H4
+						
+						let lastScanLabel = alertController.add("")
+						let nextScanLabel = alertController.add("")
+						let newScanCountLabel = alertController.add("")
+						
+						func updateLabels() {
+							
+							lastRubyLabel.text = "Temps depuis le dernier: \(BF_Ruby.shared.previousString ?? "")"
+							nextRubyLabel.text = "Temps jusqu'au prochain: \(BF_Ruby.shared.string ?? "")"
+							newRubyCountLabel.text = "Nombre d'occurences depuis la dernière connexion: \(BF_Ruby.shared.newCount)"
+							
+							lastScanLabel.text = "Temps depuis le dernier: \(BF_Scan.shared.previousString ?? "")"
+							nextScanLabel.text = "Temps jusqu'au prochain: \(BF_Scan.shared.string ?? "")"
+							newScanCountLabel.text = "Nombre d'occurences depuis la dernière connexion: \(BF_Scan.shared.newCount)"
+						}
+						
+						updateLabels()
+						
+						let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+						
+							updateLabels()
+						}
+						
+						alertController.addDismissButton()
+						
+						alertController.dismissHandler = {
+							
+							timer.invalidate()
+						}
+						
+						alertController.present()
+#endif
+					}
 					
-					BF_User.current?.lastConnexionDate = Date()
-					BF_User.current?.update(nil)
+					BF_User.get(BF_User.current?.uid) { user, error in
+						
+						BF_User.current = user
+						BF_User.current?.lastConnexionDate = Date()
+						BF_User.current?.update(nil)
+						
+						BF_Challenge.increase(Challenges.Connexions)
+					}
 					
 					if BF_User.current?.displayName?.isEmpty ?? true {
 						

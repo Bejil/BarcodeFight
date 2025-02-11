@@ -17,44 +17,14 @@ public class BF_Monsters_Details_ViewController : BF_ViewController {
 		
 		didSet {
 			
-			pictureImageView.monster = monster
-			particulesView.monster = monster
-			rankLabel.text = monster?.stats.rank.readable
-			elementView.element = monster?.element
-			nameLabel.text = monster?.name
-			
-			genreLabel.text = monster?.genre.readable
-			heightLabel.text = monster?.stats.readableHeight
-			weightLabel.text = monster?.stats.readableWeight
-			
-			descriptionLabel.text = monster?.description
+			fullStackView.monster = monster
 			
 			let hp = monster?.stats.hp ?? Int(BF_Monster.Stats.range.lowerBound)
-			hpProgressView.progress = Float(hp)/Float(BF_Monster.Stats.range.upperBound)
-			hpProgressView.value = String(hp)
-			
-			let mp = monster?.stats.mp ?? Int(BF_Monster.Stats.range.lowerBound)
-			mpProgressView.progress = Float(mp)/Float(BF_Monster.Stats.range.upperBound)
-			mpProgressView.value = String(mp)
-			
-			let atk = monster?.stats.atk ?? Int(BF_Monster.Stats.range.lowerBound)
-			atkProgressView.progress = Float(atk)/Float(BF_Monster.Stats.range.upperBound)
-			atkProgressView.value = String(atk)
-			
-			let def = monster?.stats.def ?? Int(BF_Monster.Stats.range.lowerBound)
-			defProgressView.progress = Float(def)/Float(BF_Monster.Stats.range.upperBound)
-			defProgressView.value = String(def)
-			
-			let luk = monster?.stats.luk ?? Int(BF_Monster.Stats.range.lowerBound)
-			lukProgressView.progress = Float(luk)/Float(BF_Monster.Stats.range.upperBound)
-			lukProgressView.value = String(luk)
-			
-			elementsStackView.monster = monster
-			
 			let statusHp = monster?.status.hp ?? Int(BF_Monster.Stats.range.lowerBound)
 			statusHpProgressView.progress = Float(statusHp)/Float(hp)
 			statusHpProgressView.value = String(statusHp)
 			
+			let mp = monster?.stats.mp ?? Int(BF_Monster.Stats.range.lowerBound)
 			let statusMp = monster?.status.mp ?? Int(BF_Monster.Stats.range.lowerBound)
 			statusMpProgressView.progress = Float(statusMp)/Float(mp)
 			statusMpProgressView.value = String(statusMp)
@@ -92,155 +62,85 @@ public class BF_Monsters_Details_ViewController : BF_ViewController {
 			}
 		}
 	}
-	private lazy var pictureView:UIView = {
+	private lazy var fullStackView:BF_Monsters_Full_StackView = {
 		
-		$0.snp.makeConstraints { make in
-			make.height.equalTo(UI.Margins*20)
-		}
+		let statusLabel:BF_Label = .init(String(key: "monsters.status.label"))
+		statusLabel.font = Fonts.Content.Title.H4
+		statusLabel.textAlignment = .center
+		statusLabel.contentInsets.bottom = UI.Margins/2
+		statusLabel.addLine(position: .bottom)
+		$0.addArrangedSubview(statusLabel)
 		
-		$0.addSubview(particulesView)
-		particulesView.snp.makeConstraints { make in
-			make.edges.equalToSuperview()
-		}
+		let statusStackView:UIStackView = .init(arrangedSubviews: [statusHpProgressView,statusMpProgressView])
+		statusStackView.axis = .vertical
+		statusStackView.spacing = UI.Margins/3
+		statusStackView.isLayoutMarginsRelativeArrangement = true
+		statusStackView.layoutMargins = .init(horizontal: 2*UI.Margins)
+		$0.addArrangedSubview(statusStackView)
 		
-		let gradient:CAGradientLayer = .init()
-		gradient.frame = $0.bounds
-		gradient.opacity = 0.5
-		gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-		gradient.locations = [0.0, 1.0]
-		$0.layer.addSublayer(gradient)
+		let detailsLabel:BF_Label = .init(String(key: "monsters.informations.label"))
+		detailsLabel.font = Fonts.Content.Title.H4
+		detailsLabel.textAlignment = .center
+		detailsLabel.contentInsets.bottom = UI.Margins/2
+		detailsLabel.addLine(position: .bottom)
+		$0.addArrangedSubview(detailsLabel)
 		
-		pictureViewObserver = $0.layer.observe(\.bounds) { object, _ in
+		let productStackView:UIStackView = .init(arrangedSubviews: [barcCodeStackView])
+		productStackView.axis = .vertical
+		productStackView.alignment = .center
+		
+		let productButton:BF_Button = .init(String(key: "monsters.product.add.button")) { [weak self] _ in
 			
-			gradient.frame = object.bounds
-		}
-		
-		$0.addSubview(pictureImageView)
-		pictureImageView.snp.makeConstraints { make in
-			make.edges.equalToSuperview().inset(2*UI.Margins)
-		}
-		
-		return $0
-		
-	}(UIView())
-	private lazy var particulesView:BF_Monsters_Particules_View = {
-		
-		$0.alpha = 0.0
-		return $0
-		
-	}(BF_Monsters_Particules_View())
-	private var pictureViewObserver: NSKeyValueObservation?
-	private lazy var pictureImageView:BF_Monsters_ImageView = .init()
-	private lazy var rankLabel:BF_Label = {
-		
-		$0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-		$0.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-		$0.backgroundColor = Colors.Content.Text.withAlphaComponent(0.45)
-		$0.textColor = .white
-		$0.font = Fonts.Content.Text.Bold.withSize(Fonts.Size-3)
-		$0.layer.cornerRadius = UI.Margins/4
-		$0.textAlignment = .center
-		$0.contentInsets = .init(horizontal: 2)
-		$0.snp.makeConstraints { make in
-			make.height.equalTo(1.25*UI.Margins)
-		}
-		return $0
-		
-	}(BF_Label())
-	private lazy var elementView:BF_Monsters_Element_Button = .init()
-	private lazy var nameLabel:BF_Label = {
-		
-		$0.font = Fonts.Content.Title.H1
-		$0.textAlignment = .center
-		return $0
-		
-	}(BF_Label())
-	private lazy var detailsStackView:UIStackView = { detailsStackView in
-		
-		detailsStackView.axis = .horizontal
-		detailsStackView.alignment = .center
-		detailsStackView.distribution = .fillEqually
-		
-		let stackViewClosure:((BF_Label,String)->Void) = { label, string in
-			
-			label.font = Fonts.Content.Title.H4
-			label.textColor = Colors.Content.Text.withAlphaComponent(0.5)
-			label.textAlignment = .center
-			
-			let keyLabel:BF_Label = .init(string)
-			keyLabel.textAlignment = .center
-			keyLabel.font = Fonts.Content.Text.Bold.withSize(Fonts.Size - 2)
-			
-			let stackView:UIStackView = .init(arrangedSubviews: [label,keyLabel])
-			stackView.axis = .vertical
-			detailsStackView.addArrangedSubview(stackView)
-		}
-		
-		stackViewClosure(genreLabel,String(key: "monsters.genre.label"))
-		stackViewClosure(heightLabel,String(key: "monsters.stats.height.label"))
-		stackViewClosure(weightLabel,String(key: "monsters.stats.weight.label"))
-		
-		detailsStackView.arrangedSubviews.forEach({
-			
-			if $0 != detailsStackView.arrangedSubviews.first {
+			let alertController:BF_Product_Add_Alert_ViewController = .init()
+			alertController.completion = { [weak self] name, image in
 				
-				$0.addLine(position: .leading)
+				BF_Alert_ViewController.presentLoading() { [weak self] alertController in
+					
+					self?.monster?.updateProduct(name: name, image: image, { [weak self] error in
+						
+						alertController?.close { [weak self] in
+							
+							if let error {
+								
+								BF_Alert_ViewController.present(error)
+							}
+							else {
+								
+								BF_Alert_ViewController.presentLoading() { [weak self] alertController in
+									
+									BF_User.current?.monsters.first(where: { $0.uid == self?.monster?.uid })?.product = self?.monster?.product
+									BF_User.current?.update({ [weak self] error in
+										
+										alertController?.close { [weak self] in
+											
+											if let error {
+												
+												BF_Alert_ViewController.present(error)
+											}
+											else {
+												
+												self?.updateProduct()
+											}
+										}
+									})
+								}
+							}
+						}
+						
+					})
+				}
 			}
-			
-			if $0 != detailsStackView.arrangedSubviews.last {
-				
-				$0.addLine(position: .trailing)
-			}
-		})
+			alertController.present()
+		}
+		productButton.isPrimary = false
 		
-		return detailsStackView
+		let informationsStackView:UIStackView = .init(arrangedSubviews: [fightsStackView,dateLabel,productNameLabel,productImageView,productStackView,productButton,mapView])
+		informationsStackView.axis = .vertical
+		informationsStackView.spacing = 1.5*UI.Margins
+		$0.addArrangedSubview(informationsStackView)
 		
-	}(UIStackView())
-	private lazy var genreLabel:BF_Label = .init()
-	private lazy var heightLabel:BF_Label = .init()
-	private lazy var weightLabel:BF_Label = .init()
-	private lazy var descriptionLabel:BF_Label = {
-		
-		$0.textAlignment = .center
 		return $0
-		
-	}(BF_Label())
-	private lazy var hpProgressView:BF_Monsters_Stat_ProgressView = {
-		
-		$0.image = UIImage(systemName: "heart")
-		$0.color = Colors.Monsters.Stats.Hp
-		return $0
-		
-	}(BF_Monsters_Stat_ProgressView())
-	private lazy var mpProgressView:BF_Monsters_Stat_ProgressView = {
-		
-		$0.image = UIImage(systemName: "wand.and.stars")
-		$0.color = Colors.Monsters.Stats.Mp
-		return $0
-		
-	}(BF_Monsters_Stat_ProgressView())
-	private lazy var atkProgressView:BF_Monsters_Stat_ProgressView = {
-		
-		$0.image = UIImage(systemName: "figure.boxing")
-		$0.color = Colors.Monsters.Stats.Atk
-		return $0
-		
-	}(BF_Monsters_Stat_ProgressView())
-	private lazy var defProgressView:BF_Monsters_Stat_ProgressView = {
-		
-		$0.image = UIImage(systemName: "shield.checkered")
-		$0.color = Colors.Monsters.Stats.Def
-		return $0
-		
-	}(BF_Monsters_Stat_ProgressView())
-	private lazy var lukProgressView:BF_Monsters_Stat_ProgressView = {
-		
-		$0.image = UIImage(systemName: "dice.fill")
-		$0.color = Colors.Monsters.Stats.Luk
-		return $0
-		
-	}(BF_Monsters_Stat_ProgressView())
-	private lazy var elementsStackView:BF_Monsters_Elements_StackView = .init()
+	}(BF_Monsters_Full_StackView())
 	private lazy var statusHpProgressView:BF_Monsters_Stat_ProgressView = {
 		
 		$0.image = UIImage(systemName: "heart")
@@ -301,141 +201,15 @@ public class BF_Monsters_Details_ViewController : BF_ViewController {
 		return $0
 		
 	}(MKMapView())
-	public lazy var contentStackView:UIStackView = {
+	public lazy var scrollView:UIScrollView = {
 		
-		$0.isLayoutMarginsRelativeArrangement = true
-		$0.layoutMargins = .init(horizontal: 2*UI.Margins)
-		$0.axis = .vertical
-		$0.spacing = 2*UI.Margins
-		
-		let stackView:UIStackView = .init(arrangedSubviews: [rankLabel,elementView])
-		stackView.axis = .horizontal
-		stackView.spacing = UI.Margins
-		stackView.alignment = .center
-		
-		let headStackView:UIStackView = .init(arrangedSubviews: [stackView])
-		headStackView.axis = .vertical
-		headStackView.alignment = .center
-		$0.addArrangedSubview(headStackView)
-		
-		$0.addArrangedSubview(nameLabel)
-		$0.addArrangedSubview(detailsStackView)
-		$0.addArrangedSubview(descriptionLabel)
-		
-		let statsLabel:BF_Label = .init(String(key: "monsters.features.label"))
-		statsLabel.font = Fonts.Content.Title.H4
-		statsLabel.textAlignment = .center
-		statsLabel.contentInsets.bottom = UI.Margins/2
-		statsLabel.addLine(position: .bottom)
-		$0.addArrangedSubview(statsLabel)
-		
-		let statsStackView:UIStackView = .init(arrangedSubviews: [hpProgressView,mpProgressView,atkProgressView,defProgressView,lukProgressView])
-		statsStackView.axis = .vertical
-		statsStackView.spacing = UI.Margins/3
-		statsStackView.isLayoutMarginsRelativeArrangement = true
-		statsStackView.layoutMargins = .init(horizontal: 2*UI.Margins)
-		$0.addArrangedSubview(statsStackView)
-		
-		$0.addArrangedSubview(elementsStackView)
-		
-		let statusLabel:BF_Label = .init(String(key: "monsters.status.label"))
-		statusLabel.font = Fonts.Content.Title.H4
-		statusLabel.textAlignment = .center
-		statusLabel.contentInsets.bottom = UI.Margins/2
-		statusLabel.addLine(position: .bottom)
-		$0.addArrangedSubview(statusLabel)
-		
-		let statusStackView:UIStackView = .init(arrangedSubviews: [statusHpProgressView,statusMpProgressView])
-		statusStackView.axis = .vertical
-		statusStackView.spacing = UI.Margins/3
-		statusStackView.isLayoutMarginsRelativeArrangement = true
-		statusStackView.layoutMargins = .init(horizontal: 2*UI.Margins)
-		$0.addArrangedSubview(statusStackView)
-		
-		let detailsLabel:BF_Label = .init(String(key: "monsters.informations.label"))
-		detailsLabel.font = Fonts.Content.Title.H4
-		detailsLabel.textAlignment = .center
-		detailsLabel.contentInsets.bottom = UI.Margins/2
-		detailsLabel.addLine(position: .bottom)
-		$0.addArrangedSubview(detailsLabel)
-		
-		let productStackView:UIStackView = .init(arrangedSubviews: [barcCodeStackView])
-		productStackView.axis = .vertical
-		productStackView.alignment = .center
-		
-		let productButton:BF_Button = .init(String(key: "monsters.product.add.button")) { [weak self] _ in
-			
-			let alertController:BF_Product_Add_Alert_ViewController = .init()
-			alertController.completion = { [weak self] name, image in
-				
-				let alertController:BF_Alert_ViewController = .presentLoading()
-				
-				self?.monster?.updateProduct(name: name, image: image, { [weak self] error in
-					
-					alertController.close { [weak self] in
-						
-						if let error {
-							
-							BF_Alert_ViewController.present(error)
-						}
-						else {
-							
-							let alertController:BF_Alert_ViewController = .presentLoading()
-							
-							BF_User.current?.monsters.first(where: { $0.uid == self?.monster?.uid })?.product = self?.monster?.product
-							BF_User.current?.update({ [weak self] error in
-								
-								alertController.close { [weak self] in
-									
-									if let error {
-										
-										BF_Alert_ViewController.present(error)
-									}
-									else {
-										
-										self?.updateProduct()
-									}
-								}
-							})
-						}
-					}
-					
-				})
-			}
-			alertController.present()
-		}
-		productButton.isPrimary = false
-		
-		let informationsStackView:UIStackView = .init(arrangedSubviews: [fightsStackView,dateLabel,productNameLabel,productImageView,productStackView,productButton,mapView])
-		informationsStackView.axis = .vertical
-		informationsStackView.spacing = 1.5*UI.Margins
-		$0.addArrangedSubview(informationsStackView)
-		
-		return $0
-		
-	}(UIStackView())
-	public lazy var stackView:UIStackView = {
-		
-		$0.axis = .vertical
-		$0.spacing = 1.5*UI.Margins
-		$0.isLayoutMarginsRelativeArrangement = true
-		return $0
-		
-	}(UIStackView(arrangedSubviews: [pictureView,contentStackView]))
-	private lazy var scrollView:UIScrollView = {
-		
-		$0.addSubview(stackView)
-		stackView.snp.makeConstraints { make in
-			make.edges.width.equalToSuperview()
+		$0.addSubview(fullStackView)
+		fullStackView.snp.makeConstraints { make in
+			make.edges.width.equalToSuperview().inset(UI.Margins)
 		}
 		return $0
 		
 	}(UIScrollView())
-	
-	deinit {
-		
-		pictureViewObserver?.invalidate()
-	}
 	
 	public override func loadView() {
 		
@@ -454,40 +228,11 @@ public class BF_Monsters_Details_ViewController : BF_ViewController {
 		}
 	}
 	
-	public override func viewDidAppear(_ animated: Bool) {
-		
-		super.viewDidAppear(animated)
-		
-		UIView.animate(5.0) {
-			
-			self.particulesView.alpha = 1.0
-		}
-	}
-	
-	public override func viewDidLayoutSubviews() {
-		
-		super.viewDidLayoutSubviews()
-		
-		scrollView.snp.remakeConstraints { make in
-			make.top.equalToSuperview().inset(-view.safeAreaInsets.top)
-			make.left.right.bottom.equalToSuperview()
-		}
-		
-		pictureView.snp.remakeConstraints { make in
-			make.height.equalTo((UI.Margins*20)+view.safeAreaInsets.top)
-		}
-		
-		pictureImageView.snp.remakeConstraints { make in
-			make.top.equalToSuperview().inset((2*UI.Margins)+view.safeAreaInsets.top)
-			make.right.bottom.left.equalToSuperview().inset(2*UI.Margins)
-		}
-	}
-	
 	private func updateProduct() {
 		
 		productNameLabel.text = !(monster?.product?.name?.isEmpty ?? true) ? monster?.product?.name : String(key: "monsters.product.label")
 		
-		productImageView.image = UIImage(named: "empty_palceholder")
+		productImageView.image = UIImage(named: "placeholder_empty")
 		
 		if let picture = monster?.product?.picture, !picture.isEmpty {
 			

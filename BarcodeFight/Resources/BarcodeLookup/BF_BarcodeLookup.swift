@@ -40,37 +40,39 @@ public class BF_BarcodeLookup : NSObject {
 extension BF_BarcodeLookup : WKNavigationDelegate {
 	
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		
 		if webView.url?.absoluteString == urlString {
-			
 			let javaScriptString = """
-  document.querySelector('.search-bar input[name="search-input"]').value = \(barcode ?? "");
-  document.querySelector('.search-bar button[type="submit"]').click();
-  """
+		document.querySelector('.search-bar input[name="search-input"]').value = \(barcode ?? "");
+		document.querySelector('.search-bar button[type="submit"]').click();
+		"""
 			
 			webView.evaluateJavaScript(javaScriptString)
-		}
-		else if webView.url?.absoluteString == urlString + (barcode ?? "") {
+		} else if let barcode = barcode {
+				// Retirer uniquement les zéros au début
+			let trimmedBarcode = barcode.replacingOccurrences(of: "^0+", with: "", options: .regularExpression)
 			
-			let javaScriptString = """
-  (function() {
-   return {name: document.querySelector('.product-details h4').textContent, picture: document.querySelector('#largeProductImage img').src};
-  })();
-  """
-			webView.evaluateJavaScript(javaScriptString) { [weak self] result, _ in
-				
-				let resultDict = result as? [String: String]
-				
-				let product:BF_Monster.Product = .init()
-				product.name = resultDict?["name"]?.trimmingCharacters(in: .whitespacesAndNewlines)
-				product.picture = resultDict?["picture"]
-				self?.completion?(product)
-				
-				self?.barcode = nil
-				self?.completion = nil
-				
-				webView.removeFromSuperview()
+			if webView.url?.absoluteString == urlString + barcode ||
+				webView.url?.absoluteString == urlString + trimmedBarcode {
+				let javaScriptString = """
+			(function() {
+				return {name: document.querySelector('.product-details h4').textContent, picture: document.querySelector('#largeProductImage img').src};
+			})();
+			"""
+				webView.evaluateJavaScript(javaScriptString) { [weak self] result, _ in
+					let resultDict = result as? [String: String]
+					
+					let product: BF_Monster.Product = .init()
+					product.name = resultDict?["name"]?.trimmingCharacters(in: .whitespacesAndNewlines)
+					product.picture = resultDict?["picture"]
+					self?.completion?(product)
+					
+					self?.barcode = nil
+					self?.completion = nil
+					
+					webView.removeFromSuperview()
+				}
 			}
 		}
 	}
+
 }

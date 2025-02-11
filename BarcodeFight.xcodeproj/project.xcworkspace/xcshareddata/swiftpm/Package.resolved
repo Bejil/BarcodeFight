@@ -1,5 +1,5 @@
 {
-  "originHash" : "b28f9babe62777b0f0903d80547897f94f068ebe993c1b77c2d7eb136202d3ff",
+  "originHash" : "852912b0faaa48f8d39e472b178288cbdb4832f4d04926f139dd9da9a24b4a94",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -62,6 +62,15 @@
       "state" : {
         "revision" : "42eae77a0af79e9c3f41df04a23c76f05cfdda77",
         "version" : "10.24.0"
+      }
+    },
+    {
+      "identity" : "gltfkit2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/warrenm/GLTFKit2",
+      "state" : {
+        "revision" : "fb33ea7832e730842522018709ebcf2e3d9dcf44",
+        "version" : "0.5.12"
       }
     },
     {
@@ -159,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Bejil/MB_TextField",
       "state" : {
-        "revision" : "e448b1ab7bcd5f4266c372ef8e1340b90ef3232c",
-        "version" : "1.0.13"
+        "revision" : "185ffd857fd612d53bc8b03fdb75de0152417953",
+        "version" : "1.0.14"
       }
     },
     {

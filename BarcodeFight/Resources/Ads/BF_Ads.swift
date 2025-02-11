@@ -61,7 +61,11 @@ public class BF_Ads : NSObject {
 	private var rewardedInterstitialAd:GADRewardedInterstitialAd?
 	public var shouldDisplayAd:Bool {
 		
-		return !(BF_User.current?.removeAds ?? false) && !UIApplication.isDebug
+#if DEBUG
+		return false
+#else
+		return !(BF_User.current?.removeAds ?? false)
+#endif
 	}
 	
 	public func start() {
@@ -103,7 +107,7 @@ public class BF_Ads : NSObject {
 		
 		adRewardCompletion = completion
 		
-		if shouldDisplayAd {
+		if shouldDisplayAd && ![BF_Ads.Identifiers.FullScreen.FreeRuby,BF_Ads.Identifiers.FullScreen.FreeScan].contains(identifier) {
 			
 			GADRewardedInterstitialAd.load(withAdUnitID: identifier, request: GADRequest()) { [weak self] ad, error in
 				

@@ -11,4 +11,6 @@ extension Notification.Name {
 	
 	static let updateAccount = Notification.Name("updateAccount")
 	static let updateMonsters = Notification.Name("updateMonsters")
+	static let updateChallenges = Notification.Name("updateChallenges")
+	static let updateNews = Notification.Name("updateNews")
 }

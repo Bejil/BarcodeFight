@@ -127,42 +127,43 @@ extension BF_Account_Fights_ViewController : UITableViewDelegate, UITableViewDat
 			
 			let player = [fight.opponent,fight.creator].compactMap({ $0 }).first(where: { $0.userId != BF_User.current?.uid })
 			
-			let alertController:BF_Alert_ViewController = .presentLoading()
-			
-			BF_User.get(player?.userId) { user, error in
+			BF_Alert_ViewController.presentLoading() { [weak self] alertController in
 				
-				alertController.close {
+				BF_User.get(player?.userId) { user, error in
 					
-					if let error {
+					alertController?.close {
 						
-						BF_Alert_ViewController.present(error)
-					}
-					else {
-						
-						let alertController:BF_Alert_ViewController = .init()
-						alertController.titleLabel.isHidden = true
-						
-						let userStackView:BF_User_Opponent_StackView = .init()
-						userStackView.user = user
-						alertController.add(userStackView)
-						alertController.contentStackView.setCustomSpacing(2*UI.Margins, after: userStackView)
-						
-						if user?.uid != BF_User.current?.uid {
+						if let error {
 							
-							alertController.addButton(title: String(key: "account.fights.fight.button"), subtitle: String(key: "fights.alert.cost.0") + "\(BF_Firebase.shared.config.int(.RubiesFightCost))" + String(key: "fights.alert.cost.1"), image: UIImage(named: "items_rubies")?.resize(25)) { [weak self] _ in
+							BF_Alert_ViewController.present(error)
+						}
+						else {
+							
+							let alertController:BF_Alert_ViewController = .init()
+							alertController.titleLabel.isHidden = true
+							
+							let userStackView:BF_User_Opponent_StackView = .init()
+							userStackView.user = user
+							alertController.add(userStackView)
+							alertController.contentStackView.setCustomSpacing(2*UI.Margins, after: userStackView)
+							
+							if user?.uid != BF_User.current?.uid {
 								
-								alertController.close { [weak self] in
+								alertController.addButton(title: String(key: "account.fights.fight.button"), subtitle: String(key: "fights.alert.cost.0") + "\(BF_Firebase.shared.config.int(.RubiesFightCost))" + String(key: "fights.alert.cost.1"), image: UIImage(named: "items_rubies")?.resize(25)) { [weak self] _ in
 									
-									self?.dismiss({
+									alertController.close { [weak self] in
 										
-										BF_Fight.new(user)
-									})
+										self?.dismiss({
+											
+											BF_Fight.new(user)
+										})
+									}
 								}
 							}
+							
+							alertController.addDismissButton()
+							alertController.present()
 						}
-						
-						alertController.addDismissButton()
-						alertController.present()
 					}
 				}
 			}

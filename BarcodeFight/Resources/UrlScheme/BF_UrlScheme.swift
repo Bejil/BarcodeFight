@@ -18,7 +18,7 @@ public class BF_UrlScheme : Codable {
 				
 				if category == UNNotificationCategory.Category.FreeScan.rawValue {
 					
-					BF_User.current?.scanAvailable = min(BF_Firebase.shared.config.int(.ScanMaxNumber), (BF_User.current?.scanAvailable ?? 0) + 1)
+					BF_User.current?.scanAvailable += 1
 					BF_User.current?.update({ error in
 						
 						if let error {
@@ -33,7 +33,7 @@ public class BF_UrlScheme : Codable {
 				}
 				else if category == UNNotificationCategory.Category.FreeRuby.rawValue {
 					
-					BF_User.current?.rubies = min(BF_Firebase.shared.config.int(.RubiesMaxNumber), (BF_User.current?.rubies ?? 0) + 1)
+					BF_User.current?.rubies += 1
 					BF_User.current?.update({ error in
 						
 						if let error {

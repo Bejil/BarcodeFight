@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BF_Toast : UIStackView {
+public class BF_Toast_Manager: NSObject {
 	
 	public enum Style {
 		
@@ -18,144 +18,153 @@ public class BF_Toast : UIStackView {
 		case None
 	}
 	
-	public static let shared:BF_Toast = .init()
-	private lazy var imageView:BF_ImageView = {
+	public static let shared:BF_Toast_Manager = .init()
+	private lazy var toastsStackView:UIStackView = {
 		
-		$0.contentMode = .scaleAspectFit
-		$0.snp.makeConstraints { make in
-			make.size.equalTo(2*UI.Margins)
-		}
+		$0.axis = .vertical
+		$0.alignment = .center
+		$0.spacing = UI.Margins
 		return $0
 		
-	}((BF_ImageView()))
-	private lazy var titleLabel:BF_Label = {
-		
-		$0.font = Fonts.Content.Title.H4
-		return $0
-		
-	}(BF_Label())
-	private lazy var subtitleLabel:BF_Label = {
-		
-		$0.font = Fonts.Content.Text.Regular
-		return $0
-		
-	}(BF_Label())
+	}(UIStackView())
 	
-	public override init(frame: CGRect) {
+	public override init() {
 		
-		super.init(frame: .zero)
+		super.init()
+		
+		if let keyWindow = UIApplication.shared.connectedScenes
+			.compactMap({ $0 as? UIWindowScene })
+			.flatMap({ $0.windows })
+			.first(where: { $0.isKeyWindow }) {
+			
+			keyWindow.addSubview(toastsStackView)
+			
+			toastsStackView.snp.makeConstraints { make in
+				make.top.left.right.equalTo(keyWindow.safeAreaLayoutGuide).inset(UI.Margins)
+			}
+		}
+	}
+	
+	public func addToast(title:String? = nil, subtitle:String? = nil, image:UIImage? = nil, style:Style? = .None, customView:UIView? = nil) {
+		
+		let stackView:UIStackView = .init()
+		stackView.axis = .horizontal
+		stackView.spacing = UI.Margins
+		stackView.alignment = .center
+		stackView.isLayoutMarginsRelativeArrangement = true
+		stackView.layoutMargins = .init(horizontal: UI.Margins, vertical: 3*UI.Margins/4)
+		stackView.layer.shadowOffset = .zero
+		stackView.layer.shadowRadius = 1.5*UI.Margins
+		stackView.layer.shadowOpacity = 0.25
+		stackView.layer.masksToBounds = false
+		stackView.layer.cornerRadius = (4*UI.Margins)/2.5
+		stackView.layer.shadowColor = Colors.Content.Text.cgColor
+		stackView.alpha = 0.0
+		stackView.isHidden = true
+		toastsStackView.insertArrangedSubview(stackView, at: toastsStackView.arrangedSubviews.count)
+		toastsStackView.layoutIfNeeded()
 		
 		let visualEffectView:UIVisualEffectView = .init(effect: UIBlurEffect.init(style: .regular))
 		visualEffectView.layer.cornerRadius = (4*UI.Margins)/2.5
 		visualEffectView.clipsToBounds = true
-		addSubview(visualEffectView)
+		stackView.addSubview(visualEffectView)
 		visualEffectView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
 		}
 		
-		axis = .horizontal
-		spacing = UI.Margins
-		alignment = .center
-		isLayoutMarginsRelativeArrangement = true
-		layoutMargins = .init(horizontal: UI.Margins, vertical: UI.Margins/2)
+		var lc_image = image
 		
-		layer.shadowOffset = .zero
-		layer.shadowRadius = 1.5*UI.Margins
-		layer.shadowOpacity = 0.25
-		layer.masksToBounds = false
-		layer.cornerRadius = (4*UI.Margins)/2.5
-		layer.shadowColor = Colors.Content.Text.cgColor
-		
-		addArrangedSubview(imageView)
-		
-		let textStackView:UIStackView = .init(arrangedSubviews: [titleLabel,subtitleLabel])
-		textStackView.axis = .vertical
-		addArrangedSubview(textStackView)
-		
-		let swipeGestureRecognizer:UISwipeGestureRecognizer = .init { [weak self] _ in
+		switch style {
 			
-			self?.dismiss()
+		case .Success:
+			BF_Audio.shared.playSuccess()
+			UIApplication.feedBack(.Success)
+			lc_image = UIImage(systemName: "hand.thumbsup.circle.fill")
+		case .Warning:
+			BF_Audio.shared.playError()
+			UIApplication.feedBack(.Off)
+			lc_image = UIImage(systemName: "exclamationmark.triangle.fill")
+		case .Error:
+			BF_Audio.shared.playError()
+			UIApplication.feedBack(.Error)
+			lc_image = UIImage(systemName: "xmark.circle.fill")
+		default:
+			BF_Audio.shared.playOn()
+			UIApplication.feedBack(.On)
+			lc_image = nil
 		}
-		swipeGestureRecognizer.direction = .up
-		addGestureRecognizer(swipeGestureRecognizer)
 		
-		registerForTraitChanges([UITraitUserInterfaceStyle.self], handler: { (self: Self, previousTraitCollection: UITraitCollection) in
+		if let lc_image {
 			
-			self.layer.shadowColor = Colors.Content.Text.cgColor
-		})
-	}
-	
-	required init(coder: NSCoder) {
-		
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	public func present(title:String, subtitle:String? = nil, image:UIImage? = nil, style:Style? = .None) {
-		
-		if let window = (UIApplication.shared.delegate as? AppDelegate)?.window {
-			
-			switch style {
-				
-			case .Success:
-				BF_Audio.shared.playSuccess()
-				UIApplication.feedBack(.Success)
-				imageView.tintColor = Colors.Button.Primary.Background
-				imageView.image = UIImage(systemName: "hand.thumbsup.circle.fill")
-			case .Warning:
-				BF_Audio.shared.playError()
-				UIApplication.feedBack(.Off)
-				imageView.tintColor = Colors.Button.Primary.Background
-				imageView.image = UIImage(systemName: "exclamationmark.triangle.fill")
-			case .Error:
-				BF_Audio.shared.playError()
-				UIApplication.feedBack(.Error)
-				imageView.tintColor = Colors.Button.Primary.Background
-				imageView.image = UIImage(systemName: "xmark.circle.fill")
-			default:
-				UIApplication.feedBack(.On)
-				imageView.image = nil
+			let imageView:BF_ImageView = .init(image: lc_image)
+			imageView.tintColor = Colors.Content.Text
+			imageView.contentMode = .scaleAspectFit
+			imageView.snp.makeConstraints { make in
+				make.size.equalTo(2*UI.Margins)
 			}
 			
-			titleLabel.text = title
-			subtitleLabel.text = subtitle
-			
-			dismiss {
-			
-				window.addSubview(self)
-				
-				self.layoutIfNeeded()
-				
-				self.snp.makeConstraints { make in
-					make.centerX.equalToSuperview()
-					make.top.equalTo(window.safeAreaLayoutGuide).inset(UI.Margins)
-					make.width.lessThanOrEqualToSuperview().inset(UI.Margins)
-					make.size.greaterThanOrEqualTo(4*UI.Margins)
-				}
-				
-				UIView.animate {
-					
-					self.alpha = 1.0
-				}
-				
-				UIApplication.wait(4.0) { [weak self] in
-					
-					self?.dismiss()
-				}
-			}
+			stackView.addArrangedSubview(imageView)
 		}
-	}
-	
-	private func dismiss(_ completion:(()->Void)? = nil) {
+		
+		let contentStackView:UIStackView = .init()
+		contentStackView.axis = .vertical
+		contentStackView.spacing = UI.Margins/3
+		stackView.addArrangedSubview(contentStackView)
+		
+		if let title {
+			
+			let titleLabel:BF_Label = .init(title)
+			titleLabel.font = Fonts.Content.Title.H4
+			contentStackView.addArrangedSubview(titleLabel)
+		}
+		
+		if let subtitle {
+			
+			let subtitleLabel:BF_Label = .init(subtitle)
+			subtitleLabel.font = Fonts.Content.Text.Regular
+			contentStackView.addArrangedSubview(subtitleLabel)
+		}
+		
+		if let customView {
+			
+			contentStackView.addArrangedSubview(customView)
+		}
+		
+		func dismiss() {
+			
+			UIView.animate(0.3, {
+				
+				stackView.alpha = 0.0
+				stackView.isHidden = true
+				stackView.superview?.layoutIfNeeded()
+				self.toastsStackView.layoutIfNeeded()
+				
+			}, {
+				
+				stackView.removeFromSuperview()
+			})
+		}
+		
+		let dismissGestureRecognier:UISwipeGestureRecognizer = .init { _ in
+			
+			dismiss()
+		}
+		dismissGestureRecognier.direction = .up
+		stackView.addGestureRecognizer(dismissGestureRecognier)
 		
 		UIView.animate(0.3, {
 			
-			self.alpha = 0.0
+			stackView.alpha = 1.0
+			stackView.isHidden = false
+			stackView.superview?.layoutIfNeeded()
+			self.toastsStackView.layoutIfNeeded()
 			
 		}, {
 			
-			self.removeFromSuperview()
-			
-			completion?()
+			UIApplication.wait(4.0) {
+				
+				dismiss()
+			}
 		})
 	}
 }

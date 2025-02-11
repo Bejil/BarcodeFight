@@ -125,16 +125,9 @@ public class BF_Tutorial_ViewController: BF_ViewController {
 		maskLayer.path = initialPath.cgPath
 		maskLayer.fillRule = .evenOdd
 		view.layer.mask = maskLayer
-		
-		if let key, UserDefaults.get(key) as? Bool ?? false, !force {
-			
-			view.isHidden = true
-		}
 	}
 	
-	public override func viewWillAppear(_ animated: Bool) {
-		
-		super.viewWillAppear(animated)
+	public func present() {
 		
 		if let key {
 			
@@ -142,16 +135,19 @@ public class BF_Tutorial_ViewController: BF_ViewController {
 				
 				UserDefaults.set(true, key)
 				
-				next()
+				UI.MainController.present(self, animated: true) { [weak self] in
+					
+					self?.next()
+				}
 			}
 			else {
 				
-				dismiss(animated: false, completion: completion)
+				completion?()
 			}
 		}
 		else {
 			
-			dismiss(animated: false, completion: completion)
+			completion?()
 		}
 	}
 	

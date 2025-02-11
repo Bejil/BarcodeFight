@@ -10,18 +10,21 @@ import UIKit
 
 public class BF_ViewController: UIViewController {
 	
-	private lazy var closeButton:UIButton = {
+	private lazy var closeButton:BF_Button = {
 		
-		$0.setImage(UIImage(named: "close_icon"), for: .normal)
-		$0.addAction(.init(handler: { [weak self] _ in
-			
-			UIApplication.feedBack(.On)
-			self?.close()
-			
-		}), for: .touchUpInside)
+		$0.style = .transparent
+		$0.isText = true
+		$0.image = UIImage(named: "close_icon")
+		$0.titleFont = Fonts.Navigation.Button
+		$0.configuration?.contentInsets = .zero
+		$0.configuration?.imagePadding = UI.Margins/2
 		return $0
 		
-	}(UIButton())
+	}(BF_Button(String(key: "Fermer")) { [weak self] _ in
+		
+		UIApplication.feedBack(.On)
+		self?.close()
+	})
 	public var isModal:Bool = false {
 		
 		didSet {
@@ -38,7 +41,6 @@ public class BF_ViewController: UIViewController {
 				view.addSubview(closeButton)
 				closeButton.snp.makeConstraints { make in
 					make.top.left.equalTo(view.safeAreaLayoutGuide).inset(UI.Margins)
-					make.size.equalTo(UI.Margins*2)
 				}
 			}
 		}
@@ -68,15 +70,21 @@ public class BF_ViewController: UIViewController {
 	}(CAGradientLayer())
 	private lazy var particulesView:BF_Monsters_Particules_View = {
 		
-		let monster:BF_Monster = .init()
-		monster.element = .Lightness
-		
-		$0.monster = monster
-		$0.alpha = 0.05
-		
+		$0.isFade = false
+		$0.alpha = 0.03
+		$0.scale = 0.75
 		return $0
 		
 	}(BF_Monsters_Particules_View())
+	private var bezierPath:UIBezierPath?
+	private var previousPoint:CGPoint = .zero
+	private var panGestureTimer:Timer?
+	
+	deinit {
+		
+		panGestureTimer?.invalidate()
+		panGestureTimer = nil
+	}
 	
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		
@@ -90,6 +98,16 @@ public class BF_ViewController: UIViewController {
 		
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	private lazy var shapeLayer:CAShapeLayer = {
+		
+		$0.lineJoin = .round
+		$0.lineCap = .round
+		$0.fillColor = UIColor.clear.cgColor
+		$0.strokeColor = UIColor.white.withAlphaComponent(0.5).cgColor
+		return $0
+		
+	}(CAShapeLayer())
 	
 	public override func loadView() {
 		
@@ -120,6 +138,90 @@ public class BF_ViewController: UIViewController {
 		}
 		tapGestureRecognizer.cancelsTouchesInView = false
 		view.addGestureRecognizer(tapGestureRecognizer)
+		
+		UIApplication.wait { [weak self] in
+			
+			let gradient:CAGradientLayer = .init()
+			gradient.frame = .init(origin: .zero, size: .init(width: self?.view.frame.size.width ?? 0, height: (self?.navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.statusBarHeight + (5*UI.Margins)))
+			gradient.colors = [UIColor.black.cgColor,UIColor.clear.cgColor]
+			gradient.opacity = 0.5
+			gradient.locations = [0.0, 1.0]
+			self?.view.layer.addSublayer(gradient)
+			
+			if let shapeLayer = self?.shapeLayer {
+				
+				self?.view.layer.addSublayer(shapeLayer)
+			}
+			
+			let panGestureRecognizer:UIPanGestureRecognizer = .init(block: { [weak self] gestureRecognizer in
+				
+				let currentPoint = gestureRecognizer.location(in: self?.view)
+				
+				if gestureRecognizer.state == .began {
+					
+					self?.bezierPath = .init()
+					self?.bezierPath?.move(to: currentPoint)
+					
+					self?.shapeLayer.opacity = 1.0
+					self?.shapeLayer.lineWidth = 0
+				}
+				else if gestureRecognizer.state == .changed {
+					
+					if let velocity = (gestureRecognizer as? UIPanGestureRecognizer)?.velocity(in: self?.view) {
+						
+						let speed = sqrt(pow(velocity.x, 2) + pow(velocity.y, 2))
+						
+						if speed > 175 {
+							
+							if let previousPoint = self?.previousPoint {
+								
+								self?.shapeLayer.opacity = 1.0
+								
+								let midPoint:CGPoint = .init(x: (previousPoint.x + currentPoint.x)/2, y: (previousPoint.y + currentPoint.y)/2)
+								self?.bezierPath?.addQuadCurve(to: midPoint, controlPoint: previousPoint)
+								self?.shapeLayer.lineWidth = min((3*UI.Margins/4) * (sqrt(speed) / sqrt(1000)), (3*UI.Margins/4))
+							}
+						}
+					}
+					
+					UIApplication.wait { [weak self] in
+						
+						UIView.animate { [weak self] in
+							
+							self?.shapeLayer.opacity = 0.0
+							self?.shapeLayer.lineWidth = 0
+							
+						} completion: { _ in
+							
+							self?.bezierPath = .init()
+							self?.bezierPath?.move(to: currentPoint)
+						}
+					}
+				}
+				else {
+					
+					self?.panGestureTimer?.invalidate()
+					self?.panGestureTimer = nil
+					
+					UIView.animate(withDuration: 0.3, animations: { [weak self] in
+						
+						self?.shapeLayer.opacity = 0.0
+						self?.shapeLayer.lineWidth = 0
+						
+					}, completion: { _ in
+						
+						self?.bezierPath = .init()
+						self?.shapeLayer.opacity = 1.0
+					})
+				}
+				
+				self?.previousPoint = currentPoint
+				
+				self?.shapeLayer.path = self?.bezierPath?.cgPath
+			})
+			panGestureRecognizer.delegate = self
+			self?.view.addGestureRecognizer(panGestureRecognizer)
+		}
 	}
 	
 	public override func viewWillDisappear(_ animated: Bool) {
@@ -147,5 +249,13 @@ public class BF_ViewController: UIViewController {
 	public func dismiss(_ completion:(()->Void)? = nil) {
 		
 		dismiss(animated: true, completion: completion)
+	}
+}
+
+extension BF_ViewController : UIGestureRecognizerDelegate {
+	
+	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		
+		return true
 	}
 }

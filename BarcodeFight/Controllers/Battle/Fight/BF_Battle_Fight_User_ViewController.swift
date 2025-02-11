@@ -12,7 +12,7 @@ public class BF_Battle_Fight_User_ViewController : BF_Battle_Fight_ViewControlle
 	
 	public override var experienceVictory: Int {
 		
-		return BF_Firebase.shared.config.int(.ExperienceFightVictory)
+		return BF_Firebase.shared.config.int(.ExperienceFightVictory) * max(1,(enemyUser?.level.number ?? 0) - (BF_User.current?.level.number ?? 0))
 	}
 	public override var experienceDefeat: Int {
 		
@@ -83,6 +83,13 @@ public class BF_Battle_Fight_User_ViewController : BF_Battle_Fight_ViewControlle
 		}
 	}
 	
+	public override func loadView() {
+		
+		super.loadView()
+		
+		startToss()
+	}
+	
 	public override func enemyTurn() {
 		
 		if enemyTeam?.allSatisfy({ $0.isDead }) ?? false || playerTeam?.allSatisfy({ $0.isDead }) ?? false {
@@ -148,6 +155,10 @@ public class BF_Battle_Fight_User_ViewController : BF_Battle_Fight_ViewControlle
 			
 			fight?.state = .FightOpponentDropout
 			fight?.update(nil)
+		}
+		else {
+			
+			BF_Challenge.increase(Challenges.Fights)
 		}
 	}
 	

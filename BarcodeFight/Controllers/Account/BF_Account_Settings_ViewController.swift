@@ -213,7 +213,7 @@ public class BF_Account_Settings_ViewController : BF_ViewController {
 				else {
 					
 					NotificationCenter.post(.updateAccount)
-					BF_Toast.shared.present(title: String(key: "account.settings.reautenticate.update.toast.title"), subtitle: String(key: "account.settings.reautenticate.update.toast.subtitle"), style: .Success)
+					BF_Toast_Manager.shared.addToast(title: String(key: "account.settings.reautenticate.update.toast.title"), subtitle: String(key: "account.settings.reautenticate.update.toast.subtitle"), style: .Success)
 				}
 			}
 		}
@@ -227,12 +227,6 @@ public class BF_Account_Settings_ViewController : BF_ViewController {
 			let reauthenticatePasswordTextField:BF_TextField = .init()
 			reauthenticatePasswordTextField.isMandatory = true
 			reauthenticatePasswordTextField.type = .password
-			
-			if UIApplication.isDebug {
-				
-				reauthenticatePasswordTextField.text = "Mich211326#"
-			}
-			
 			reauthenticatePasswordTextField.placeholder = String(key: "account.settings.reautenticate.update.alert.password.placeholder")
 			alertController.add(reauthenticatePasswordTextField)
 			
@@ -310,7 +304,11 @@ public class BF_Account_Settings_ViewController : BF_ViewController {
 							}
 							else {
 								
-								BF_Toast.shared.present(title: String(key: "account.settings.reautenticate.delete.toast.title"), subtitle: String(key: "account.settings.reautenticate.delete.toast.subtitle"), style: .Success)
+								NotificationCenter.post(.updateAccount)
+								NotificationCenter.post(.updateMonsters)
+								NotificationCenter.post(.updateChallenges)
+								
+								BF_Toast_Manager.shared.addToast(title: String(key: "account.settings.reautenticate.delete.toast.title"), subtitle: String(key: "account.settings.reautenticate.delete.toast.subtitle"), style: .Success)
 							}
 						}
 					}
@@ -324,12 +322,6 @@ public class BF_Account_Settings_ViewController : BF_ViewController {
 						let reauthenticatePasswordTextField:BF_TextField = .init()
 						reauthenticatePasswordTextField.isMandatory = true
 						reauthenticatePasswordTextField.type = .password
-						
-						if UIApplication.isDebug {
-							
-							reauthenticatePasswordTextField.text = "Mich211326#"
-						}
-						
 						reauthenticatePasswordTextField.placeholder = String(key: "account.settings.reautenticate.delete.alert.password.placeholder")
 						alertController.add(reauthenticatePasswordTextField)
 						
@@ -428,7 +420,11 @@ public class BF_Account_Settings_ViewController : BF_ViewController {
 				}
 				else {
 					
-					BF_Toast.shared.present(title: String(key: "account.settings.signOut.toast.title"), subtitle: String(key: "account.settings.signOut.toast.subtitle"), style: .Success)
+					NotificationCenter.post(.updateAccount)
+					NotificationCenter.post(.updateMonsters)
+					NotificationCenter.post(.updateChallenges)
+					
+					BF_Toast_Manager.shared.addToast(title: String(key: "account.settings.signOut.toast.title"), subtitle: String(key: "account.settings.signOut.toast.subtitle"), style: .Success)
 				}
 			}
 		}))
